@@ -86,3 +86,7 @@
 * ランキング
 * open AI（クレイジーな挑戦内容の提案に活用）
 * テスト（Rspec）
+
+### 画面遷移図
+Figma
+https://www.figma.com/file/bYm3gAgfyFwbDCRwKpCDT3/crazy_challenge_record?type=design&node-id=0%3A1&mode=design&t=Y6dHQ2dFwSjpMyqN-1
