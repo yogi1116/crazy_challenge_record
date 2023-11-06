@@ -92,4 +92,4 @@ Figma
 https://www.figma.com/file/bYm3gAgfyFwbDCRwKpCDT3/crazy_challenge_record?type=design&node-id=0%3A1&mode=design&t=Y6dHQ2dFwSjpMyqN-1
 
 ### ER図
-https://gyazo.com/7080809498597691a80e718d8bfb1f5a
+https://gyazo.com/65cded7ff801ec9fb3d9b6cf0c5c144d
