@@ -87,6 +87,8 @@ GEM
     debug (1.8.0)
       irb (>= 1.5.0)
       reline (>= 0.3.1)
+    dockerfile-rails (1.5.12)
+      rails (>= 3.0.0)
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
@@ -183,6 +185,11 @@ GEM
     reline (0.4.0)
       io-console (~> 0.5)
     ruby2_keywords (0.0.5)
+    sentry-rails (5.14.0)
+      railties (>= 5.0)
+      sentry-ruby (~> 5.14.0)
+    sentry-ruby (5.14.0)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -214,11 +221,14 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   debug
+  dockerfile-rails (>= 1.5)
   importmap-rails
   jbuilder
   pg (~> 1.1)
   puma (>= 5.0)
   rails (~> 7.1.1)
+  sentry-rails (~> 5.14)
+  sentry-ruby (~> 5.14)
   sprockets-rails
   tzinfo-data
   web-console
