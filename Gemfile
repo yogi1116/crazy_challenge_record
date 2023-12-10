@@ -71,3 +71,5 @@ gem "sentry-ruby", "~> 5.14"
 gem "sentry-rails", "~> 5.14"
 
 gem "dartsass-rails", "~> 0.5.0"
+
+gem "cssbundling-rails", "~> 1.3"
