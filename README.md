@@ -95,7 +95,6 @@ CRAZY MAN
 * テスト（Rspec）
 
 ### 画面遷移図
-Figma
 https://www.figma.com/file/bYm3gAgfyFwbDCRwKpCDT3/crazy_challenge_record?type=design&node-id=0%3A1&mode=design&t=Y6dHQ2dFwSjpMyqN-1
 
 ### ER図
