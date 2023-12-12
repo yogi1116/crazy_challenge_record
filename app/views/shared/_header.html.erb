@@ -1,0 +1,46 @@
+<header>
+  <div class="px-3 py-2 bg-dark text-white">
+    <div class="container-fluid">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <%= link_to root_path, class: "d-flex align-items-center my-2 my-lg-0 me-3 text-white text-decoration-none" do %>
+          <%= image_tag 'top.jpg', alt: 'Bootstrap', width: 130, height: 55 %>
+        <% end %>
+        <%= link_to '#', class: "d-flex align-items-center my-2 my-lg-0 me-3 text-white text-decoration-none" do %>
+          <%= image_tag 'top.jpg', alt: 'Bootstrap', width: 70, height: 55 %>
+        <% end %>
+        <%= link_to '#', class: "d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none" do %>
+          <%= image_tag 'top.jpg', alt: 'Bootstrap', width: 70, height: 55 %>
+        <% end %>
+        <div class="dropdown-center me-3">
+          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            CRAZY Post
+          </button>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to '#', class: "dropdown-item" do %>
+                Post1
+              <% end %>
+            </li>
+            <li>
+              <%= link_to '#', class: "dropdown-item" do %>
+                Post2
+              <% end %>
+            </li>
+          </ul>
+        </div>
+        <div class="flex-shrink-0 dropdown">
+          <%= link_to '#', class: 'd-block link-light text-decoration-none dropdown-toggle', id: 'dropdownUser2', 'data-bs-toggle': 'dropdown', 'aria-expanded': 'false' do %>
+            <%= image_tag 'my_dog.jpg', alt: 'mdo', width: 32, height: 32, class: 'rounded-circle' %>
+          <% end %>
+  
+          <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+            <li><%= link_to 'Profile', '#' , class: 'dropdown-item' %></li>
+            <li><%= link_to 'Settings', '#' , class: 'dropdown-item' %></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><%= link_to 'Sign out', '#' , class: 'dropdown-item' %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
