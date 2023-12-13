@@ -1,16 +1,13 @@
-# fly.toml app configuration file generated for crazy-man-app on 2023-12-13T17:58:01+09:00
+# fly.toml app configuration file generated for crazyman-app on 2023-12-14T01:16:58+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "crazy-man-app"
+app = "crazyman-app"
 primary_region = "nrt"
 console_command = "/rails/bin/rails console"
 
 [build]
-
-[deploy]
-  release_command = "bin/rails assets:precompile && ./bin/rails db:prepare"
 
 [http_service]
   internal_port = 3000
