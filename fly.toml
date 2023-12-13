@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for crazy-man on 2023-11-28T11:59:02+09:00
+# fly.toml app configuration file generated for crazy-man-app on 2023-12-13T17:58:01+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "crazy-man"
+app = "crazy-man-app"
 primary_region = "nrt"
 console_command = "/rails/bin/rails console"
 
@@ -37,7 +37,7 @@ console_command = "/rails/bin/rails console"
 [[vm]]
   cpu_kind = "shared"
   cpus = 1
-  memory_mb = 1024
+  memory_mb = 256
 
 [[statics]]
   guest_path = "/rails/public"
