@@ -22,14 +22,14 @@ RUN gem update --system --no-document && \
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
+# Install packages needed to build gems
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y build-essential libpq-dev curl
+
 # Node.jsとyarnをインストールする
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
     apt-get install -y nodejs && \
     npm install -g yarn
-
-# Install packages needed to build gems
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential libpq-dev curl
 
 # Install application gems
 COPY --link Gemfile Gemfile.lock ./
