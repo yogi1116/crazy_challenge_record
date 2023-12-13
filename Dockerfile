@@ -29,7 +29,7 @@ RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential libpq-dev
+    apt-get install --no-install-recommends -y build-essential libpq-dev curl
 
 # Install application gems
 COPY --link Gemfile Gemfile.lock ./
