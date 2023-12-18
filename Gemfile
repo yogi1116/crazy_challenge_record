@@ -79,3 +79,5 @@ gem 'sorcery', "0.16.5"
 gem "tailwindcss-rails", "~> 2.0"
 
 gem 'turbo-rails'
+
+gem 'stimulus-rails'
