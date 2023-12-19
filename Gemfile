@@ -73,3 +73,11 @@ gem "sentry-rails", "~> 5.14"
 gem "dartsass-rails", "~> 0.5.0"
 
 gem "cssbundling-rails", "~> 1.3"
+
+gem 'sorcery', "0.16.5"
+
+gem "tailwindcss-rails", "~> 2.0"
+
+gem 'turbo-rails'
+
+gem 'stimulus-rails'
