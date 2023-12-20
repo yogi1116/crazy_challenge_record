@@ -1,13 +1,16 @@
-# fly.toml app configuration file generated for crazy-challenge-record on 2023-12-14T19:34:23+09:00
+# fly.toml app configuration file generated for crazy-man on 2023-12-20T21:20:25+09:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "crazy-challenge-record"
+app = "crazy-man"
 primary_region = "nrt"
 console_command = "/rails/bin/rails console"
 
 [build]
+
+[deploy]
+  release_command = "./bin/rails db:prepare"
 
 [http_service]
   internal_port = 3000
@@ -39,6 +42,3 @@ console_command = "/rails/bin/rails console"
 [[statics]]
   guest_path = "/rails/public"
   url_prefix = "/"
-[deploy]
-  release_command = "./bin/rails db:prepare"
-
