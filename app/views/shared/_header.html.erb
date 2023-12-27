@@ -33,9 +33,7 @@
         <a href="#" class="block px-4 py-2 text-sm text-slate-950" id="user-menu-item-0">
           Your Profile
         </a>
-        <a href="#" class="block px-4 py-2 text-sm text-slate-950" id="user-menu-item-2">
-          Sign out
-        </a>
+        <%= link_to 'Log out', logout_path, class:'block px-4 py-2 text-sm text-slate-950', id:'user-menu-item-2', data: { turbo_method: :delete } %>
       </div>
     </div>
   </div>
