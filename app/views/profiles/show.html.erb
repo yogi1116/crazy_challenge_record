@@ -6,7 +6,7 @@
     <div class="flex flex-col items-center -mt-20">
       <img src="https://vojislavd.com/ta-template-demo/assets/img/profile.jpg" class="w-40 border-4 border-white rounded-full">
       <div class="flex items-center space-x-2 mt-2">
-        <p class="text-2xl">Amanda Ross</p>
+        <p class="text-2xl"><%= current_user.username %></p>
         <span class="bg-blue-500 rounded-full p-1" title="Verified">
           <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-100 h-2.5 w-2.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="M5 13l4 4L19 7"></path>
@@ -14,11 +14,10 @@
         </span>
       </div>
       <p class="text-gray-700">Senior Software Engineer at Tailwind CSS</p>
-      <p class="text-sm text-gray-500">New York, USA</p>
     </div>
     <div class="flex-1 flex flex-col items-center lg:items-end justify-end px-8 mt-2">
       <div class="flex items-center space-x-4 mt-2">
-        <%= link_to '#', class: "flex items-center bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100" do %>
+        <%= link_to edit_profile_path, class: "flex items-center bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100" do %>
           <%= content_tag :svg, class: "w-4 h-4", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", "stroke-width" => "1.5", stroke: "currentColor" do %>
             <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
           <% end %>
@@ -53,6 +52,10 @@
           </li>
           <li class="flex border-b py-2">
             <span class="font-bold w-36">趣味:</span>
+            <span class="text-gray-700">English, Spanish</span>
+          </li>
+          <li class="flex border-b py-2">
+            <span class="font-bold w-36">挑戦したいこと:</span>
             <span class="text-gray-700">English, Spanish</span>
           </li>
         </ul>
