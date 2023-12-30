@@ -46,10 +46,12 @@
             <span class="font-bold w-36">誕生日:</span>
             <span class="text-gray-700">24 Jul, 1991</span>
           </li>
-          <li class="flex border-b py-2">
-            <span class="font-bold w-36">Email:</span>
-            <span class="text-gray-700"><%= current_user.email %></span>
-          </li>
+          <% if current_user %>
+            <li class="flex border-b py-2">
+              <span class="font-bold w-36">Email:</span>
+              <span class="text-gray-700"><%= current_user.email %></span>
+            </li>
+          <% end %>
           <li class="flex border-b py-2">
             <span class="font-bold w-36">趣味:</span>
             <span class="text-gray-700">English, Spanish</span>
