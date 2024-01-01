@@ -1,19 +1,9 @@
 class ProfilesController < ApplicationController
-  def new;end
-
-  def create
-    @profile = Profile.new(profile_params)
-    if @profile.save
-      redirect_to profile_path
-    else
-      render :new
-    end
-  end
+  before_action :set_profile, only: %i[show edit update]
 
   def show; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @profile.update(profile_params)
@@ -25,7 +15,11 @@ class ProfilesController < ApplicationController
 
   private
 
+  def set_profile
+    @profile = Profile.find_by(params[:id])
+  end
+
   def profile_params
-    params.require(:user).permit(:one_word, :birthday, :hobbies, :challenge,  :introduction, :avatar, :avatar_cache)
+    params.require(:profile).permit(:one_word, :birthday, :hobbies, :challenge,  :introduction, :avatar, :avatar_cache)
   end
 end

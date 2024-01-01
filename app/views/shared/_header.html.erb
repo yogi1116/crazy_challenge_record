@@ -30,7 +30,7 @@
       </div>
 
       <div class="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" data-target="dropdown.menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-        <%= link_to 'Your Profile', user_profiles_path(current_user), class:'block px-4 py-2 text-sm text-slate-950', id:'user-menu-item-0' %>
+        <%= link_to 'Your Profile', profile_path, class:'block px-4 py-2 text-sm text-slate-950', id:'user-menu-item-0' %>
         <%= link_to 'Log out', logout_path, class:'block px-4 py-2 text-sm text-slate-950', id:'user-menu-item-2', data: { turbo_method: :delete } %>
       </div>
     </div>
