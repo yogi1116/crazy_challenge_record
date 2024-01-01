@@ -25,11 +25,13 @@
             <span>編集</span>
           <% end %>
         <% end %>
-        <%= link_to '#', class: "flex items-center bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100" do %>
-          <%= content_tag :svg, class: "w-4 h-4", xmlns: "http://www.w3.org/2000/svg", fill: "currentColor", viewBox: "0 0 24 24" do %>
-            <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd"></path>
+        <% unless current_user %>
+          <%= link_to '#', class: "flex items-center bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100" do %>
+            <%= content_tag :svg, class: "w-4 h-4", xmlns: "http://www.w3.org/2000/svg", fill: "currentColor", viewBox: "0 0 24 24" do %>
+              <path fill-rule="evenodd" d="M18 5v8a2 2 0 01-2 2h-5l-5 4v-4H4a2 2 0 01-2-2V5a2 2 0 012-2h12a2 2 0 012 2zM7 8H5v2h2V8zm2 0h2v2H9V8zm6 0h-2v2h2V8z" clip-rule="evenodd"></path>
+            <% end %>
+            <span>トーク</span>
           <% end %>
-          <span>トーク</span>
         <% end %>
       </div>
     </div>
