@@ -79,3 +79,5 @@ gem "tailwindcss-rails", "~> 2.0"
 gem 'turbo-rails'
 
 gem 'stimulus-rails'
+
+gem 'carrierwave', '~> 3.0'
