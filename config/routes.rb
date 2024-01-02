@@ -6,8 +6,12 @@ Rails.application.routes.draw do
   get "up" => "rails/health#show", as: :rails_health_check
 
   root 'top_pages#top'
-  get '/login', to: 'user_sessions#new'
-  post '/login', to: 'user_sessions#create'
+  get  '/login',  to: 'user_sessions#new'
+  post '/login',  to: 'user_sessions#create'
+  delete '/logout', to: 'user_sessions#destroy'
 
-  resources :users, only: %i[new create]
+  resources :users, only: %i[new create] do
+    resource :profile, only: %i[show]
+  end
+  resource :profile, only: %i[show edit update]
 end
