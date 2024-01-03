@@ -9,7 +9,7 @@ class ProfilesController < ApplicationController
     if @profile.update(profile_params)
       redirect_to profile_path, flash: { success: 'プロフィールが作成されました' }
     else
-      flash.now[:error] = 'プロフィール作成に失敗しました'
+      flash.now[:error] = t('.fail')
       render :edit, status: :unprocessable_entity
     end
   end
