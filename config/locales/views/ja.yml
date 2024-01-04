@@ -19,6 +19,9 @@ ja:
     show:
       title: 'プロフィール'
       edit: '編集'
+    edit:
+      title: 'プロフィール'
+      update: '更新'
     update:
       success: 'プロフィールが作成されました'
       fail: 'プロフィール作成に失敗しました'
