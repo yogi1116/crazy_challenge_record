@@ -36,18 +36,18 @@
     <div class="my-4 flex flex-col 2xl:flex-row space-y-4 2xl:space-y-0 2xl:space-x-4">
       <div class="w-full flex flex-col 2xl:w-1/3">
         <div class="flex-1 bg-white rounded-lg shadow-xl p-8">
-          <h4 class="text-xl text-gray-900 font-bold">プロフィール</h4>
+          <h4 class="text-xl text-gray-900 font-bold"><%= t('.title') %></h4>
           <ul class="mt-2 text-gray-700">
             <li class="flex border-b py-2">
-              <span class="font-bold w-36">誕生日</span>
+              <%= f.label :birthday, class: 'font-bold w-36' %>
               <%= f.date_field :birthday, class: 'text-gray-700' %>
             </li>
             <li class="flex border-b py-2">
-              <span class="font-bold w-36">趣味</span>
+              <%= f.label :hobbies, class: 'font-bold w-36' %>
               <%= f.text_field :hobbies, class: 'text-gray-700 w-full sm:w-3/4 md:w-2/3' %>
             </li>
             <li class="flex border-b py-2">
-              <span class="font-bold w-36">挑戦したいこと</span>
+              <%= f.label :challenge, class: 'font-bold w-36' %>
               <%= f.text_field :challenge, class: 'text-gray-700 w-full sm:w-3/4 md:w-2/3' %>
             </li>
           </ul>
@@ -56,14 +56,14 @@
 
       <div class="flex flex-col w-full 2xl:w-2/3">
         <div class="flex-1 bg-white rounded-lg shadow-xl p-8">
-          <h4 class="text-xl text-gray-900 font-bold">自己紹介</h4>
+          <h4><%= f.label :introduction, class: 'text-xl text-gray-900 font-bold' %></h4>
           <%= f.text_area :introduction, class: 'mt-2 text-gray-700 w-full' %>
         </div>
       </div>
     </div>
 
     <div class="text-right mt-4">
-      <%= f.submit "更新", class: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+      <%= f.submit t('.update'), class: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
     </div>
   <% end %>
 </div>
