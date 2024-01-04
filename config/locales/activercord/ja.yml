@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    models:
+      user: 'ユーザー'
+      profile: 'プロフィール'
+    attributes:
+      user:
+        email: 'メールアドレス'
+        password: 'パスワード'
+        password_confirmation: 'パスワード確認'
+        username: 'ユーザーネーム'
+      profile:
+        one_word: 'ひとこと'
+        birthday: '誕生日'
+        hobbies: '趣味'
+        challenge: '挑戦したいこと'
+        introduction: '自己紹介'

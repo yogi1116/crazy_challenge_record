@@ -8,20 +8,20 @@
       <nav aria-label="Global" class="hidden md:block">
         <ul class="flex items-center gap-6 text-xl">
           <li>
-            <a class="text-black transition hover:text-gray-500/75" href="/"> About </a>
+            <%= link_to 'RANKING', '#', class: 'text-black transition hover:text-gray-500/75' %>
           </li>
 
           <li>
-            <a class="text-black transition hover:text-gray-500/75" href="/"> Careers </a>
+            <%= link_to 'CHALLENGE', '#', class: 'text-black transition hover:text-gray-500/75' %>
           </li>
         </ul>
       </nav>
 
       <div class="flex items-center gap-4">
         <div class="sm:flex sm:gap-4">
-          <%= link_to 'ログイン', login_path, class:'block rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700' %>
+          <%= link_to (t 'defaults.login'), login_path, class:'block rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700' %>
 
-          <%= link_to '会員登録', new_user_path, class:'block rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700' %>
+          <%= link_to (t 'defaults.signup'), new_user_path, class:'block rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700' %>
         </div>
       </div>
     </div>
