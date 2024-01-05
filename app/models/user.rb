@@ -1,9 +1,9 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
+  after_create :create_user_profile
 
   has_one :profile, dependent: :destroy
-
-  after_create :create_user_profile
+  has_many :post, dependent: :destroy
 
   validates :username, presence: true
   validates :email, presence: true, uniqueness: true
