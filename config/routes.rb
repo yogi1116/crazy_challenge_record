@@ -14,5 +14,5 @@ Rails.application.routes.draw do
     resource :profile, only: %i[show]
   end
   resource :profile, only: %i[show edit update]
-  resources :post
+  resources :posts
 end
