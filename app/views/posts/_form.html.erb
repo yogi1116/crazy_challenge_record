@@ -1,0 +1,91 @@
+<!-- component -->
+<div class="flex flex-col items-center justify-center min-h-screen bg-teal-100">
+  <!-- dark theme -->
+  <div class="container  m-4">
+    <div class="max-w-3xl w-full mx-auto grid gap-4 grid-cols-1">
+      <!-- profile card -->
+      <div class="flex flex-col">
+        <div class="bg-gray-800 border border-gray-800 shadow-lg  rounded-2xl p-4">
+          <div class="flex items-center justify-between sm:mt-2">
+            <div class="flex flex-col">
+              <div class="w-full flex-none text-lg text-gray-200 font-bold leading-none">挑戦名</div>
+              <div class="flex-auto text-gray-400 my-1">
+                <span class="mr-3 ">100km徒歩</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--confirm modal-->
+      <div class="grid gap-4 grid-cols-1">
+        <div class="flex flex-col p-4 relative items-center justify-center bg-gray-800 border border-gray-800 shadow-lg  rounded-2xl">
+          <div class="">
+            <div class="text-center p-5 flex-auto justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 -m-1 flex items-center text-blue-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 flex items-center text-gray-600 mx-auto" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
+              </svg>
+              <h2 class="text-xl font-bold py-4 text-gray-200">挑戦内容</h3>
+                <p class="text-sm text-gray-500 px-8">Do you really want to delete your account? This process cannot be undone</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!---stats-->
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 sm:col-span-6">
+          <div class="p-4 relative  bg-gray-800 border border-gray-800 shadow-lg  rounded-2xl">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14  absolute bottom-4 right-3 text-green-400" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
+              <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
+            </svg>
+            <div class="text-lg text-gray-100 font-bold leading-8 mt-5">記録</div>
+            <div class="text-sm text-gray-500">26時間</div>
+          </div>
+        </div>
+        <div class="col-span-12 sm:col-span-6">
+          <div class="p-4 relative  bg-gray-800 border border-gray-800 shadow-lg  rounded-2xl">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14  absolute bottom-4 right-3 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+            </svg>
+            <div class="flex justify-between items-center ">
+              <i class="fab fa-behance text-xl text-gray-400"></i>
+            </div>
+            <div class="text-lg text-gray-100 font-bold leading-8 mt-5">カテゴリー</div>
+            <div class="text-sm text-gray-500">スポーツ</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col">
+        <div class="bg-gray-800 border border-gray-800 shadow-lg  rounded-2xl p-4">
+          <div class="flex items-center justify-between sm:mt-2">
+            <div class="flex flex-col">
+              <div class="w-full flex-none text-lg text-gray-200 font-bold leading-none">印象に残った出来事</div>
+              <div class="flex-auto text-gray-400 my-1">
+                <span class="mr-3 ">足が痛い</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col">
+        <div class="bg-gray-800 border border-gray-800 shadow-lg  rounded-2xl p-4">
+          <div class="flex items-center justify-between sm:mt-2">
+            <div class="flex flex-col">
+              <div class="w-full flex-none text-lg text-gray-200 font-bold leading-none">得られた教訓</div>
+              <div class="flex-auto text-gray-400 my-1">
+                <span class="mr-3 ">100km歩くな</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
