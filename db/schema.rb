@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_105648) do
     t.string "title", null: false
     t.text "content", null: false
     t.string "record"
+    t.integer "category", null: false
     t.text "impression_event"
     t.text "lesson"
     t.text "feedback"

@@ -3,6 +3,9 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :content, presence: true
+  validates :category, presence: true
+
   enum challenge_result: { complet: 0, give_up: 1 }
-  enum retry: { try: 0, "don't_try": 1 }
+  enum category: { sports: 0, patience: 1, study: 2 }
+  enum retry: { try: 0, no_try: 1 }
 end
