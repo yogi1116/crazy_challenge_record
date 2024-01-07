@@ -10,7 +10,7 @@ class CreatePosts < ActiveRecord::Migration[7.1]
       t.text :impression_event
       t.text :lesson
       t.text :feedback
-      t.integer :retry, null: false
+      t.integer :retry
 
       t.timestamps
     end

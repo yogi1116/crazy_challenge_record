@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_05_105648) do
     t.text "impression_event"
     t.text "lesson"
     t.text "feedback"
-    t.integer "retry", null: false
+    t.integer "retry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_posts_on_user_id"
