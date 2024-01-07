@@ -51,7 +51,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_01_07_071754) do
     t.integer "category", null: false
     t.text "impression_event"
     t.text "lesson"
-    t.text "feedback"
     t.integer "retry"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

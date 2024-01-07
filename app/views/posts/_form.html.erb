@@ -2,24 +2,24 @@
 <%= form_with model: @post, local: true do |f| %>
 <%= f.hidden_field :challenge_result, value: @post.challenge_result %>
 <div class="flex flex-col items-center justify-center min-h-screen bg-gray-200">
-
   <div class="container  m-4">
     <div class="max-w-3xl w-full mx-auto grid gap-4 grid-cols-1">
+
       <!-- title -->
       <div class="flex flex-col">
         <div class="bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl p-4">
-          <div class="flex items-center justify-between sm:mt-2">
+        <div class="flex flex-col">
             <div class="flex flex-col">
               <%= f.label :title, class: 'w-full flex-none text-lg text-black font-bold leading-none'%>
               <div class="flex-auto text-black my-1">
-                <%= f.text_field :title, class: 'mr-3 rounded-2xl' %>
+                <%= f.text_field :title, class: 'w-full mr-3 rounded-2xl' %>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!--content-->
+      <!-- content -->
       <div class="grid gap-4 grid-cols-1">
         <div class="flex flex-col p-4 relative items-center justify-center bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
           <div class="">
@@ -51,27 +51,21 @@
         </div>
       </div>
 
-      <!--record-->
+      <!-- record -->
       <% if @post.challenge_result == 'complete' %>
       <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 sm:col-span-6">
           <div class="p-4 relative  bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14  absolute bottom-4 right-3 text-green-400" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
-              <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
-            </svg>
-            <%= f.label :record, class: 'text-lg text-black font-bold leading-8 my-3' %>
+            <div class="flex flex-col">
+            <%= f.label :record, class: 'text-lg text-black font-bold leading-8 mt-2' %>
             <%= f.text_field :record, class: 'text-sm text-black rounded-2xl' %>
+            </div>
           </div>
         </div>
       <% else %>
         <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 sm:col-span-6">
           <div class="p-4 relative  bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14  absolute bottom-4 right-3 text-green-400" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
-              <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
-            </svg>
             <h2 class="text-lg text-black font-bold leading-8 my-3">再挑戦する</h2>
             <%= f.radio_button :retry, :try %>
             <%= f.label :retry_try, "挑戦する", class: 'text-black' %>
@@ -81,7 +75,7 @@
         </div>
       <% end %>
 
-        <!--category-->
+        <!-- category -->
         <div class="col-span-12 sm:col-span-6">
           <div class="p-4 relative  bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14  absolute bottom-4 right-3 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
@@ -101,28 +95,28 @@
         </div>
       </div>
 
-      <!--inpression_event-->
+      <!-- inpression_event -->
       <div class="flex flex-col">
         <div class="bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl p-4">
-          <div class="flex items-center justify-between sm:mt-2">
+        <div class="flex flex-col">
             <div class="flex flex-col">
-              <%= f.label :impression_event, class: 'w-full flex-none text-lg text-black font-bold leading-none' %>
+              <%= f.label :impression_event, class: 'w-full flex-none text-lg text-black font-bold leading-none'%>
               <div class="flex-auto text-black my-1">
-                <span><%= f.text_area :impression_event, class: 'mr-3 rounded-2xl' %></span>
+                <%= f.text_area :impression_event, class: 'w-full h-20 mr-3 rounded-2xl' %>
               </div>
             </div>
           </div>
         </div>
       </div>
-      
-      <!--lesson-->
+
+      <!-- lesson -->
       <div class="flex flex-col">
         <div class="bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl p-4">
-          <div class="flex items-center justify-between sm:mt-2">
+        <div class="flex flex-col">
             <div class="flex flex-col">
-              <%= f.label :lesson, class: 'w-full flex-none text-lg text-black font-bold leading-none' %>
+              <%= f.label :lesson, class: 'w-full flex-none text-lg text-black font-bold leading-none'%>
               <div class="flex-auto text-black my-1">
-                <span><%= f.text_area :lesson, class: 'mr-3 rounded-2xl' %>
+                <%= f.text_area :lesson, class: 'w-full h-20 mr-3 rounded-2xl' %>
               </div>
             </div>
           </div>

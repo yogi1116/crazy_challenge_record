@@ -39,6 +39,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:challenge_result, :title, :content, :record, :category, :impression_event, :lesson, :feedback, :retry, images: [])
+    params.require(:post).permit(:challenge_result, :title, :content, :record, :category, :impression_event, :lesson, :retry, images: [])
   end
 end
