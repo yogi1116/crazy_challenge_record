@@ -12,10 +12,18 @@
         </li>
 
         <li>
-        <%= link_to 'CHALLENGE', '#', class: 'text-black transition hover:text-gray-500/75' %>
+          <%= link_to 'CHALLENGE', '#', class: 'text-black transition hover:text-gray-500/75' %>
         </li>
-        <li>
-        <%= link_to 'POST', new_post_path, class: 'text-black transition hover:text-gray-500/75' %>
+        <li data-controller="dropdown">
+          <button type="button" class="text-black transition hover:text-gray-500/75" data-action="click->dropdown#toggleMenu">POST</button>
+          <ul class="hidden absolute w-48 bg-white shadow-md mt-2 rounded-md" data-dropdown-target="menu">
+            <li>
+              <%= link_to '完遂', new_post_path(challenge_result: 'complet'), class: 'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-100' %>
+            </li>
+            <li>
+              <%= link_to '断念', new_post_path(challenge_result: 'give_up'), class: 'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-100' %>
+            </li>
+          </ul>
         </li>
       </ul>
     </nav>
@@ -29,7 +37,6 @@
           Open user menu
         </span>
         <%= image_tag @profile.avatar.url, class: 'w-12 h-12 rounded-full' %>
-        
       </button>
       </div>
 

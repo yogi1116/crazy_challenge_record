@@ -4,10 +4,12 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = Post.new
+    challenge_result = params[:challenge_result]
+    @post = Post.new(challenge_result: Post.challenge_results[challenge_result])
   end
 
   def create
+    @post = current_user.posts.build(post_params)
     if @post.save
       redirect_to posts_path
     else
