@@ -1,159 +1,139 @@
-<!-- component -->
-<div class="flex flex-col items-center justify-center min-h-screen bg-gray-200">
-  <div class="container  m-4">
-    <div class="max-w-3xl w-full mx-auto grid gap-4 grid-cols-1">
-
-      <!-- title -->
-      <div class="flex flex-col">
-        <div class="bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl p-4">
-        <div class="flex flex-col">
-            <div class="flex flex-col">
-              <biv class="w-full flex-none text-lg text-black font-bold leading-none">title</biv>
-              <div class="flex-auto text-black my-1">
-                <biv class="w-full mr-3 rounded-2xl">
-                  <%= @post.title %>
-                </biv>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- content -->
-      <div class="grid gap-4 grid-cols-1">
-        <div class="flex flex-col p-4 relative items-center justify-center bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
-          <div class="">
-            <div class="text-center p-5 flex-auto justify-center">
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 -m-1 flex items-center text-blue-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-              </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 flex items-center text-black mx-auto" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-              </svg>
-              <biv class="text-xl font-bold py-4 text-black">content</biv>
-              <div class="flex-auto text-black my-1">
-                <p class="text-sm text-black px-3 rounded-2xl" size="50x10">
-                  <%= @post.content %>
-                </p>
-              </div>
-              <div data-controller="post-preview">
-                <biv class="text-black">images</biv>
-                  <% if @post.images.attached? %>
-                    <% @post.images.each do |image| %>
-                      <%= image_tag image, class: "w-40 h-40 object-cover mr-2" %>
-                    <% end %>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- record -->
-      <% if @post.challenge_result == 'complete' %>
-      <div class="grid grid-cols-12 gap-6">
-        <div class="col-span-12 sm:col-span-6">
-          <div class="p-4 relative  bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
-            <div class="flex flex-col">
-              <biv class="text-lg text-black font-bold leading-8 mt-2">record</biv>
-              <p class="text-sm text-black rounded-2xl">
-                <%= @post.record %>
-              </p>
-            </div>
-          </div>
-        </div>
-      <% else %>
-        <div class="grid grid-cols-12 gap-6">
-        <div class="col-span-12 sm:col-span-6">
-          <div class="p-4 relative  bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
-            <h2 class="text-lg text-black font-bold leading-8 my-3">再挑戦する</h2>
-            <div>
-              <% if @post.retry == 'try' %>
-                <span class="block h-6 w-6 rounded-full bg-blue-500"></span>
-                <span class="text-black">挑戦する</span>
-              <% else %>
-                <span class="block h-6 w-6 rounded-full bg-gray-200"></span>
-                <span class="text-black">挑戦する</span>
-              <% end %>
-            </div>
-            <div>
-              <% if @post.retry == 'no_try' %>
-                <span class="block h-6 w-6 rounded-full bg-blue-500"></span>
-                <span class="text-black">挑戦しない</span>
-              <% else %>
-                <span class="block h-6 w-6 rounded-full bg-gray-200"></span>
-                <span class="text-black">挑戦しない</span>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      <% end %>
-
-        <!-- category -->
-        <div class="col-span-12 sm:col-span-6">
-          <div class="p-4 relative  bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14  absolute bottom-4 right-3 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
-            </svg>
-            <div class="flex justify-between items-center ">
-              <i class="fab fa-behance text-xl text-black"></i>
-            </div>
-            <h2 class="text-lg text-black font-bold leading-8 my-3">カテゴリー</h2>
-            <p class="text-sm text-black">
-              <% case @post.category %>
-              <% when 'sports' %>
-                スポーツ
-              <% when 'patience' %>
-                忍耐
-              <% when 'study' %>
-                勉強
-              <% end %>
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- inpression_event -->
-      <div class="flex flex-col">
-        <div class="bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl p-4">
-        <div class="flex flex-col">
-            <div class="flex flex-col">
-              <biv class="w-full flex-none text-lg text-black font-bold leading-none">impression_event</biv>
-              <div class="flex-auto text-black my-1">
-                <p class="w-full h-20 mr-3 rounded-2xl">
-                  <%= @post.impression_event %>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- lesson -->
-      <div class="flex flex-col">
-        <div class="bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl p-4">
-        <div class="flex flex-col">
-            <div class="flex flex-col">
-              <biv class="'w-full flex-none text-lg text-black font-bold leading-none">lesson</biv>
-              <div class="flex-auto text-black my-1">
-                <p class="w-full h-20 mr-3 rounded-2xl">
-                  <%= @post.lesson %>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+  <%= image_tag @post.user.profile.avatar.url, class: 'w-16 h-16 border-4 border-white rounded-full' %>
+  <%= link_to @post.user.username, user_profile_path(@post.user), class: 'text-lg text-black' %>
+  <div class="flex justify-end items-center gap-4 mt-3">
     <% if current_user.own?(@post) %>
       <%= link_to edit_post_path, class: "flex items-center bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100" do %>
-        <%= content_tag :svg, class: "w-4 h-4", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", "stroke-width" => "1.5", stroke: "currentColor" do %>
-          <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
-        <% end %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+        <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+        <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+        </svg>
         <span>編集</span>
+      <% end %>
+
+      <%= link_to post_path, class: 'flex items-center bg-red-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100',data: { turbo_method: :delete } do %>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+        <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
+        </svg>
+        <span>削除</span>
       <% end %>
     <% end %>
   </div>
-</div>
+  <div class="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+    <h6 class="mb-2 font-semibold leading-5">title</h6>
+    <h2 class="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto">
+      <span class="relative"><%= @post.title %></span>
+    </h2>
+    <h6 class="mb-2 font-semibold leading-5">content</h6>
+    <p class="text-base text-gray-700 text-lg">
+      <%= @post.content %>
+    </p>
+  </div>
+  <div class="grid max-w-screen-lg gap-8 lg:grid-cols-2 sm:mx-auto">
+    <div class="flex flex-col justify-center">
+      <% if @post.challenge_result == 'complete' %>
+        <div class="flex">
+          <div class="mr-4">
+            <div class="flex items-center justify-center w-10 h-10 mb-3 rounded-full bg-indigo-50">
+              <svg class="w-8 h-8 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
+                <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <h6 class="mb-2 font-semibold leading-5">record</h6>
+            <p class="text-lg text-gray-900">
+              <%= @post.record %>
+            </p>
+            <hr class="w-full my-6 border-gray-300" />
+          </div>
+        </div>
+      <% else %>
+        <div class="flex">
+          <div class="mr-4">
+            <div class="flex items-center justify-center w-10 h-10 mb-3 rounded-full bg-indigo-50">
+              <svg class="w-8 h-8 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
+                <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <h6 class="mb-2 font-semibold leading-5">retry</h6>
+            <p class="text-lg text-gray-900">
+              <%= @post.retry %>
+            </p>
+            <hr class="w-full my-6 border-gray-300" />
+          </div>
+        </div>
+      <% end %>
 
+      <div class="flex">
+        <div class="mr-4">
+          <div class="flex items-center justify-center w-10 h-10 mb-3 rounded-full bg-indigo-50">
+            <svg class="w-8 h-8 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
+              <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <h6 class="mb-2 font-semibold leading-5">category</h6>
+          <p class="text-lg text-gray-900">
+            <%= @post.category %>
+          </p>
+          <hr class="w-full my-6 border-gray-300" />
+        </div>
+      </div>
+      <div class="flex">
+        <div class="mr-4">
+          <div class="flex items-center justify-center w-10 h-10 mb-3 rounded-full bg-indigo-50">
+            <svg class="w-8 h-8 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
+              <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <h6 class="mb-2 font-semibold leading-5">impression_event</h6>
+          <p class="text-lg text-gray-900">
+            <%= @post.impression_event %>
+          </p>
+          <hr class="w-full my-6 border-gray-300" />
+        </div>
+      </div>
+      <div class="flex">
+        <div class="mr-4">
+          <div class="flex items-center justify-center w-10 h-10 mb-3 rounded-full bg-indigo-50">
+            <svg class="w-8 h-8 text-deep-purple-accent-400" stroke="currentColor" viewBox="0 0 52 52">
+              <polygon stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" points="29 13 14 29 25 29 23 39 38 23 27 23"></polygon>
+            </svg>
+          </div>
+        </div>
+        <div>
+          <h6 class="mb-2 font-semibold leading-5">lesson</h6>
+          <p class="text-lg text-gray-900">
+            <%= @post.lesson %>
+          </p>
+        </div>
+      </div>
+    </div>
+    <% case @post.images.count %>
+    <% when 0 %>
+      <div class="flex justify-center items-center">
+        <% if @post.challenge_result == 'complete' %>
+          <%= image_tag('complete.png', class: "w-full h-full object-cover") %>
+        <% else %>
+          <%= image_tag('give_up.png', class: "w-full h-full object-cover") %>
+        <% end %>
+      </div>
+    <% when 1 %>
+      <div class="flex justify-center items-center">
+        <%= image_tag @post.images.first, class: "w-full h-full object-cover" %>
+      </div>
+    <% else %>
+      <div class="grid grid-cols-2 gap-5">
+        <% @post.images.each do |image| %>
+          <%= image_tag image, style: "width: 300px; height: 300px;" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

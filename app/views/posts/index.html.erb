@@ -6,7 +6,7 @@
       <% if post.images.attached? %>
         <%= image_tag(post.images.first, style: "width: 320px; height: 300px; object-fit: cover;") %>
       <% elsif post.challenge_result == 'complete' %>
-      <%= image_tag('complete.png', style: "width: 320px; height: 300px; object-fit: cover;") %>
+        <%= image_tag('complete.png', style: "width: 320px; height: 300px; object-fit: cover;") %>
       <% else %>
         <%= image_tag('give_up.png', style: "width: 320px; height: 300px; object-fit: cover;") %>
       <% end %>
