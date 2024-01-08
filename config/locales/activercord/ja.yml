@@ -15,3 +15,12 @@ ja:
         hobbies: '趣味'
         challenge: '挑戦したいこと'
         introduction: '自己紹介'
+      post:
+        title: '挑戦名'
+        content: '挑戦内容'
+        record: '記録'
+        category: 'カテゴリー'
+        impression_event: '印象に残った出来事'
+        lesson: '得られた教訓'
+        retry: '再挑戦する？'
+

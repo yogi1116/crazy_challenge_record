@@ -1,21 +1,28 @@
-<div class="bg-gray-200">
-<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20" >
+<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8 lg:py-20" style="background-image:url('<%= image_path('post.jpeg') %>')">
   <div class="grid gap-5 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
     <% @posts.each do |post| %>
     <div class="overflow-hidden transition-shadow duration-300 bg-white rounded p-8 bg-white border rounded">
       <% if post.images.attached? %>
-        <%= image_tag(post.images.first, style: "width: 320px; height: 300px; object-fit: cover;") %>
+        <%= image_tag(post.images.first, style: "width: 390px; height: 300px; object-fit: cover;") %>
       <% elsif post.challenge_result == 'complete' %>
-        <%= image_tag('complete.png', style: "width: 320px; height: 300px; object-fit: cover;") %>
+        <%= image_tag('complete.png', style: "width: 390px; height: 300px; object-fit: cover;") %>
       <% else %>
-        <%= image_tag('give_up.png', style: "width: 320px; height: 300px; object-fit: cover;") %>
+        <%= image_tag('give_up.png', style: "width: 390px; height: 300px; object-fit: cover;") %>
       <% end %>
       <div class="py-5">
         <p class="mb-2 text-xs font-semibold text-gray-600 uppercase"><%= post.created_at %></p>
-        <%= link_to post_path(post), class: 'inline-block mb-3 text-black transition-colors duration-200 hover:text-deep-purple-accent-700' do %>
-          <p class:"text-2xl font-bold leading-5"><%= truncate(post.title, length: 42) %></p>
+        <% if post.challenge_result == 'complete' %>
+          <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300">COMPLETE</span>
+        <% else %>
+          <span class="bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-purple-400 border border-purple-400">GIVE UP</span>
         <% end %>
+        <div class="nline-block my-3 text-black transition-colors duration-200 hover:text-deep-purple-accent-700">
+        <p class="text-xl leading-5"><%= truncate(post.title, length: 42) %></p>
+        </div>
         <p class="mb-4 text-gray-700"><%= truncate(post.content, length: 102) %></p>
+        <div class="text-center mb-4">
+          <%= link_to 'Read more', post_path(post), class: 'inline-flex items-center font-semibold transition-colors duration-200 text-purple-700 hover:text-deep-purple-800' %>
+        </div>
         <div class="flex space-x-4">
           <a href="/" aria-label="Likes" class="flex items-start text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-700 group">
             <div class="mr-2">
@@ -60,5 +67,4 @@
     </div>
     <% end %>
   </div>
-</div>
 </div>
