@@ -10,6 +10,8 @@ ja:
       success: 'ユーザー登録が完了しました'
       fail: 'ユーザー登録に失敗しました'
   user_sessions:
+    new:
+      submit: 'ログイン'
     create:
       success: 'ログインしました'
       fail: 'ログインに失敗しました'

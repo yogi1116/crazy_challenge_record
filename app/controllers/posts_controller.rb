@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_action :find_post, only: [:edit, :update, :destroy]
+
   def index
     @posts = Post.all
   end
@@ -18,10 +20,10 @@ class PostsController < ApplicationController
   end
 
   def show
+    @post = Post.find(params[:id])
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
     if @post.update
@@ -40,5 +42,9 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:challenge_result, :title, :content, :record, :category, :impression_event, :lesson, :retry, images: [])
+  end
+
+  def find_post
+    @post = current_user.posts.find(params[:id])
   end
 end

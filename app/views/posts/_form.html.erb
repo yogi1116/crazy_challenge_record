@@ -1,6 +1,6 @@
 <!-- component -->
-<%= form_with model: @post, local: true do |f| %>
-<%= f.hidden_field :challenge_result, value: @post.challenge_result %>
+<%= form_with model: post, local: true do |f| %>
+<%= f.hidden_field :challenge_result, value: post.challenge_result %>
 <div class="flex flex-col items-center justify-center min-h-screen bg-gray-200">
   <div class="container  m-4">
     <div class="max-w-3xl w-full mx-auto grid gap-4 grid-cols-1">
@@ -32,15 +32,15 @@
               </svg>
               <%= f.label :content, class: 'text-xl font-bold py-4 text-black' %>
               <div class="flex-auto text-black my-1">
-              <%= f.text_area :content, class: 'text-sm text-black px-3 rounded-2xl', size: "50x10" %>
+              <%= f.text_area :content, class: 'text-lg text-black p-3 rounded-2xl', size: "50x10" %>
               </div>
               <div data-controller="post-preview">
-                <%= f.label :images, class: 'text-black' %>
+                <%= f.label :images, class: 'text-black text-lg' %>
                 <%= f.file_field :images, multiple: true, class: 'text-black border-2 border-slate-400 rounded-full', data: { action: 'change->post-preview#previewPost', post_preview_target: 'input' } %>
                 <div id="post-preview" data-post-preview-target="imageBox" class="flex flex-wrap mt-3">
 
-                  <% if @post.images.attached? %>
-                    <% @post.images.each do |image| %>
+                  <% if post.images.attached? %>
+                    <% post.images.each do |image| %>
                       <%= image_tag image, class: "w-40 h-40 object-cover mr-2" %>
                     <% end %>
                   <% end %>
@@ -52,13 +52,13 @@
       </div>
 
       <!-- record -->
-      <% if @post.challenge_result == 'complete' %>
+      <% if post.challenge_result == 'complete' %>
       <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 sm:col-span-6">
           <div class="p-4 relative  bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
             <div class="flex flex-col">
             <%= f.label :record, class: 'text-lg text-black font-bold leading-8 mt-2' %>
-            <%= f.text_field :record, class: 'text-sm text-black rounded-2xl' %>
+            <%= f.text_field :record, class: 'text-lg text-black rounded-2xl' %>
             </div>
           </div>
         </div>
@@ -86,11 +86,11 @@
             </div>
             <h2 class="text-lg text-black font-bold leading-8 my-3">カテゴリー</h2>
             <%= f.radio_button :category, :sports %>
-            <%= f.label :category_sports, 'スポーツ', class: 'text-sm text-black' %>
+            <%= f.label :category_sports, 'スポーツ', class: 'text-ml text-black' %>
             <%= f.radio_button :category, :patience %>
-            <%= f.label :category_patience, '忍耐', class: 'text-sm text-black' %>
+            <%= f.label :category_patience, '忍耐', class: 'text-ml text-black' %>
             <%= f.radio_button :category, :study %>
-            <%= f.label :category_study, '勉強', class: 'text-sm text-black' %>
+            <%= f.label :category_study, '勉強', class: 'text-ml text-black' %>
           </div>
         </div>
       </div>
@@ -102,7 +102,7 @@
             <div class="flex flex-col">
               <%= f.label :impression_event, class: 'w-full flex-none text-lg text-black font-bold leading-none'%>
               <div class="flex-auto text-black my-1">
-                <%= f.text_area :impression_event, class: 'w-full h-20 mr-3 rounded-2xl' %>
+                <%= f.text_area :impression_event, class: 'w-full h-20 mr-3 p-3 rounded-2xl' %>
               </div>
             </div>
           </div>
@@ -116,14 +116,14 @@
             <div class="flex flex-col">
               <%= f.label :lesson, class: 'w-full flex-none text-lg text-black font-bold leading-none'%>
               <div class="flex-auto text-black my-1">
-                <%= f.text_area :lesson, class: 'w-full h-20 mr-3 rounded-2xl' %>
+                <%= f.text_area :lesson, class: 'w-full h-20 mr-3 p-3 rounded-2xl' %>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="text-right mt-4">
-        <%= f.submit '作成', class: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+        <%= f.submit class: "bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
       </div>
     </div>
   </div>

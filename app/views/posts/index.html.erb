@@ -12,7 +12,7 @@
       <% end %>
       <div class="py-5">
         <p class="mb-2 text-xs font-semibold text-gray-600 uppercase"><%= post.created_at %></p>
-        <%= link_to '#', class: 'inline-block mb-3 text-black transition-colors duration-200 hover:text-deep-purple-accent-700' do %>
+        <%= link_to post_path(post), class: 'inline-block mb-3 text-black transition-colors duration-200 hover:text-deep-purple-accent-700' do %>
           <p class:"text-2xl font-bold leading-5"><%= truncate(post.title, length: 42) %></p>
         <% end %>
         <p class="mb-4 text-gray-700"><%= truncate(post.content, length: 102) %></p>

@@ -11,6 +11,10 @@ class User < ApplicationRecord
   validates :password, presence: true, confirmation: true
   validates :password_confirmation, presence: true
 
+  def own?(object)
+    id == object.user_id
+  end
+
   private
 
   def create_user_profile

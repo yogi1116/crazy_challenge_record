@@ -1,92 +1,159 @@
 <!-- component -->
-
-<div class="flex flex-col items-center justify-center min-h-screen bg-teal-100">
-  <!-- dark theme -->
+<div class="flex flex-col items-center justify-center min-h-screen bg-gray-200">
   <div class="container  m-4">
     <div class="max-w-3xl w-full mx-auto grid gap-4 grid-cols-1">
-      <!-- profile card -->
+
+      <!-- title -->
       <div class="flex flex-col">
-        <div class="bg-gray-800 border border-gray-800 shadow-lg  rounded-2xl p-4">
-          <div class="flex items-center justify-between sm:mt-2">
+        <div class="bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl p-4">
+        <div class="flex flex-col">
             <div class="flex flex-col">
-              <div class="w-full flex-none text-lg text-gray-200 font-bold leading-none">挑戦名</div>
-              <div class="flex-auto text-gray-400 my-1">
-                <span class="mr-3 ">100km徒歩</span>
+              <biv class="w-full flex-none text-lg text-black font-bold leading-none">title</biv>
+              <div class="flex-auto text-black my-1">
+                <biv class="w-full mr-3 rounded-2xl">
+                  <%= @post.title %>
+                </biv>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!--confirm modal-->
+      <!-- content -->
       <div class="grid gap-4 grid-cols-1">
-        <div class="flex flex-col p-4 relative items-center justify-center bg-gray-800 border border-gray-800 shadow-lg  rounded-2xl">
+        <div class="flex flex-col p-4 relative items-center justify-center bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
           <div class="">
             <div class="text-center p-5 flex-auto justify-center">
               <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 -m-1 flex items-center text-blue-400 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
               </svg>
-              <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 flex items-center text-gray-600 mx-auto" viewBox="0 0 20 20" fill="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 flex items-center text-black mx-auto" viewBox="0 0 20 20" fill="currentColor">
                 <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
               </svg>
-              <h2 class="text-xl font-bold py-4 text-gray-200">挑戦内容</h3>
-                <p class="text-sm text-gray-500 px-8">Do you really want to delete your account? This process cannot be undone</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!---stats-->
-      <div class="grid grid-cols-12 gap-6">
-        <div class="col-span-12 sm:col-span-6">
-          <div class="p-4 relative  bg-gray-800 border border-gray-800 shadow-lg  rounded-2xl">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14  absolute bottom-4 right-3 text-green-400" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z" />
-              <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z" />
-            </svg>
-            <div class="text-lg text-gray-100 font-bold leading-8 mt-5">記録</div>
-            <div class="text-sm text-gray-500">26時間</div>
-          </div>
-        </div>
-        <div class="col-span-12 sm:col-span-6">
-          <div class="p-4 relative  bg-gray-800 border border-gray-800 shadow-lg  rounded-2xl">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14  absolute bottom-4 right-3 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
-              <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
-            </svg>
-            <div class="flex justify-between items-center ">
-              <i class="fab fa-behance text-xl text-gray-400"></i>
-            </div>
-            <div class="text-lg text-gray-100 font-bold leading-8 mt-5">カテゴリー</div>
-            <div class="text-sm text-gray-500">スポーツ</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="flex flex-col">
-        <div class="bg-gray-800 border border-gray-800 shadow-lg  rounded-2xl p-4">
-          <div class="flex items-center justify-between sm:mt-2">
-            <div class="flex flex-col">
-              <div class="w-full flex-none text-lg text-gray-200 font-bold leading-none">印象に残った出来事</div>
-              <div class="flex-auto text-gray-400 my-1">
-                <span class="mr-3 ">足が痛い</span>
+              <biv class="text-xl font-bold py-4 text-black">content</biv>
+              <div class="flex-auto text-black my-1">
+                <p class="text-sm text-black px-3 rounded-2xl" size="50x10">
+                  <%= @post.content %>
+                </p>
+              </div>
+              <div data-controller="post-preview">
+                <biv class="text-black">images</biv>
+                  <% if @post.images.attached? %>
+                    <% @post.images.each do |image| %>
+                      <%= image_tag image, class: "w-40 h-40 object-cover mr-2" %>
+                    <% end %>
+                  <% end %>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="flex flex-col">
-        <div class="bg-gray-800 border border-gray-800 shadow-lg  rounded-2xl p-4">
-          <div class="flex items-center justify-between sm:mt-2">
+      <!-- record -->
+      <% if @post.challenge_result == 'complete' %>
+      <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 sm:col-span-6">
+          <div class="p-4 relative  bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
             <div class="flex flex-col">
-              <div class="w-full flex-none text-lg text-gray-200 font-bold leading-none">得られた教訓</div>
-              <div class="flex-auto text-gray-400 my-1">
-                <span class="mr-3 ">100km歩くな</span>
+              <biv class="text-lg text-black font-bold leading-8 mt-2">record</biv>
+              <p class="text-sm text-black rounded-2xl">
+                <%= @post.record %>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% else %>
+        <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-12 sm:col-span-6">
+          <div class="p-4 relative  bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
+            <h2 class="text-lg text-black font-bold leading-8 my-3">再挑戦する</h2>
+            <div>
+              <% if @post.retry == 'try' %>
+                <span class="block h-6 w-6 rounded-full bg-blue-500"></span>
+                <span class="text-black">挑戦する</span>
+              <% else %>
+                <span class="block h-6 w-6 rounded-full bg-gray-200"></span>
+                <span class="text-black">挑戦する</span>
+              <% end %>
+            </div>
+            <div>
+              <% if @post.retry == 'no_try' %>
+                <span class="block h-6 w-6 rounded-full bg-blue-500"></span>
+                <span class="text-black">挑戦しない</span>
+              <% else %>
+                <span class="block h-6 w-6 rounded-full bg-gray-200"></span>
+                <span class="text-black">挑戦しない</span>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+        <!-- category -->
+        <div class="col-span-12 sm:col-span-6">
+          <div class="p-4 relative  bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14  absolute bottom-4 right-3 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z" />
+            </svg>
+            <div class="flex justify-between items-center ">
+              <i class="fab fa-behance text-xl text-black"></i>
+            </div>
+            <h2 class="text-lg text-black font-bold leading-8 my-3">カテゴリー</h2>
+            <p class="text-sm text-black">
+              <% case @post.category %>
+              <% when 'sports' %>
+                スポーツ
+              <% when 'patience' %>
+                忍耐
+              <% when 'study' %>
+                勉強
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- inpression_event -->
+      <div class="flex flex-col">
+        <div class="bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl p-4">
+        <div class="flex flex-col">
+            <div class="flex flex-col">
+              <biv class="w-full flex-none text-lg text-black font-bold leading-none">impression_event</biv>
+              <div class="flex-auto text-black my-1">
+                <p class="w-full h-20 mr-3 rounded-2xl">
+                  <%= @post.impression_event %>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- lesson -->
+      <div class="flex flex-col">
+        <div class="bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl p-4">
+        <div class="flex flex-col">
+            <div class="flex flex-col">
+              <biv class="'w-full flex-none text-lg text-black font-bold leading-none">lesson</biv>
+              <div class="flex-auto text-black my-1">
+                <p class="w-full h-20 mr-3 rounded-2xl">
+                  <%= @post.lesson %>
+                </p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <% if current_user.own?(@post) %>
+      <%= link_to edit_post_path, class: "flex items-center bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100" do %>
+        <%= content_tag :svg, class: "w-4 h-4", xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", "stroke-width" => "1.5", stroke: "currentColor" do %>
+          <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+        <% end %>
+        <span>編集</span>
+      <% end %>
+    <% end %>
   </div>
 </div>
+
