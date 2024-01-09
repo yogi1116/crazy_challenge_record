@@ -29,7 +29,10 @@
         <p class="text-xl leading-5"><%= truncate(post.title, length: 28) %></p>
         </div>
         <p class="mb-4 text-gray-700"><%= truncate(post.content, length: 51) %></p>
-        <div class="text-center mb-4">
+
+        <%= render 'category', { post: post, categories: post.categories.first(3) } %>
+
+        <div class="text-center my-4">
           <%= link_to 'Read more', post_path(post), class: 'inline-flex items-center font-semibold transition-colors duration-200 text-blue-700 hover:text-deep-blue-800' %>
         </div>
         <div class="flex space-x-4">

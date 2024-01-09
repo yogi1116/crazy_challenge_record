@@ -19,10 +19,8 @@
           </div>
           <p class="text-xs text-slate-500"><%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S')  %></p>
         </div>
-<!-- ここ -->
-        <span class="bg-pink-100 text-pink-800 text-lg font-medium me-2 px-5 py-1 rounded-full dark:bg-pink-900 dark:text-pink-300"><%= @post.category %></span>
-
       </div>
+
       <% if current_user.own?(@post) %>
         <div class="flex items-center space-x-2 justify-between">
           <%= link_to edit_post_path, class: "flex items-center bg-blue-600 hover:bg-blue-700 text-gray-100 px-4 py-2 rounded text-sm space-x-2 transition duration-100" do %>
@@ -42,6 +40,8 @@
         </div>
       <% end %>
     </div>
+
+    <%= render 'category', { post: @post, categories: @post.categories } %>
 
     <!--content-->
     <div class="flex space-x-8 mt-8">
@@ -103,7 +103,7 @@
     </div>
 
 
-    <!-- image grid-->
+    <!-- image -->
     <div class="grid grid-cols-4 col-span-2 gap-2">
       <% @post.images.each do |image| %>
         <div class="overflow-hidden rounded-xl col-span-1 max-h-[14rem]">

@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(:user).order(created_at: :desc)
+    @posts = Post.includes(:user, :categories).order(created_at: :desc)
   end
 
   def new
@@ -44,7 +44,7 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:challenge_result, :title, :content, :record, :impression_event, :lesson, :retry, images: [])
+    params.require(:post).permit(:challenge_result, :title, :content, :record, :impression_event, :lesson, :retry, category_ids: [], images: [])
   end
 
   def find_post

@@ -26,7 +26,7 @@
           <div class="w-full flex-none text-lg text-black font-bold leading-none mb-1">カテゴリー</div>
             <% Category.all.each do |category| %>
               <div class="w-1/2 px-2">
-                <%= check_box_tag 'post[category_ids][]', category.id, @post.categories.include?(category) %>
+                <%= check_box_tag 'post[category_ids][]', category.id, post.categories.include?(category) %>
                 <%= label_tag "post_category_ids_#{category.id}", category.name %>
               </div>
             <% end %>
