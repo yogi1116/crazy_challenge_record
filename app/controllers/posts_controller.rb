@@ -37,6 +37,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    @post.post_categories.destroy_all
     @post.destroy!
     redirect_to posts_path, flash: { success: t('posts.destroy.success') }
   end
