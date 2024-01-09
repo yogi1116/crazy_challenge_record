@@ -8,13 +8,28 @@
       <!-- title -->
       <div class="flex flex-col">
         <div class="bg-slate-100 border border-gray-800 shadow-lg rounded-2xl p-4 mt-3">
-        <div class="flex flex-col">
+          <div class="flex flex-col">
             <div class="flex flex-col">
-              <%= f.label :title, class: 'w-full flex-none text-lg text-black font-bold leading-none'%>
+              <%= f.label :title, class: 'w-full flex-none text-lg text-black font-bold leading-none mb-1'%>
               <div class="flex-auto text-black my-1">
                 <%= f.text_field :title, class: 'w-full mr-3 rounded-2xl' %>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- category -->
+      <div class="flex flex-col">
+        <div class="bg-slate-100 border border-gray-800 shadow-lg rounded-2xl p-4">
+          <div class="flex flex-wrap -mx-2">
+          <div class="w-full flex-none text-lg text-black font-bold leading-none mb-1">カテゴリー</div>
+            <% Category.all.each do |category| %>
+              <div class="w-1/2 px-2">
+                <%= check_box_tag 'post[category_ids][]', category.id, @post.categories.include?(category) %>
+                <%= label_tag "post_category_ids_#{category.id}", category.name %>
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -25,7 +40,7 @@
           <div class="">
             <div class="text-center p-5 flex-auto justify-center">
               <%= f.label :content, class: 'text-xl font-bold py-4 text-black' %>
-              <div class="flex-auto text-black my-1">
+              <div class="flex-auto text-black my-2">
               <%= f.text_area :content, class: 'text-lg text-black p-3 rounded-2xl', size: "50x10" %>
               </div>
               <div data-controller="post-preview">
@@ -47,51 +62,41 @@
 
       <!-- record -->
       <% if post.challenge_result == 'complete' %>
-      <div class="grid grid-cols-12 gap-6">
-        <div class="col-span-12 sm:col-span-6">
-          <div class="p-4 relative  bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
+        <div class="flex flex-col">
+          <div class="bg-slate-100 border border-gray-800 shadow-lg rounded-2xl p-4">
             <div class="flex flex-col">
-            <%= f.label :record, class: 'text-lg text-black font-bold leading-8 mt-2' %>
-            <%= f.text_field :record, class: 'text-lg text-black rounded-2xl' %>
+              <div class="flex flex-col">
+                <%= f.label :record, class: 'w-full flex-none text-lg text-black font-bold leading-none mb-1'%>
+                <div class="flex-auto text-black my-1">
+                  <%= f.text_field :record, class: 'w-full mr-3 rounded-2xl' %>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       <% else %>
-        <div class="grid grid-cols-12 gap-6">
-        <div class="col-span-12 sm:col-span-6">
-          <div class="p-4 relative  bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
-            <h2 class="text-lg text-black font-bold leading-8 my-3">再挑戦する</h2>
-            <%= f.radio_button :retry, :try %>
-            <%= f.label :retry_try, "挑戦する", class: 'text-black' %>
-            <%= f.radio_button :retry, :no_try %>
-            <%= f.label :try_no_try, "挑戦しない", class: 'text-black' %>
+      <!-- retry -->
+        <div class="flex flex-col">
+          <div class="bg-slate-100 border border-gray-800 shadow-lg rounded-2xl p-4">
+            <div class="flex items-center">
+              <h2 class="flex-none text-lg text-black font-bold leading-none mr-4">再挑戦</h2>
+              <div class="flex-auto text-black my-1 flex items-center">
+                <%= f.radio_button :retry, :try, class: 'mr-2' %>
+                <%= f.label :retry_try, "挑戦する", class: 'mr-6' %>
+                <%= f.radio_button :retry, :no_try, class: 'mr-2' %>
+                <%= f.label :retry_no_try, "挑戦しない", class: 'mr-3 rounded-2xl' %>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
-
-        <!-- category -->
-        <div class="col-span-12 sm:col-span-6">
-          <div class="p-4 relative  bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl">
-            <div class="flex justify-between items-center ">
-              <i class="fab fa-behance text-xl text-black"></i>
-            </div>
-            <h2 class="text-lg text-black font-bold leading-8 my-3">カテゴリー</h2>
-            <%= f.radio_button :category, :sports %>
-            <%= f.label :category_sports, 'スポーツ', class: 'text-ml text-black' %>
-            <%= f.radio_button :category, :patience %>
-            <%= f.label :category_patience, '忍耐', class: 'text-ml text-black' %>
-            <%= f.radio_button :category, :study %>
-            <%= f.label :category_study, '勉強', class: 'text-ml text-black' %>
-          </div>
-        </div>
-      </div>
 
       <!-- inpression_event -->
       <div class="flex flex-col">
         <div class="bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl p-4">
         <div class="flex flex-col">
             <div class="flex flex-col">
-              <%= f.label :impression_event, class: 'w-full flex-none text-lg text-black font-bold leading-none'%>
+              <%= f.label :impression_event, class: 'w-full flex-none text-lg text-black font-bold leading-none mb-1'%>
               <div class="flex-auto text-black my-1">
                 <%= f.text_area :impression_event, class: 'w-full h-20 mr-3 p-3 rounded-2xl' %>
               </div>
@@ -105,7 +110,7 @@
         <div class="bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl p-4">
         <div class="flex flex-col">
             <div class="flex flex-col">
-              <%= f.label :lesson, class: 'w-full flex-none text-lg text-black font-bold leading-none'%>
+              <%= f.label :lesson, class: 'w-full flex-none text-lg text-black font-bold leading-none mb-1'%>
               <div class="flex-auto text-black my-1">
                 <%= f.text_area :lesson, class: 'w-full h-20 mr-3 p-3 rounded-2xl' %>
               </div>
