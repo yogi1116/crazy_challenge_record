@@ -1,6 +1,6 @@
-<header class="bg-purple-400">
+<header class="bg-blue-600">
   <div class="mx-auto flex h-20 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-  <%= link_to root_path, class: 'block text-black' do %>
+  <%= link_to posts_path, class: 'block text-black' do %>
     <%= image_tag 'crazy_man.png', style: 'width: 150px; height: 133px;' %>
   <% end %>
 
@@ -10,30 +10,31 @@
         <li>
           <%= link_to 'RANKING', '#', class: 'text-black transition hover:text-gray-500/75' %>
         </li>
-
-        <li>
-        <%= link_to 'CHALLENGE', '#', class: 'text-black transition hover:text-gray-500/75' %>
+        <li data-controller="dropdown">
+          <button type="button" class="text-black transition hover:text-gray-500/75" data-action="click->dropdown#toggleMenu">POST</button>
+          <ul class="hidden absolute w-48 bg-white shadow-md mt-2 rounded-md" data-dropdown-target="menu">
+            <li>
+              <%= link_to 'COMPLETE', new_post_path(challenge_result: 'complete'), class: 'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-100' %>
+            </li>
+            <li>
+              <%= link_to 'GIVE UP', new_post_path(challenge_result: 'give_up'), class: 'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-100' %>
+            </li>
+          </ul>
         </li>
       </ul>
     </nav>
   </div>
 
-  <div class="inline-flex items-center gap-2 list-none lg:ml-auto" data-controller="dropdown">
-    <div class="relative flex-shrink-0 ml-5">
-      <div>
-      <button type="button" class="flex bg-white rounded-full focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" data-action="click->dropdown#toggleMenu" aria-haspopup="true">
-        <span class="sr-only">
-          Open user menu
-        </span>
-        <%= image_tag @profile.avatar.url, class: 'w-12 h-12 rounded-full' %>
-        
-      </button>
-      </div>
+  <div class="hs-dropdown relative inline-flex" data-controller="dropdown">
+    <button id="hs-dropdown-custom-trigger" type="button" class="hs-dropdown-toggle py-1 ps-1 pe-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-action="click->dropdown#toggleMenu">
+      <%= image_tag @profile.avatar.url, class: 'w-10 h-10 rounded-full' %>
+      <span class="text-gray-600 text-ms truncate max-w-[7.5rem] dark:text-gray-400"><%= @profile.user.username %></span>
+      <svg class="hs-dropdown-open:rotate-180 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </button>
 
-      <div class="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" data-target="dropdown.menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
-        <%= link_to (t 'defaults.profile'), profile_path, class:'block px-4 py-2 text-sm text-slate-950', id:'user-menu-item-0' %>
-        <%= link_to (t 'defaults.logout'), logout_path, class:'block px-4 py-2 text-sm text-slate-950', id:'user-menu-item-2', data: { turbo_method: :delete } %>
-      </div>
+    <div class="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden top-full" data-target="dropdown.menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+      <%= link_to (t 'defaults.profile'), profile_path, class:'block px-4 py-2 text-sm text-slate-950', id:'user-menu-item-0' %>
+      <%= link_to (t 'defaults.logout'), logout_path, class:'block px-4 py-2 text-sm text-slate-950', id:'user-menu-item-2', data: { turbo_method: :delete } %>
     </div>
   </div>
 </header>

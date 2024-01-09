@@ -10,6 +10,8 @@ ja:
       success: 'ユーザー登録が完了しました'
       fail: 'ユーザー登録に失敗しました'
   user_sessions:
+    new:
+      submit: 'ログイン'
     create:
       success: 'ログインしました'
       fail: 'ログインに失敗しました'
@@ -23,5 +25,14 @@ ja:
       title: 'プロフィール'
       update: '更新'
     update:
-      success: 'プロフィールが作成されました'
+      success: 'プロフィールを更新しました'
       fail: 'プロフィール作成に失敗しました'
+  posts:
+    create:
+      success: '新規投稿されました'
+      fail: '投稿に失敗しました'
+    update:
+      success: '投稿内容を更新しました'
+      fail: '投稿内容の更新に失敗しました'
+    destroy:
+      success: '投稿を削除しました'

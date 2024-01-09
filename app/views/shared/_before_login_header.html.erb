@@ -1,6 +1,6 @@
-<header class="bg-purple-400">
+<header class="bg-blue-600">
   <div class="mx-auto flex h-20 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-    <%= link_to root_path, class: 'block text-black' do %>
+    <%= link_to posts_path, class: 'block text-black' do %>
       <%= image_tag 'crazy_man.png', style: 'width: 150px; height: 133px;' %>
     <% end %>
 
@@ -9,10 +9,6 @@
         <ul class="flex items-center gap-6 text-xl">
           <li>
             <%= link_to 'RANKING', '#', class: 'text-black transition hover:text-gray-500/75' %>
-          </li>
-
-          <li>
-            <%= link_to 'CHALLENGE', '#', class: 'text-black transition hover:text-gray-500/75' %>
           </li>
         </ul>
       </nav>
