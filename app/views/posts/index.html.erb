@@ -1,5 +1,5 @@
 <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8 lg:py-20" style="background-image:url('<%= image_path('post.jpeg') %>')">
-  <div class="grid gap-5 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
+  <div class="grid gap-5 lg:grid-cols-4 sm:max-w-sm sm:mx-auto lg:max-w-full">
     <% @posts.each do |post| %>
     <div class="overflow-hidden transition-shadow duration-300 bg-white rounded p-8 bg-white border rounded">
       <% if post.images.attached? %>
@@ -17,11 +17,11 @@
           <span class="bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-purple-400 border border-purple-400">GIVE UP</span>
         <% end %>
         <div class="nline-block my-3 text-black transition-colors duration-200 hover:text-deep-purple-accent-700">
-        <p class="text-xl leading-5"><%= truncate(post.title, length: 42) %></p>
+        <p class="text-xl leading-5"><%= truncate(post.title, length: 28) %></p>
         </div>
-        <p class="mb-4 text-gray-700"><%= truncate(post.content, length: 102) %></p>
+        <p class="mb-4 text-gray-700"><%= truncate(post.content, length: 51) %></p>
         <div class="text-center mb-4">
-          <%= link_to 'Read more', post_path(post), class: 'inline-flex items-center font-semibold transition-colors duration-200 text-purple-700 hover:text-deep-purple-800' %>
+          <%= link_to 'Read more', post_path(post), class: 'inline-flex items-center font-semibold transition-colors duration-200 text-blue-700 hover:text-deep-blue-800' %>
         </div>
         <div class="flex space-x-4">
           <a href="/" aria-label="Likes" class="flex items-start text-gray-800 transition-colors duration-200 hover:text-deep-purple-accent-700 group">

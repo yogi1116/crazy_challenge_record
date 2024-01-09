@@ -1,10 +1,12 @@
-<div class=" flex justify-center items-center bg-slate-900">
+<div class=" flex justify-center items-center" style="background-image:url('<%= image_path('post.jpeg') %>')">
   <div class="bg-white text-white rounded-lg w-full mx-5 md:w-[40rem] m-10 lg:w-[70rem] space-y-6 p-10">
     <div class="flex justify-between items-center w-full">
       <!-- header -->
-      <div class="flex space-x-4 items-center ">
+      <div class="flex space-x-4 items-center">
         <div class="w-12 h-12">
-          <%= image_tag @post.user.profile.avatar.url, class: 'rounded-full w-full h-full object-cover' %>
+          <%= link_to user_profile_path(@post.user) do %>
+            <%= image_tag @post.user.profile.avatar.url, class: 'rounded-full w-full h-full object-cover' %>
+          <% end %>
         </div>
         <div class="space-y-2">
           <div class="flex space-x-2 items-center">
@@ -17,6 +19,7 @@
           </div>
           <p class="text-xs text-slate-500"><%= @post.created_at %></p>
         </div>
+        <span class="bg-pink-100 text-pink-800 text-lg font-medium me-2 px-5 py-1 rounded-full dark:bg-pink-900 dark:text-pink-300"><%= @post.category %></span>
       </div>
       <% if current_user.own?(@post) %>
         <div class="flex items-center space-x-2 justify-between">
@@ -78,19 +81,6 @@
         </div>
       </div>
     <% end %>
-    <div class="flex space-x-8 mt-8">
-      <div>
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path d="M12 14l9-5-9-5-9 5 9 5z"></path>
-          <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path>
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path>
-        </svg>
-      </div>
-      <div>
-        <h4 class="text-xl font-bold text-gray-700"><%= Post.human_attribute_name(:category) %></h4>
-        <p class="text-gray-600 my-2"><%= @post.category %></p>
-      </div>
-    </div>
     <div class="flex space-x-8 mt-8">
       <div class="flex-shrink-0">
         <%= image_tag 'posts/event.png', class: 'h-20 w-20 text-blue-600' %>
