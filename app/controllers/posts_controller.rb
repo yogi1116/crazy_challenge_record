@@ -1,8 +1,9 @@
 class PostsController < ApplicationController
+  skip_before_action :require_login, only: [:index]
   before_action :find_post, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.all
+    @posts = Post.includes(:user).order(created_at: :desc)
   end
 
   def new
@@ -13,9 +14,10 @@ class PostsController < ApplicationController
   def create
     @post = current_user.posts.build(post_params)
     if @post.save
-      redirect_to posts_path
+      redirect_to posts_path, flash: { success: t('posts.create.success') }
     else
-      render :new
+      flash.now[:error] = t('.fail')
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -27,15 +29,16 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to post_path(@post)
+      redirect_to post_path(@post), flash: { success: t('posts.update.success') }
     else
-      render :edit
+      flash.now[:error] = t('.fail')
+      render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @post.destroy!
-    redirect_to posts_path
+    redirect_to posts_path, flash: { success: t('posts.destroy.success') }
   end
 
   private
