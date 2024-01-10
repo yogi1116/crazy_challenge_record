@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   has_many_attached :images
   has_many :post_categories
   has_many :categories, through: :post_categories
+  has_many :likes, dependent: :destroy
 
   validates :title, presence: true
   validates :content, presence: true
