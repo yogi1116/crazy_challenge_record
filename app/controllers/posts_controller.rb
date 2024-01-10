@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :find_post, only: [:edit, :update, :destroy]
 
   def index
-    @posts = Post.includes(:user, :categories).order(created_at: :desc)
+    @posts = Post.with_attached_images.includes(:user, :categories).order(created_at: :desc)
   end
 
   def new
