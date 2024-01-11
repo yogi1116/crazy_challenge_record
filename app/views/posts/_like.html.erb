@@ -1,3 +1,15 @@
-<%= link_to post_likes_path(post_id: post.id), data: { "turbo-method": :post } do %>
-  <%= image_tag 'crazy_2', class: 'h-20 w-20' %>
+<% if post.challenge_result == 'complete' %>
+  <%= link_to post_likes_path(post_id: post.id), data: { "turbo-method": :post }, class: 'crazy' do %>
+    <%= image_tag 'crazy_2', class: 'h-20 w-20' %>
+  <% end %>
+<% else %>
+  <% if post.retry == 'try' %>
+    <%= link_to post_likes_path(post_id: post.id), data: { "turbo-method": :post }, class: 'stop' do %>
+      <%= image_tag 'stop_2', class: 'h-20 w-20' %>
+    <% end %>
+  <% elsif post.retry == 'no_try' %>
+    <%= link_to post_likes_path(post_id: post.id), data: { "turbo-method": :post }, class: 'nice_fight' do %>
+      <%= image_tag 'nice_fight_2', class: 'h-20 w-20' %>
+    <% end %>
+  <% end %>
 <% end %>
