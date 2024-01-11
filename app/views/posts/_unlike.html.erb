@@ -1,0 +1,6 @@
+<% like = current_user.likes.find_by(post_id: post.id) %>
+<% if like %>
+  <%= link_to post_like_path(post_id: post.id, id: like.id), data: { "turbo-method": :delete } do %>
+    <%= image_tag 'crazy_1', class: 'h-20 w-20' %>
+  <% end %>
+<% end %>
