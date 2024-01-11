@@ -26,6 +26,8 @@
       <% else %>
         <%= render 'like_button', { post: @post } %>
       <% end %>
+
+      <%= render 'likes_count', { post: @post } %>
     </div>
 
     <%= render 'category', { post: @post, categories: @post.categories } %>

@@ -14,6 +14,15 @@ class Post < ApplicationRecord
   enum challenge_result: { complete: 0, give_up: 1 }
   enum retry: { try: 0, no_try: 1 }
 
+  def likes_count_by_button_type
+    # ここに各ボタンタイプのいいね数を返すロジックを実装
+    {
+      'crazy_2' => self.likes.where(button_type: 'crazy').count,
+      'fight_2' => self.likes.where(button_type: 'fight').count,
+      'nice_fight_2' => self.likes.where(button_type: 'nice_fight').count,
+    }
+  end
+
   private
 
   def image_count_within_limit

@@ -21,7 +21,7 @@ class LikesController < ApplicationController
     if post.challenge_result == 'complete'
       'crazy'
     elsif post.challenge_result == 'give_up'
-      post.retry == 'try' ? 'stop' : 'nice_fight'
+      post.retry == 'try' ? 'fight' : 'nice_fight'
     end
   end
 end

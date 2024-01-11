@@ -9,4 +9,8 @@ module LikesHelper
       'likes/nice_fight_2'
     end
   end
+
+  def like_count_for_button(post, button_type)
+    post.likes_count_by_button_type[button_type] || 0
+  end
 end
