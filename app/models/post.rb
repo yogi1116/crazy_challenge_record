@@ -7,6 +7,7 @@ class Post < ApplicationRecord
 
   validates :title, presence: true
   validates :content, presence: true
+  validates :challenge_result, presence: true
   validates :retry, presence: true, if: -> { challenge_result == 'give_up' }
   validate :image_count_within_limit
 
