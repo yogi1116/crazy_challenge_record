@@ -2,16 +2,16 @@
 
 <% if post.challenge_result == 'complete' %>
   <%= link_to post_like_path(post_id: post.id, id: like.id), data: { "turbo-method": :delete } do %>
-    <%= image_tag 'crazy_1', class: 'h-20 w-20' %>
+    <%= image_tag 'likes/crazy_1', class: 'h-20 w-20' %>
   <% end %>
 <% else %>
   <% if post.retry == 'try' %>
     <%= link_to post_like_path(post_id: post.id, id: like.id), data: { "turbo-method": :delete } do %>
-      <%= image_tag 'stop_1', class: 'h-20 w-20' %>
+      <%= image_tag 'likes/fight_1', class: 'h-20 w-20' %>
     <% end %>
   <% else %>
     <%= link_to post_like_path(post_id: post.id, id: like.id), data: { "turbo-method": :delete } do %>
-      <%= image_tag 'nice_fight_1', class: 'h-20 w-20' %>
+      <%= image_tag 'likes/nice_fight_1', class: 'h-20 w-20' %>
     <% end %>
   <% end %>
 <% end %>
