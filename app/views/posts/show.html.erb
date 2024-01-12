@@ -1,6 +1,6 @@
 <div class=" flex justify-center items-center" style="background-image:url('<%= image_path('post.jpeg') %>')">
   <div class="bg-white text-white rounded-lg w-full mx-5 md:w-[40rem] m-10 lg:w-[70rem] space-y-6 p-10">
-    <div class="flex justify-between items-center w-full">
+    <div class="flex items-center justify-between w-full">
       <!-- header -->
       <div class="flex space-x-4 items-center">
         <div class="w-12 h-12">
@@ -21,12 +21,18 @@
         </div>
       </div>
 
+      <% if @post.challenge_result == 'complete' %>
+          <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300">COMPLETE</span>
+        <% else %>
+          <span class="bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-purple-400 border border-purple-400">GIVE UP</span>
+        <% end %>
+
       <% if current_user.own?(@post) %>
         <%= render 'crud' %>
       <% else %>
         <div class="flex items-center">
-          <%= render 'like_button', { post: @post } %>
-          <%= render 'likes_count', { post: @post } %>
+        <%= render 'like_button', { post: @post } %>
+        <%= render 'likes_count', { post: @post } %>
         </div>
       <% end %>
     </div>
