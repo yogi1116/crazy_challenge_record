@@ -24,10 +24,11 @@
       <% if current_user.own?(@post) %>
         <%= render 'crud' %>
       <% else %>
-        <%= render 'like_button', { post: @post } %>
+        <div class="flex items-center">
+          <%= render 'like_button', { post: @post } %>
+          <%= render 'likes_count', { post: @post } %>
+        </div>
       <% end %>
-
-      <%= render 'likes_count', { post: @post } %>
     </div>
 
     <%= render 'category', { post: @post, categories: @post.categories } %>
