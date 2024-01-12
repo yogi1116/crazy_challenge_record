@@ -26,12 +26,14 @@
       </div>
 
       <div class="w-1/3 flex justify-end">
-      <% if current_user.own?(@post) %>
+        <% if current_user.own?(@post) %>
         <%= render 'crud' %>
       <% else %>
         <div class="flex items-center">
-        <%= render 'like_button', { post: @post } %>
-        <%= render 'likes_count', { post: @post } %>
+          <%= render 'like_button', { post: @post } %>
+          <div class="ml-3">
+            <%= render 'likes_count', { post: @post } %>
+          </div>
         </div>
       <% end %>
       </div>

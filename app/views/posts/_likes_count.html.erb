@@ -1,7 +1,7 @@
 <% like_button_type = like_image_for(post).gsub('likes/', '').gsub('_2', '') %>
 <% count = like_count_for_button(post, like_button_type + '_2') %>
 <% if count == 0 || count > 0 %>
-  <div class="text-black ml-3">
+  <div class="text-black">
     <%= "#{count}" %>
   </div>
 <% end %>
