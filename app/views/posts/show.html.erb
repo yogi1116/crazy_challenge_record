@@ -2,7 +2,7 @@
   <div class="bg-white text-white rounded-lg w-full mx-5 md:w-[40rem] m-10 lg:w-[70rem] space-y-6 p-10">
     <div class="flex items-center justify-between w-full">
       <!-- header -->
-      <div class="flex space-x-4 items-center">
+      <div class="w-1/3 flex justify-start">
         <div class="w-12 h-12">
           <%= link_to user_profile_path(@post.user) do %>
             <%= image_tag @post.user.profile.avatar.url, class: 'rounded-full w-full h-full object-cover' %>
@@ -21,12 +21,11 @@
         </div>
       </div>
 
-      <% if @post.challenge_result == 'complete' %>
-          <span class="bg-yellow-100 text-yellow-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-yellow-300 border border-yellow-300">COMPLETE</span>
-        <% else %>
-          <span class="bg-purple-100 text-purple-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-purple-400 border border-purple-400">GIVE UP</span>
-        <% end %>
+      <div class="w-1/3 flex justify-center">
+        <%= render 'challenge_result', { post: @post } %>
+      </div>
 
+      <div class="w-1/3 flex justify-end">
       <% if current_user.own?(@post) %>
         <%= render 'crud' %>
       <% else %>
@@ -35,6 +34,7 @@
         <%= render 'likes_count', { post: @post } %>
         </div>
       <% end %>
+      </div>
     </div>
 
     <%= render 'category', { post: @post, categories: @post.categories } %>
