@@ -1,4 +1,9 @@
 ja:
+  enums:
+    post:
+      retry:
+        try: '再挑戦する'
+        no_try: '再挑戦しない'
   activerecord:
     models:
       user: 'ユーザー'
@@ -24,4 +29,3 @@ ja:
         impression_event: '印象に残った出来事'
         lesson: '得られた教訓'
         retry: '再挑戦する？'
-

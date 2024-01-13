@@ -83,3 +83,5 @@ gem 'stimulus-rails'
 gem 'carrierwave', '~> 3.0'
 
 gem 'rails-i18n', '~> 7.0.0'
+
+gem 'enum_help'

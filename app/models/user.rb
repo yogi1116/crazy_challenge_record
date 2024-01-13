@@ -4,6 +4,8 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :post
 
   validates :username, presence: true, length: { maximum: 40 }
   validates :email, presence: true, uniqueness: true
@@ -13,6 +15,18 @@ class User < ApplicationRecord
 
   def own?(object)
     id == object.user_id
+  end
+
+  def like?(post)
+    liked_posts.include?(post)
+  end
+
+  def like(post)
+    liked_posts << post
+  end
+
+  def unlike(post)
+    liked_posts.destroy(post)
   end
 
   private

@@ -79,19 +79,19 @@
         <div class="flex flex-col">
           <div class="bg-slate-100 border border-gray-800 shadow-lg rounded-2xl p-4">
             <div class="flex items-center">
-              <h2 class="flex-none text-lg text-black font-bold leading-none mr-4">再挑戦</h2>
+              <h2 class="flex-none text-lg text-black font-bold leading-none mr-4"><%= Post.human_attribute_name(:retry) %></h2>
               <div class="flex-auto text-black my-1 flex items-center">
                 <%= f.radio_button :retry, :try, class: 'mr-2' %>
-                <%= f.label :retry_try, "挑戦する", class: 'mr-6' %>
+                <%= f.label :retry_try, t('enums.post.retry.try'), class: 'mr-6' %>
                 <%= f.radio_button :retry, :no_try, class: 'mr-2' %>
-                <%= f.label :retry_no_try, "挑戦しない", class: 'mr-3 rounded-2xl' %>
+                <%= f.label :retry_no_try, t('enums.post.retry.no_try'), class: 'mr-3 rounded-2xl' %>
               </div>
             </div>
           </div>
         </div>
       <% end %>
 
-      <!-- inpression_event -->
+      <!-- impression_event -->
       <div class="flex flex-col">
         <div class="bg-slate-100 border border-gray-800 shadow-lg  rounded-2xl p-4">
         <div class="flex flex-col">
