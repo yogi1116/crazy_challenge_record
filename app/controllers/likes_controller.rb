@@ -4,12 +4,11 @@ class LikesController < ApplicationController
   def create
     button_type = determine_button_type(@post)
     like = current_user.likes.create(post: @post, button_type: button_type)
-    like.save
   end
 
   def destroy
     @like = current_user.likes.find_by(id: params[:id])
-    @like.destroy
+    @like&.destroy
   end
 
   private
