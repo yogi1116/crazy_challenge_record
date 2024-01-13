@@ -1,22 +1,23 @@
 class LikesController < ApplicationController
+  before_action :find_post, only: [:create, :destroy]
+
   def create
-    @post = Post.find(params[:post_id])
     button_type = determine_button_type(@post)
-  
     like = current_user.likes.create(post: @post, button_type: button_type)
-    if like.persisted?
-      redirect_back fallback_location: root_path
-    end
+    like.save
   end
-  
+
   def destroy
-    @like = current_user.likes.find_by(post_id: params[:id])
-    @like.destroy if @like
-    redirect_back fallback_location: root_path
+    @like = current_user.likes.find_by(id: params[:id])
+    @like.destroy
   end
-  
+
   private
-  
+
+  def find_post
+    @post = Post.find(params[:post_id])
+  end
+
   def determine_button_type(post)
     if post.challenge_result == 'complete'
       'crazy'
