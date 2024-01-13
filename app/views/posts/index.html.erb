@@ -35,12 +35,12 @@
           <div class="">
             <% case post.challenge_result %>
             <% when 'complete' %>
-              <%= image_tag 'likes/crazy_1', class: 'h-10 w-10' %>
+              <%= image_tag 'likes/crazy_1.png', class: 'h-10 w-10' %>
             <% else %>
               <% if post.retry == 'try' %>
-                <%= image_tag 'likes/fight_1', class: 'h-10 w-10' %>
+                <%= image_tag 'likes/fight_1.png', class: 'h-10 w-10' %>
               <% else %>
-                <%= image_tag 'likes/nice_fight_1', class: 'h-10 w-10' %>
+                <%= image_tag 'likes/nice_fight_1.png', class: 'h-10 w-10' %>
               <% end %>
             <% end %>
           </div>
