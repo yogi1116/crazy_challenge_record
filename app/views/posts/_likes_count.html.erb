@@ -1,4 +1,4 @@
-<% like_button_type = like_image_for(post).gsub('likes/', '').gsub('_2', '') %>
+<% like_button_type = like_image_for(post).gsub('likes/', '').gsub('_2.png', '') %>
 <% count = like_count_for_button(post, like_button_type + '_2') %>
 <div id="likes_count-<%= post.id %>" class="font-bold text-black">
   <%= count.to_s %>
