@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_post
+  before_action :set_post, only: %i[create update destroy]
 
   def create
     @comment = @post.comments.build(comment_params.merge(user: current_user))
@@ -15,10 +15,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = @post.comments.find(params[:id])
-    binding.remote_pry
-    if @comment.destroy
-      redirect_to posts_path
-    end
+    @comment.destroy!
   end
 
   private
