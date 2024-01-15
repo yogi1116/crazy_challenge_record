@@ -1,18 +1,19 @@
 <% if @comments.present? %>
   <% @comments.each do |comment| %>
     <div class="flex justify-center relative top-1/3">
-      <div class="relative grid grid-cols-1 gap-4 p-4 mb-8 border rounded-lg bg-white shadow-lg">
+      <div class="bg-white text-white rounded-lg w-full mx-5 md:w-[50rem] m-2 lg:w-[60rem] p-5">
         <div class="relative flex gap-4">
-          <img src="https://icons.iconarchive.com/icons/diversity-avatars/avatars/256/charlie-chaplin-icon.png" class="relative rounded-lg -top-8 -mb-4 bg-white border h-20 w-20" alt="" loading="lazy">
+          <%= link_to user_profile_path(comment.user) do %>
+            <%= image_tag comment.user.profile.avatar.url, class: 'relative rounded-full -top-4 -mb-4 bg-white border h-16 w-16' %>
+          <% end %>
           <div class="flex flex-col w-full">
             <div class="flex flex-row justify-between">
-              <p class="relative text-xl whitespace-nowrap truncate overflow-hidden">COMMENTOR</p>
-              <a class="text-gray-500 text-xl" href="#"><i class="fa-solid fa-trash"></i></a>
+              <h2 class="text-black"><%= comment.user.username %></h2>
             </div>
-            <p class="text-gray-400 text-sm">20 April 2022, at 14:88 PM</p>
+            <p class="text-gray-400 text-sm"><%= comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %></p>
           </div>
         </div>
-          <p class="-mt-4 text-gray-500"> <%= comment.body %> </p>
+          <p class="text-black"> <%= comment.body %> </p>
       </div>
     </div>
   <% end %>
