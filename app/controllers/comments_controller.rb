@@ -15,7 +15,10 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment = @post.comments.find(params[:id])
-    @comment.destroy
+    binding.remote_pry
+    if @comment.destroy
+      redirect_to posts_path
+    end
   end
 
   private

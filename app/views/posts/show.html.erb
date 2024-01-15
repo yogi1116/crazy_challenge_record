@@ -116,6 +116,6 @@
   <%= render 'comments/form', { post: @post, comment: @comment } %>
 
   <div class="pb-10">
-    <%= render 'comments/comments' %>
+    <%= render 'comments/comments', { post: @post, comments: @comments } %>
   </div>
 </div>
