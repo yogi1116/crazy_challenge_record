@@ -8,9 +8,9 @@
     <nav aria-label="Global" class="hidden md:block">
       <ul class="flex items-center gap-6 text-xl">
         <li>
-          <%= link_to 'RANKING', '#', class: 'text-black transition hover:text-gray-500/75' %>
+          <%= link_to 'RANKING', ranking_posts_path, class: 'text-black transition hover:text-gray-500/75' %>
         </li>
-        <li data-controller="dropdown">
+        <li data-controller="dropdown" class="z-20">
           <button type="button" class="text-black transition hover:text-gray-500/75" data-action="click->dropdown#toggleMenu">POST</button>
           <ul class="hidden absolute w-48 bg-white shadow-md mt-2 rounded-md" data-dropdown-target="menu">
             <li>

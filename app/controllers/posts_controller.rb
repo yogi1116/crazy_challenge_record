@@ -44,6 +44,16 @@ class PostsController < ApplicationController
     redirect_to posts_path, flash: { success: t('posts.destroy.success') }
   end
 
+  def ranking
+    @posts = Post.joins(:likes)
+                  .select('posts.*, COUNT(likes.id) AS likes_count')
+                  .where(challenge_result: 'complete')
+                  .group('posts.id')
+                  .order('likes_count DESC')
+                  .limit(10)
+                  .includes(:user)
+  end
+
   private
 
   def post_params
