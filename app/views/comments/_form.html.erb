@@ -8,8 +8,15 @@
           <div class="w-full md:w-full px-3 pt-1 mb-2">
             <%= f.text_area :body, class: 'bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 px-3 font-medium text-black placeholder-gray-700 focus:outline-none focus:bg-white' %>
           </div>
-          <div class="ml-3">
-            <%= f.submit class: "bg-white text-gray-700 font-medium py-1 px-4 border border-gray-400 rounded-lg tracking-wide mr-1 hover:bg-gray-100" %>
+          <div class="ml-3 flex items-center">
+            <% unless comment.persisted? %>
+              <%= f.submit t('posts.comment.create'), class: "bg-blue-600 hover:bg-blue-700 text-white font-medium py-1 px-4 rounded-lg tracking-wide mr-1" %>
+            <% else %>
+              <%= f.submit t('posts.comment.edit'), class: "bg-green-600 hover:bg-green-700 text-white font-medium py-1 px-4 rounded-lg tracking-wide mr-1" %>
+              <%= link_to post_path(post), class: "bg-gray-400 text-white font-medium py-1 px-4 rounded-lg tracking-wide ml-1",  data: { turbo_frame: dom_id(comment) } do %>
+                <span>キャンセル</span>
+              <% end %>
+            <% end %>
           </div>
         </div>
       </div>

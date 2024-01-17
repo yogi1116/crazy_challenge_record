@@ -36,3 +36,6 @@ ja:
       fail: '投稿内容の更新に失敗しました'
     destroy:
       success: '投稿を削除しました'
+    comment:
+      create: '投稿する'
+      edit: '更新する'
