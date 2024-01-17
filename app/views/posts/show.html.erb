@@ -26,7 +26,7 @@
 
         <div class="w-1/3 flex justify-end">
           <% if current_user.own?(@post) %>
-            <%= render 'crud' %>
+            <%= render 'crud', { post: @post } %>
           <% else %>
             <div class="flex items-center">
               <%= render 'like_button', { post: @post } %>

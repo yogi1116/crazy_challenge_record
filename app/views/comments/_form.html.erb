@@ -12,9 +12,9 @@
             <% unless comment.persisted? %>
               <%= f.submit t('posts.comment.create'), class: "bg-blue-600 hover:bg-blue-700 text-white font-medium py-1 px-4 rounded-lg tracking-wide mr-1" %>
             <% else %>
-              <%= f.submit t('posts.comment.edit'), class: "bg-green-600 hover:bg-green-700 text-white font-medium py-1 px-4 rounded-lg tracking-wide mr-1" %>
+              <%= f.submit t('posts.comment.update'), class: "bg-green-600 hover:bg-green-700 text-white font-medium py-1 px-4 rounded-lg tracking-wide mr-1" %>
               <%= link_to post_path(post), class: "bg-gray-400 text-white font-medium py-1 px-4 rounded-lg tracking-wide ml-1",  data: { turbo_frame: dom_id(comment) } do %>
-                <span>キャンセル</span>
+                <span><%= t('posts.comment.cancel') %></span>
               <% end %>
             <% end %>
           </div>
