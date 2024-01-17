@@ -1,0 +1,5 @@
+<%= turbo_stream.remove "comment-#{@comment.id}" %>
+
+<%= turbo_stream.update "count" do %>
+  <%= render "count", post: @post, comment: @comment %>
+<% end %>

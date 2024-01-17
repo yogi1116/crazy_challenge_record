@@ -1,0 +1,10 @@
+<%= turbo_stream.prepend 'comments' do %>
+  <%= render 'comments/comment', comment: @comment %>
+<% end %>
+<%= turbo_stream.replace "#{dom_id(Comment.new)}_form" do %>
+  <%= render 'comments/form', post: @post, comment: Comment.new %>
+<% end %>
+
+<%= turbo_stream.update "count" do %>
+  <%= render "count", post: @post, comment: @comment %>
+<% end %>

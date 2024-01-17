@@ -29,10 +29,21 @@ ja:
       fail: 'プロフィール作成に失敗しました'
   posts:
     create:
+      post: '投稿する'
       success: '新規投稿されました'
       fail: '投稿に失敗しました'
+    show:
+      edit: '編集'
+      delete: '削除'
+    edit:
+      update: '更新する'
+      cancel: 'キャンセル'
     update:
       success: '投稿内容を更新しました'
       fail: '投稿内容の更新に失敗しました'
     destroy:
       success: '投稿を削除しました'
+    comment:
+      create: '投稿'
+      update: '更新する'
+      cancel: 'キャンセル'
