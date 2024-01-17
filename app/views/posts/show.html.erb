@@ -37,7 +37,7 @@
           <% end %>
         </div>
       </div>
-      
+
       <div class="" style="margin-top: 0;">
       <%= render 'category', { post: @post, categories: @post.categories } %>
       </div>
@@ -107,8 +107,9 @@
           </div>
         <% end %>
       </div>
-      <div class="text-xs text-slate-500">
+      <div class="flex items-center text-xs text-slate-500">
         <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+        <%= render 'comments/count', { post: @post, comment: @comment } %>
       </div>
     </div>
   </div>

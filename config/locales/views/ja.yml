@@ -44,6 +44,6 @@ ja:
     destroy:
       success: '投稿を削除しました'
     comment:
-      create: '投稿する'
+      create: '投稿'
       update: '更新する'
       cancel: 'キャンセル'
