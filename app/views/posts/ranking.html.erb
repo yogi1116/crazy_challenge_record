@@ -1,12 +1,26 @@
-<div class="p-6">
-<% @posts.each do |post| %>
+<div class="p-6 bg-indigo-300">
+  <% @posts.each_with_index do |post, index| %>
+    <% bg_color, tag_bg_color, border_color, text_color = color_classes_for_rank(index + 1) %>
 <section class="relative bg-blueGray-50">
 <div class="w-full px-4">
-  <div class="relative flex flex-col min-w-0 break-words w-full mb-3  shadow-lg rounded bg-pink-900 text-white">
+  <div class="relative flex flex-col min-w-0 break-words w-full mb-3  shadow-lg rounded <%= bg_color %> text-white">
     <div class="rounded-t mb-0 px-4 py-3 border-0">
       <div class="flex flex-wrap items-center">
         <div class="relative w-full px-4 max-w-full flex-grow flex-1 ">
-          <h3 class="font-semibold text-lg text-white">CRAZY MAN</h3>
+          <h3 class="font-semibold text-lg text-black">
+            <% case index %>
+            <% when 0 %>
+              Mr.CRAZY MAN
+            <% when 1 %>
+              <%= (index + 1) %>nd
+            <% when 2 %>
+              <%= (index + 1) %>rd
+            <% when 9 %>
+              <%= (index + 1) %>th
+            <% else %>
+              <%= (index + 1) %>nd
+            <% end %>
+          </h3>
         </div>
       </div>
     </div>
@@ -14,46 +28,36 @@
       <table class="items-center w-full bg-transparent border-collapse">
         <thead>
           <tr>
-            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-pink-800 text-pink-300 border-pink-700">ユーザー</th>
-            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-pink-800 text-pink-300 border-pink-700">タイトル</th>
-            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-pink-800 text-pink-300 border-pink-700">カテゴリー</th>
-            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-pink-800 text-pink-300 border-pink-700">いいね数</th>
-            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-pink-800 text-pink-300 border-pink-700">投稿日 </th>
-            <th class="px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left bg-pink-800 text-pink-300 border-pink-700"></th>
+            <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left <%= tag_bg_color %> <%= text_color %> <%= border_color %>">ユーザー</th>
+            <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left <%= tag_bg_color %> <%= text_color %> <%= border_color %>">タイトル</th>
+            <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left <%= tag_bg_color %> <%= text_color %> <%= border_color %>">いいね数</th>
+            <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left <%= tag_bg_color %> <%= text_color %> <%= border_color %>">カテゴリー</th>
+            <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left <%= tag_bg_color %> <%= text_color %> <%= border_color %>">投稿日 </th>
           </tr>
         </thead>
 
         <tbody>
           <tr>
-            <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left flex items-center">
+            <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-ml whitespace-nowrap p-4 text-left flex items-center">
             <div class="w-12 h-12">
               <%= image_tag post.user.profile.avatar.url, class: 'h-full w-full rounded-full object-cover' %>
             </div>
             <%= link_to user_profile_path(post.user) do %>
-              <span class="ml-3 font-bold text-white"><%= truncate(post.user.username, length: 20) %></span></th>
+              <span class="ml-3 font-bold text-black"><%= truncate(post.user.username, length: 20) %></span></th>
             <% end %>
             <%= link_to post_path(post) do %>
-              <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><%= truncate(post.title, length: 50) %></td>
+              <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-ml text-black whitespace-nowrap p-4"><%= truncate(post.title, length: 30) %></td>
             <% end %>
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-              <i class="fas fa-circle text-orange-500 mr-2"></i><%= post.categories.name %></td>
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-            <i class="fas fa-circle text-orange-500 mr-2"></i><%= post.likes_count %></td>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-ml whitespace-nowrap p-4">
+              <span class="mr-2 text-black"><%= post.likes_count %></span>
             </td>
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4"><div class="flex items-center">
-                <span class="mr-2"><%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %></span>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-ml whitespace-nowrap p-4">
+              <span class="mr-2 text-black"><%= render 'posts/category', { pos: post, categories: post.categories } %></span>
             </td>
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-right">
-              <a href="#pablo" class="text-blueGray-500 block py-1 px-3" onclick="openDropdown(event,'table-dark-1-dropdown')">
-                <i class="fas fa-ellipsis-v"></i></a>
-              <div class="hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded shadow-lg min-w-48" id="table-dark-1-dropdown">
-                <a href="#pablo" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Action</a><a href="#pablo" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Another action</a><a href="#pablo" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Something else here</a>
-                <div class="h-0 my-2 border border-solid border-blueGray-100"></div>
-                <a href="#pablo" class="text-sm py-2 px-4 font-normal block w-full whitespace-nowrap bg-transparent text-blueGray-700">Seprated link</a>
-              </div>
+            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-ml whitespace-nowrap p-4">
+              <span class="mr-2 text-black"><%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %></span>
             </td>
           </tr>
-
         </tbody>
       </table>
     </div>
