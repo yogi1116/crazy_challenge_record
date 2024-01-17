@@ -4,16 +4,8 @@
       <%= image_tag 'crazy_man.png', style: 'width: 150px; height: 133px;' %>
     <% end %>
 
-    <div class="flex flex-1 items-center justify-end md:justify-between">
-      <nav aria-label="Global" class="hidden md:block">
-        <ul class="flex items-center gap-6 text-xl">
-          <li>
-            <%= link_to 'RANKING', '#', class: 'text-black transition hover:text-gray-500/75' %>
-          </li>
-        </ul>
-      </nav>
-
-      <div class="flex items-center gap-4">
+    <div class="flex flex-1 items-center justify-end">
+      <div class="flex items-end gap-4">
         <div class="sm:flex sm:gap-4">
           <%= link_to (t 'defaults.login'), login_path, class:'block rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700' %>
 

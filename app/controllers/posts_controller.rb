@@ -47,6 +47,7 @@ class PostsController < ApplicationController
   def ranking
     @posts = Post.joins(:likes)
                   .select('posts.*, COUNT(likes.id) AS likes_count')
+                  .where(challenge_result: 'complete')
                   .group('posts.id')
                   .order('likes_count DESC')
                   .limit(10)
