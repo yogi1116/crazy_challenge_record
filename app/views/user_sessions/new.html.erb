@@ -6,11 +6,11 @@
         <img src="<%= image_path('login.png') %>" width="250" alt="" srcset="" />
       </div>
       <%= form_with url: login_path, local: true do |f| %>
-        <div class="mb-4 text-lg flex flex-col">
+        <div class="mb-4 text-lg flex flex-col items-center">
           <%= f.label :email, User.human_attribute_name(:email), class: 'form-label' %>
           <%= f.email_field :email, class: 'rounded-3xl border-none bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md' %>
         </div>
-        <div class="mb-4 text-lg flex flex-col">
+        <div class="mb-4 text-lg flex flex-col items-center">
           <%= f.label :password, User.human_attribute_name(:password), class: 'form-label' %>
           <%= f.password_field :password, class: 'rounded-3xl border-none bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md' %>
         </div>
