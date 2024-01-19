@@ -53,7 +53,7 @@ RSpec.describe "Posts", type: :system do
     end
 
     context '失敗' do
-      it 'タイトル未入力' do
+      it '挑戦名未入力' do
         find('button', text: 'POST').click
         click_on 'GIVE UP'
         fill_in 'post[title]', with: nil
@@ -70,6 +70,39 @@ RSpec.describe "Posts", type: :system do
         click_on '投稿する'
         expect(page).to have_content('投稿に失敗しました')
         expect(page).to have_content('挑戦名を入力してください')
+      end
+
+      it '挑戦内容未入力' do
+        find('button', text: 'POST').click
+        click_on 'COMPLETE'
+        fill_in 'post[title]', with: 'title'
+        fill_in 'post[content]', with: nil
+        fill_in 'post[impression_event]', with: 'implession_event'
+        fill_in 'post[lesson]', with: 'lesson'
+        fill_in 'post[record]', with: 'record'
+        # カテゴリーを2つ選択
+        find("input[type='checkbox'][value='9']").check
+        find("input[type='checkbox'][value='8']").check
+        # 画像をアップロード
+        attach_file 'post[images][]', ["#{Rails.root}/app/assets/images/login.png", "#{Rails.root}/app/assets/images/default.png", "#{Rails.root}/app/assets/images/give_up.png", "#{Rails.root}/app/assets/images/complete.png"]
+        click_on '投稿する'
+        expect(page).to have_content('投稿に失敗しました')
+        expect(page).to have_content('挑戦内容を入力してください')
+      end
+
+      fit 'カテゴリー未入力' do
+        find('button', text: 'POST').click
+        click_on 'COMPLETE'
+        fill_in 'post[title]', with: 'title'
+        fill_in 'post[content]', with: 'content'
+        fill_in 'post[impression_event]', with: 'implession_event'
+        fill_in 'post[lesson]', with: 'lesson'
+        fill_in 'post[record]', with: 'record'
+        # 画像をアップロード
+        attach_file 'post[images][]', ["#{Rails.root}/app/assets/images/login.png", "#{Rails.root}/app/assets/images/default.png", "#{Rails.root}/app/assets/images/give_up.png", "#{Rails.root}/app/assets/images/complete.png"]
+        click_on '投稿する'
+        expect(page).to have_content('投稿に失敗しました')
+        expect(page).to have_content('カテゴリーを選択してください')
       end
     end
   end

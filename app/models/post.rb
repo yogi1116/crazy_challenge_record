@@ -11,6 +11,7 @@ class Post < ApplicationRecord
   validates :challenge_result, presence: true
   validates :retry, presence: true, if: -> { challenge_result == 'give_up' }
   validate :image_count_within_limit
+  validates :category_ids, presence: { message: 'を選択してください' }
 
   enum challenge_result: { complete: 0, give_up: 1 }
   enum retry: { try: 0, no_try: 1 }
