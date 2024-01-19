@@ -6,7 +6,7 @@ RSpec.describe "Users", type: :system do
   describe 'ユーザー新規登録' do
     before do
       visit root_path
-      expect(page).to have_content('会員登録')
+      expect(page).to have_content('SIGNUP')
       visit new_user_path
     end
 
