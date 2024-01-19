@@ -15,19 +15,6 @@ FactoryBot.define do
       retry_value { 'try' }
     end
 
-    trait :with_categories do
-      after(:build) do |post|
-        categories = create_list(:category, 3, name: '冒険・探究')
-        post.categories << categories
-      end
-    end
-
-    trait :with_images do
-      after(:build) do |post|
-        4.times do |n|
-          post.images.attach(io: File.open(Rails.root.join("spec/fixtures/files/sample_image_#{n}.jpg")), filename: "sample_image_#{n}.jpg", content_type: 'image/jpg')
-        end
-      end
-    end
+    
   end
 end
