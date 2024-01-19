@@ -51,7 +51,9 @@
 
                   <% if post.images.attached? %>
                     <% post.images.each do |image| %>
-                      <%= image_tag image, class: "w-40 h-40 object-cover mr-2" %>
+                      <% if image.persisted? %>
+                        <%= image_tag image, class: "w-40 h-40 object-cover mr-2" %>
+                      <% end %>
                     <% end %>
                   <% end %>
                 </div>

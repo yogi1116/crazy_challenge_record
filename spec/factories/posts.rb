@@ -14,7 +14,5 @@ FactoryBot.define do
       challenge_result { 'give_up' }
       retry_value { 'try' }
     end
-
-    
   end
 end
