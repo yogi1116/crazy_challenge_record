@@ -45,7 +45,8 @@
               <%= f.text_area :content, class: 'text-lg text-black p-3 rounded-2xl', size: "50x10" %>
               </div>
               <div data-controller="post-preview">
-                <div class="text-black text-lg pb-1"><%= Post.human_attribute_name(:images) %></div>
+                <div class="text-black text-lg font-bold"><%= Post.human_attribute_name(:images) %></div>
+                <p class="pb-1 text-gray-500">画像は最大4枚まで投稿できます</p>
                 <%= f.file_field :images, multiple: true, class: 'text-black border-2 border-slate-400 rounded-full', data: { action: 'change->post-preview#previewPost', post_preview_target: 'input' } %>
                 <div id="post-preview" data-post-preview-target="imageBox" class="flex flex-wrap mt-3">
 

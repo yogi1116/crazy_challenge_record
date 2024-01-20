@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  alias_attribute :retry_value, :retry
+
   belongs_to :user
   has_many_attached :images
   has_many :post_categories
@@ -9,7 +11,7 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :content, presence: true
   validates :challenge_result, presence: true
-  validates :retry, presence: true, if: -> { challenge_result == 'give_up' }
+  validates :retry, presence: { message: 'を選択してください' }, if: -> { challenge_result == 'give_up' }
   validate :image_count_within_limit
   validates :category_ids, presence: { message: 'を選択してください' }
 
@@ -29,7 +31,7 @@ class Post < ApplicationRecord
 
   def image_count_within_limit
     if images.length > 4
-      errors.add(:images, 'に添付できるのは大4枚までです。')
+      errors.add(:images, 'に添付できる枚数は最大4枚です')
     end
   end
 end

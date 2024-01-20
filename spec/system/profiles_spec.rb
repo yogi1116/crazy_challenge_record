@@ -4,7 +4,7 @@ RSpec.describe "Profiles", type: :system do
   let(:user){ create(:user) } #ユーザーA
   let(:another_user){ create(:user) } #ユーザーB
   let!(:complete_post){ create(:post, :complete, user_id: user.id) } #ユーザーAの投稿
-  let!(:give_up_post){ create(:post, :complete, user_id: another_user.id) } #ユーザーBの投稿
+  let!(:give_up_post){ create(:post, :give_up, user_id: another_user.id) } #ユーザーBの投稿
 
   describe 'プロフィール編集' do
     before do
