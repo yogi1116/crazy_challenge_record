@@ -30,6 +30,7 @@ ja:
         lesson: '得られた教訓'
         retry: '再挑戦する？'
         category_ids: "カテゴリー"
+        images: '画像アップロード'
       errors:
         models:
           post:

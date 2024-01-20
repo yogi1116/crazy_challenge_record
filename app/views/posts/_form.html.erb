@@ -24,7 +24,7 @@
       <div class="flex flex-col">
         <div class="bg-slate-100 border border-gray-800 shadow-lg rounded-2xl p-4">
           <div class="flex flex-wrap -mx-2">
-          <div class="w-full flex-none text-lg text-black font-bold leading-none mb-1">カテゴリー</div>
+          <div class="w-full flex-none text-lg text-black font-bold leading-none mb-1"><%= Post.human_attribute_name(:category_ids) %></div>
             <% Category.all.each do |category| %>
               <div class="w-1/2 px-2">
                 <%= check_box_tag 'post[category_ids][]', category.id, post.categories.include?(category) %>
@@ -45,7 +45,7 @@
               <%= f.text_area :content, class: 'text-lg text-black p-3 rounded-2xl', size: "50x10" %>
               </div>
               <div data-controller="post-preview">
-                <%= f.label :images, class: 'text-black text-lg' %>
+                <div class="text-black text-lg pb-1"><%= Post.human_attribute_name(:images) %></div>
                 <%= f.file_field :images, multiple: true, class: 'text-black border-2 border-slate-400 rounded-full', data: { action: 'change->post-preview#previewPost', post_preview_target: 'input' } %>
                 <div id="post-preview" data-post-preview-target="imageBox" class="flex flex-wrap mt-3">
 
