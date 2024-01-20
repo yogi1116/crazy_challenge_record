@@ -8,11 +8,7 @@ RSpec.describe "Profiles", type: :system do
 
   describe 'プロフィール編集' do
     before do
-      visit login_path
-      fill_in 'email', with: user.email
-      fill_in 'password', with: 'Password01'
-      click_button 'ログイン'
-      expect(page).to have_current_path(posts_path)
+      login(user)
     end
 
     it 'ユーザーは自分のプロフィールを編集できる' do
@@ -25,9 +21,9 @@ RSpec.describe "Profiles", type: :system do
       fill_in 'profile[challenge]', with: 'チャレンジしたいこと'
       fill_in 'profile[introduction]', with: '自己紹介'
       # アバター画像をアップロード
-      attach_file('profile[avatar]', 'app/assets/images/default.png')
+      attach_file('profile[avatar]', 'spec/fixtures/files/comment.png')
       # 背景画像をアップロード
-      attach_file('profile[background]', 'app/assets/images/background_image.svg')
+      attach_file('profile[background]', 'spec/fixtures/files/default.png')
       click_on '更新'
     end
 
@@ -43,11 +39,8 @@ RSpec.describe "Profiles", type: :system do
 
   describe 'プロフィール閲覧' do
     before do
-      visit login_path
-      fill_in 'email', with: user.email
-      fill_in 'password', with: 'Password01'
-      click_button 'ログイン'
-      expect(page).to have_current_path(posts_path)
+      login(user)
+      login(another_user)
     end
 
     context '他ユーザーのプロフィール' do
