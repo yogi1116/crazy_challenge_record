@@ -27,7 +27,7 @@ RSpec.describe "Profiles", type: :system do
       click_on '更新'
     end
 
-    it 'ユーザーは他ユーザーのプロフィールを編集できない' do
+    it 'ユーザーは他人のプロフィールを編集できない' do
       user_id = another_user.id
       link = "/users/#{user_id}/profile"
       expect(page).to have_selector("a[href='#{link}']")
@@ -43,7 +43,7 @@ RSpec.describe "Profiles", type: :system do
       login(another_user)
     end
 
-    context '他ユーザーのプロフィール' do
+    context '他人のプロフィール' do
       it '投稿一覧画面から遷移' do
         user_id = another_user.id
         link = "/users/#{user_id}/profile"
