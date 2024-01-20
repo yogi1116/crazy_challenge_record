@@ -37,7 +37,7 @@ RSpec.describe "Likes", type: :system do
       end
     end
 
-    fit 'いいね後投稿一覧画面のいいねカウントが更新される' do
+    it 'いいね後投稿一覧画面のいいねカウントが更新される' do
       post_id = give_up_post.id
       link = "/posts/#{post_id}"
       expect(page).to have_selector("a[href='#{link}']")
