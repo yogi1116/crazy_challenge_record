@@ -29,3 +29,11 @@ ja:
         impression_event: '印象に残った出来事'
         lesson: '得られた教訓'
         retry: '再挑戦する？'
+        category_ids: "カテゴリー"
+        images: '画像アップロード'
+      errors:
+        models:
+          post:
+            attributes:
+              category_ids:
+                blank: "を選択してください"
