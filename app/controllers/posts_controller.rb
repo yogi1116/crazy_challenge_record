@@ -13,11 +13,23 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    if @post.save
-      redirect_to posts_path, flash: { success: t('posts.create.success') }
-    else
-      flash.now[:error] = t('.fail')
-      render :new, status: :unprocessable_entity
+    moderation_service = ContentModerationService.new(@post.content)
+    begin
+      result = moderation_service.analyze
+      categories = result['moderationCategories'].to_a
+      high_confidence = categories.any? { |category| category['confidence'] > 0.8 }
+      if high_confidence
+        flash.now[:error] = t('.fail')
+        render :new, status: :unprocessable_entity
+      else
+        @post.save
+        redirect_to posts_path, flash: { success: t('posts.create.success') }
+      end
+    rescue => e
+      # エラー時の処理
+      logger.error(e.message)
+      flash[:error] = 'Content analysis failed.'
+      render :new
     end
   end
 

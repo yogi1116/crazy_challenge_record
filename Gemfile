@@ -89,4 +89,6 @@ gem 'rails-i18n', '~> 7.0.0'
 
 gem 'enum_help'
 
-gem 'dotenv-rails'
+gem 'faraday'
+
+gem 'googleauth'

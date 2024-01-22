@@ -40,4 +40,4 @@
 /app/assets/builds/*
 !/app/assets/builds/.keep
 
-/.env
+/app/services/service_account.json
