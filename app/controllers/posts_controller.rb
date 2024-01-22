@@ -19,7 +19,9 @@ class PostsController < ApplicationController
       categories = result['moderationCategories'].to_a
       high_confidence = categories.any? { |category| category['confidence'] > 0.8 }
       if high_confidence
-        flash.now[:error] = t('.fail')
+        high_confidence_categories = categories.select { |category| category['confidence'] > 0.8 }
+        inappropriate_content = high_confidence_categories.map { |category| t("moderation_categories.#{category['name']}") }.join('・ ')
+        flash.now[:error] = "不適切なコンテンツが含まれています：#{inappropriate_content}"
         render :new, status: :unprocessable_entity
       else
         @post.save
