@@ -39,3 +39,5 @@
 /node_modules
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+/app/services/service_account.json

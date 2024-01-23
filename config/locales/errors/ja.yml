@@ -1,0 +1,18 @@
+ja:
+  moderation_categories:
+    Toxic: '有害'
+    Insult: '侮辱'
+    Profanity: '暴力'
+    Derogatory: '侮辱'
+    Sexual: '性的'
+    Death, Harm & Tragedy: '死や害'
+    Violent: '冒とく'
+    Firearms & Weapons: '武器'
+    Public Safety: '安全'
+    Health: '人体への悪影響'
+    Religion & Belief: '宗教'
+    Illicit Drugs: '違法ドラッグ'
+    War & Conflict: '戦争'
+    Politics: '金融'
+    Finance: '政治'
+    Legal: '法律'
