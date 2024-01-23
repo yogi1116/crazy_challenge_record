@@ -9,11 +9,11 @@ RSpec.describe "Posts", type: :system do
   describe '新規投稿' do
     before do
       login(user)
+      find('button', text: 'POST').click
     end
 
     context '成功' do
       it 'COMPLETEチャレンジの投稿が作成できる' do
-        find('button', text: 'POST').click
         click_on 'COMPLETE'
         fill_in 'post[title]', with: 'title'
         fill_in 'post[content]', with: 'content'
@@ -30,7 +30,6 @@ RSpec.describe "Posts", type: :system do
       end
 
       it 'GIVE UPチャレンジの投稿が作成できる' do
-        find('button', text: 'POST').click
         click_on 'GIVE UP'
         fill_in 'post[title]', with: 'title'
         fill_in 'post[content]', with: 'content'
@@ -55,7 +54,6 @@ RSpec.describe "Posts", type: :system do
       # 上記のカラムのバリデーションはCOMPLETEチャレンジ・GIVE UPチャレンジともに同じ設定
 
       it '挑戦名未入力' do
-        find('button', text: 'POST').click
         click_on 'GIVE UP'
         fill_in 'post[title]', with: nil
         fill_in 'post[content]', with: 'content'
@@ -74,7 +72,6 @@ RSpec.describe "Posts", type: :system do
       end
 
       it '挑戦内容未入力' do
-        find('button', text: 'POST').click
         click_on 'COMPLETE'
         fill_in 'post[title]', with: 'title'
         fill_in 'post[content]', with: nil
@@ -92,7 +89,6 @@ RSpec.describe "Posts", type: :system do
       end
 
       it 'カテゴリー未選択' do
-        find('button', text: 'POST').click
         click_on 'COMPLETE'
         fill_in 'post[title]', with: 'title'
         fill_in 'post[content]', with: 'content'
@@ -108,7 +104,6 @@ RSpec.describe "Posts", type: :system do
 
       # GIVE UPチャレンジのみretryカラムにバリデーションを設定
       it 'retryカラム未選択' do
-        find('button', text: 'POST').click
         click_on 'GIVE UP'
         fill_in 'post[title]', with: 'title'
         fill_in 'post[content]', with: 'content'
@@ -125,7 +120,6 @@ RSpec.describe "Posts", type: :system do
       end
 
       it '画像アップロード枚数上限(4枚)を超えての投稿' do
-        find('button', text: 'POST').click
         click_on 'COMPLETE'
         fill_in 'post[title]', with: 'title'
         fill_in 'post[content]', with: nil
@@ -140,6 +134,21 @@ RSpec.describe "Posts", type: :system do
         click_on '投稿する'
         expect(page).to have_content('投稿に失敗しました')
         expect(page).to have_content('画像アップロードに添付できる枚数は最大4枚です')
+      end
+
+      it '有害な投稿内容を含むとNatural language APIにより投稿阻止' do
+        click_on 'COMPLETE'
+        fill_in 'post[title]', with: 'title'
+        fill_in 'post[content]', with: '死・犯罪・災害・戦争・暴力・薬物' # 挑戦内容に有害な単語を記載
+        fill_in 'post[record]', with: 'record'
+        fill_in 'post[impression_event]', with: 'implession_event'
+        fill_in 'post[lesson]', with: 'lesson'
+        # カテゴリーを選択(複数選択可。制限なし)
+        find("input[type='checkbox'][value='1']").check
+        # 画像をアップロード(最大4枚)
+        attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
+        click_on '投稿する'
+        expect(page).to have_content('不適切なコンテンツが含まれています：死や害・ 冒とく・ 違法ドラッグ・ 戦争')
       end
     end
   end
