@@ -3,6 +3,7 @@ ja:
     register: '登録'
     logout: 'ログアウト'
     profile: 'プロフィール'
+    require_login: 'ログインしてください'
   users:
     create:
       success: 'ユーザー登録が完了しました'
