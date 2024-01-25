@@ -22,8 +22,12 @@
           </svg>
         </div>
         <div class="menu bg-gray-700 w-2/4 fixed top-0 left-0 h-screen z-50 hidden" data-menu-target="menu">
+          <div class="flex justify-center items-center gap-1 pt-5">
+            <%= image_tag 'CRAZY.png', class:'w-12 h-12' %>
+            <p class="text-yellow-300 text-xl font-bold">CRAZY MAN</p>
+          </div>
           <%= link_to 'LOGIN', login_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
-          <%= link_to 'SIGNUP', new_user_path, class:'block px-4 py-2 text-ml text-white transition text-center' %>
+          <%= link_to 'SIGNUP', new_user_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
         </div>
       </div>
     </div>
