@@ -1,6 +1,6 @@
 <header class="bg-blue-600">
   <div class="relative mx-auto flex h-20 w-full items-center justify-between px-4 sm:px-6 lg:px-8">
-    <%= link_to posts_path, class: 'block text-black' do %>
+    <%= link_to posts_path, class:'block text-black pt-3' do %>
       <%= image_tag 'crazy_man.png', style: 'width: 150px; height: 133px;' %>
     <% end %>
 
@@ -13,7 +13,8 @@
       </div>
     </div>
 
-    <div class="top-0 w-10 z-30 " data-controller="menu">
+    <!--モバイル版-->
+    <div class="top-0 w-10 z-30" data-controller="menu">
       <div class="flex sm:hidden bg-gray-900 text-white">
         <div class="menu-btn top-5 right-0 z-40 w-10 h-10 sm:hidden flex justify-center items-center bg-gray-600 cursor-pointer" data-action="click->menu#toggle">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
@@ -21,7 +22,7 @@
           </svg>
         </div>
         <div class="menu bg-gray-700 w-2/4 fixed top-0 left-0 h-screen z-50 hidden" data-menu-target="menu">
-          <%= link_to 'LOGIN', login_path, class:'block px-4 py-2 text-ml text-white transition text-center' %>
+          <%= link_to 'LOGIN', login_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
           <%= link_to 'SIGNUP', new_user_path, class:'block px-4 py-2 text-ml text-white transition text-center' %>
         </div>
       </div>
