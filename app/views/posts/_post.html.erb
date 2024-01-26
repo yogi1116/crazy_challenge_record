@@ -1,0 +1,60 @@
+
+  <div class="flex space-x-8 mt-8">
+    <div class="flex-grow">
+      <div class="sm:justify-center justify-start items-center gap-1">
+        <h4 class="text-xl font-bold text-gray-700"><%= Post.human_attribute_name(:title) %></h4>
+        <%= image_tag 'posts/title.png', class:'h-10 w-10 text-blue-600' %>
+      </div>
+      <p class="flex text-gray-600 my-2 justify-center"><%= @post.title %></p>
+    </div>
+  </div>
+  <div class="flex space-x-8 mt-8">
+    <div class="flex-grow">
+      <div class="flex justify-center items-center gap-1">
+        <h4 class="text-xl font-bold text-gray-700"><%= Post.human_attribute_name(:content) %></h4>
+        <%= image_tag 'posts/content.png', class:'h-10 w-10 text-blue-600' %>
+      </div>
+      <p class="flex text-gray-600 my-2 justify-center"><%= @post.content %></p>
+    </div>
+  </div>
+  <% if @post.challenge_result == 'complete' %>
+    <div class="flex space-x-8 mt-8">
+      <div class="flex-grow">
+        <div class="flex justify-center items-center gap-1">
+          <h4 class="text-xl font-bold text-gray-700"><%= Post.human_attribute_name(:record) %></h4>
+          <%= image_tag 'posts/record.png', class:'h-10 w-10 text-blue-600' %>
+        </div>
+        <p class="flex text-gray-600 my-2 justify-center"><%= @post.record %></p>
+      </div>
+    </div>
+  <% else %>
+    <div class="flex space-x-8 mt-8">
+      <div class="flex-grow">
+        <div class="flex justify-center items-center gap-1">
+          <h4 class="text-xl font-bold text-gray-700"><%= Post.human_attribute_name(:retry) %></h4>
+          <%= image_tag 'posts/retry.png', class:'h-10 w-10 text-blue-600' %>
+        </div>
+        <p class="flex text-gray-600 my-2 justify-center"><%= @post.retry_i18n %></p>
+      </div>
+    </div>
+  <% end %>
+  <div class="flex space-x-8 mt-8">
+    <div class="flex-grow">
+      <div class="flex justify-center items-center gap-1">
+        <h4 class="text-xl font-bold text-gray-700"><%= Post.human_attribute_name(:impression_event) %></h4>
+        <%= image_tag 'posts/event.png', class:'h-10 w-10 text-blue-600' %>
+      </div>
+      <p class="flex text-gray-600 my-2 justify-center"><%= @post.impression_event %></p>
+    </div>
+  </div>
+  <div class="flex space-x-8 mt-8">
+    <div class="flex-grow">
+      <div class="flex justify-center items-center gap-1">
+        <h4 class="text-xl font-bold text-gray-700"><%= Post.human_attribute_name(:lesson) %></h4>
+        <%= image_tag 'posts/lesson.png', class:'h-10 w-10 text-blue-600' %>
+      </div>
+      <p class="flex text-gray-600 my-2 justify-center"><%= @post.lesson %></p>
+    </div>
+  </div>
+</div>
+
