@@ -8,31 +8,32 @@
               <h1 class="font-bold text-6xl -mt-20 md:-mt-32">CRAZY MAN</h1>
               <p class="text-white text-sm">クレイジーな挑戦に挑んだ君へ</p>
             </div>
-            <a href="#" class="bg-gray-50 mx-auto w-32 text-center rounded-md p-2 border border-1 border-gray-100 hover:bg-white">Hire me</a>
+            <%= link_to 'はじめる', new_user_path, class:'bg-gray-50 mx-auto w-32 text-center rounded-md p-2 border border-1 border-gray-100 hover:bg-white' %>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="about" class="p-5 lg:p-20 bg-gray-50">
+  <section id="about" class="p-5 lg:p-20 bg-gray-100">
     <div class="container mx-auto">
       <div class="sm:columns-2">
-        <%= image_tag 'Mr_crazy.png', class:'sm:w-1/2 mb-10 sm:mb-0' %>
+        <%= image_tag 'complete', class:'sm:w-1/2 mb-10 sm:mb-0' %>
         <div>
-          <h2 class="text-bold text-2xl mb-3">君たちのクレイジーな挑戦記を教えてくれ</h2>
-          <p class="mb-5 text-sm text-gray-400">Providing web solutions</p>
+          <h2 class="text-bold text-2xl mb-3">クレイジーとは</h2>
           <p class="text-gray-500 text-justify leading-10">
-            今までの人生で、人とは変わった挑戦をしたことがある人はいないだろうか？
-            <br>どんな小さな挑戦でも構わない。
-            <br>どんなことに挑戦したのか・その結果は？
-            <br>挑戦した中で印象に残った出来事は？・その挑戦を通して得られた教訓は？
-            <br>これらを共有して目指せ<span class="font-bold text-red-500 text-xl">Mr.CRAZY MAN</span>
+            人それぞれクレイジーと感じるレベルは違う
+            <br>どんな小さなことでもいい、どんなバカげたことでもいい
+            <br>最近でも昔の挑戦でもいい
+            <br>変わった挑戦をしたことがあれば投稿してみてくれ
+            <br>その挑戦を諸君らがクレイジーか判断してくれ
+            <br>たくさんのCRAZYをもらえた君は<span class="font-bold text-red-500 text-xl">CRAZY MAN</span>だ
           </p>
         </div>
       </div>
     </div>
-    </section>
+  </section>
 
+  
   <!-- services -->
   <section id="services" class="sm:p-10 lg:p-20 p-5">
     <div class="sm:container mx-auto">
@@ -41,17 +42,15 @@
 
         <div class="flex flex-col lg:flex-row lg:gap-x-4 sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
           <div class="lg:w-1/2">
-            <%= image_tag 'complete.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
+            <%= image_tag 'likes/crazy_1.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
           </div>
           <div class="lg:w-1/2">
-            <h3 class="text-xl mb-5 font-bold">
-              Card title
-            </h3>
+            <h3 class="text-xl mb-5 font-bold">COMPLETEチャレンジ</h3>
             <p class="leading-10 text-gray-500 text-justify">
-              Some quick example text to build on the card title and make up the bulk of the card's content.
-            </p>
-            <p class="text-xs text-gray-500 mt-5">
-              Last updated 5 mins ago
+              完遂することができた挑戦は
+              <br>このCOMPLETEチャレンジだ
+              <br>クレイジーだと感じた投稿は
+              <br>ぜひともCRAZYしてくれ
             </p>
           </div>
         </div>
@@ -61,14 +60,28 @@
             <%= image_tag 'complete.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
           </div>
           <div class="lg:w-1/2">
-            <h3 class="text-xl mb-5 font-bold">
-              Card title
-            </h3>
+            <h3 class="text-xl mb-5 font-bold">GIVE UPチャレンジ</h3>
             <p class="leading-10 text-gray-500 text-justify">
-              Some quick example text to build on the card title and make up the bulk of the card's content.
+            断念した挑戦も投稿できるぞ
+            <br>その投稿を見た君は
+            <br>応援の意を込めFight
+            <br>ねぎらいの意を込めNice fight
+            <br>挑戦者をみんなで讃えよう
             </p>
-            <p class="text-xs text-gray-500 mt-5">
-              Last updated 5 mins ago
+          </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row lg:gap-x-4 sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
+          <div class="lg:w-1/2">
+            <%= image_tag 'tops/Mr_crazy.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
+          </div>
+          <div class="lg:w-1/2">
+            <h3 class="text-xl mb-5 font-bold">ランキング</h3>
+            <p class="leading-10 text-gray-500 text-justify">
+              COMPLETEチャレンに限り
+              <br>みんなからのCRAZYをもとに
+              <br>ランキングが表示される
+              <br>目指せ‼️ Mr.CRZY MAN
             </p>
           </div>
         </div>
@@ -78,31 +91,12 @@
             <%= image_tag 'complete.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
           </div>
           <div class="lg:w-1/2">
-            <h3 class="text-xl mb-5 font-bold">
-              Card title
-            </h3>
+            <h3 class="text-xl mb-5 font-bold">危険な投稿はやめてくれ</h3>
             <p class="leading-10 text-gray-500 text-justify">
-              Some quick example text to build on the card title and make up the bulk of the card's content.
-            </p>
-            <p class="text-xs text-gray-500 mt-5">
-              Last updated 5 mins ago
-            </p>
-          </div>
-        </div>
-
-        <div class="flex flex-col lg:flex-row lg:gap-x-4 sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
-          <div class="lg:w-1/2">
-            <%= image_tag 'complete.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
-          </div>
-          <div class="lg:w-1/2">
-            <h3 class="text-xl mb-5 font-bold">
-              Card title
-            </h3>
-            <p class="leading-10 text-gray-500 text-justify">
-              Some quick example text to build on the card title and make up the bulk of the card's content.
-            </p>
-            <p class="text-xs text-gray-500 mt-5">
-              Last updated 5 mins ago
+              不快になるような挑戦の投稿は
+              <br>絶対にやめてくれ
+              <br>もし不適切な言葉が混じっていると
+              <br>投稿できないから気をつけてくれ
             </p>
           </div>
         </div>
@@ -110,55 +104,53 @@
     </div>
   </section>
 
-    
-
-    <!-- portfolio -->
-    <section class="lg:p-20 p-5" id="portfolio">
-        <div class="lg:container mx-auto">
-            <h2 class="text-center text-4xl font-bold pb-10">Portfolio</h2>
-            <div class="lg:columns-4 sm:columns-2">
-                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
-                    <h3 class="text-xl mb-5">Food Delivery</h3>
-                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/food-delivery.jpg" />
-                </div>
-
-                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
-                    <h3 class="text-xl mb-5">CMS</h3>
-                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/cms.jpg" />
-                </div>
-
-                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
-                    <h3 class="text-xl mb-5">LMS</h3>
-                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/lms.jpg" />
-                </div>
-
-                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
-                    <h3 class="text-xl mb-5">SDR</h3>
-                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/sdr.jpg" />
-                </div>
-
-                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
-                    <h3 class="text-xl mb-5">VetQ</h3>
-                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/vetq.jpg" />
-                </div>
-
-                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
-                    <h3 class="text-xl mb-5">Ismile</h3>
-                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/ismile.jpg" />
-                </div>
-
-                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
-                    <h3 class="text-xl mb-5">Ehaul</h3>
-                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/ecommerce.jpg" />
-                </div>
-
-                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
-                    <h3 class="text-xl mb-5">Feedback</h3>
-                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/feedback.jpg" />
-                </div>
-            </div>
+  <!-- portfolio -->
+  <section class="lg:p-20 p-5" id="portfolio">
+    <div class="lg:container mx-auto">
+      <h2 class="text-center text-4xl font-bold pb-10">アプリの内容</h2>
+      <div class="lg:columns-4 sm:columns-2">
+        <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+          <h3 class="text-xl mb-5">投稿</h3>
+          <%= image_tag 'tops/profile.png', class:'rounded-md h-48 max-h-48 w-full' %>
         </div>
-    </section>
+
+        <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+          <h3 class="text-xl mb-5">ランキング</h3>
+          <%= image_tag 'tops/ranking.png', class:'rounded-md h-48 max-h-48 w-full' %>
+        </div>
+
+        <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+          <h3 class="text-xl mb-5">プロフィール</h3>
+          <%= image_tag 'tops/profile.png', class:'rounded-md h-48 max-h-48 w-full' %>
+        </div>
+
+        <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+          <h3 class="text-xl mb-5">チャット</h3>
+          <%= image_tag 'tops/profile.png', class:'rounded-md h-48 max-h-48 w-full' %>
+        </div>
+
+        <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+          <h3 class="text-xl mb-5">いいね</h3>
+          <%= image_tag 'tops/profile.png', class:'rounded-md h-48 max-h-48 w-full' %>
+        </div>
+
+        <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+          <h3 class="text-xl mb-5">チャレンジ提案</h3>
+          <%= image_tag 'tops/profile.png', class:'rounded-md h-48 max-h-48 w-full' %>
+        </div>
+
+        <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+          <h3 class="text-xl mb-5">コメント</h3>
+          <%= image_tag 'tops/comment.png', class:'rounded-md h-48 max-h-48 w-full' %>
+        </div>
+
+        <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+          <h3 class="text-xl mb-5">追加があれば</h3>
+          <%= image_tag 'tops/profile.png', class:'rounded-md h-48 max-h-48 w-full' %>
+        </div>
+      </div>
+    </div>
+  </section>
 
     <!-- section -->
     <section class="sm:p-20 p-5" id="contact">
