@@ -3,7 +3,7 @@
 
 <% if like %>
   <%= link_to post_like_path(post_id: post.id, id: like.id), id: "unlike-#{post.id}", data: { turbo_method: :delete }, class: 'like-button' do %>
-    <%= image_tag like_image_for(post).gsub('_2', '_1'), class: 'h-20 w-20' %>
+    <%= image_tag like_image_for(post).gsub('_2', '_1'), class: 'h-14 w-14' %>
   <% end %>
 <% end %>
 
