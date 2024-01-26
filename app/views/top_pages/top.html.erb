@@ -1,11 +1,11 @@
 <main>
-  <section class="p-20 bg-zinc-500">
+  <section class="p-20 md:p-5 bg-gray-700">
     <div class="container mx-auto">
       <div class="flex justify-center">
         <div class="flex flex-col gap-5 text-center">
-          <%= image_tag 'crazy_man.png', class:'h-70 w-70 mx-auto' %>
+          <%= image_tag 'tops/top_crazy_man.png', class:'w-64 h-64 md:h-4/5 md:w-2/3 mx-auto' %>
             <div class="flex flex-col gap-3">
-              <h1 class="font-bold text-6xl -mt-20 md:-mt-32">CRAZY MAN</h1>
+              <h1 class="font-bold text-3xl lg:text-6xl -mt-10 lg:-mt-20 md:-mt-32">CRAZY MAN</h1>
               <p class="text-white text-sm">クレイジーな挑戦に挑んだ君へ</p>
             </div>
             <%= link_to 'はじめる', new_user_path, class:'bg-gray-50 mx-auto w-32 text-center rounded-md p-2 border border-1 border-gray-100 hover:bg-white' %>
@@ -16,35 +16,38 @@
 
   <section id="about" class="p-5 lg:p-20 bg-gray-100">
     <div class="container mx-auto">
-      <div class="sm:columns-2">
-        <%= image_tag 'complete', class:'sm:w-1/2 mb-10 sm:mb-0' %>
-        <div>
-          <h2 class="text-bold text-2xl mb-3">クレイジーとは</h2>
-          <p class="text-gray-500 text-justify leading-10">
-            人それぞれクレイジーと感じるレベルは違う
-            <br>どんな小さなことでもいい、どんなバカげたことでもいい
-            <br>最近でも昔の挑戦でもいい
-            <br>変わった挑戦をしたことがあれば投稿してみてくれ
-            <br>その挑戦を諸君らがクレイジーか判断してくれ
-            <br>たくさんのCRAZYをもらえた君は<span class="font-bold text-red-500 text-xl">CRAZY MAN</span>だ
-          </p>
+      <div class="flex flex-col sm:flex-row sm:items-stretch md:space-x-3 lg:space-x-0">
+        <div class="sm:w-1/2 flex justify-center items-center mb-10 sm:mb-0">
+          <%= image_tag 'complete', class:'w-full sm:max-w-md lg:w-1/2' %>
+        </div>
+        <div class="sm:w-1/2 flex justify-center items-center">
+          <div class="text-center sm:text-left">
+            <h2 class="text-bold text-2xl mb-3">クレイジーとは</h2>
+            <p class="text-gray-500 text-justify leading-10">
+              人それぞれクレイジーと感じるレベルは違う
+              <br>どんな小さなことでもいい、どんなバカげたことでもいい
+              <br>最近でも昔の挑戦でもいい
+              <br>変わった挑戦をしたことがあれば投稿してみてくれ
+              <br>その挑戦を諸君らがクレイジーか判断してくれ
+              <br>たくさんのCRAZYをもらえた君は<span class="font-bold text-red-500 text-xl">CRAZY MAN</span>だ
+            </p>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  
   <!-- services -->
   <section id="services" class="sm:p-10 lg:p-20 p-5">
     <div class="sm:container mx-auto">
       <h2 class="text-center text-4xl font-bold pt-10 sm:pt-0 pb-10">CRAZY MANアプリについて</h2>
       <div class="sm:grid grid-cols-2">
 
-        <div class="flex flex-col lg:flex-row lg:gap-x-4 sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
+        <div class="flex flex-col lg:flex-row lg:gap-x-4 justify-center items-center sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
           <div class="lg:w-1/2">
-            <%= image_tag 'likes/crazy_1.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
+            <%= image_tag 'likes/crazy_1.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md md:-mt-10 lg:-mt-0' %>
           </div>
-          <div class="lg:w-1/2">
+          <div class="lg:w-1/2 flex flex-col justify-center items-center">
             <h3 class="text-xl mb-5 font-bold">COMPLETEチャレンジ</h3>
             <p class="leading-10 text-gray-500 text-justify">
               完遂することができた挑戦は
@@ -55,11 +58,11 @@
           </div>
         </div>
 
-        <div class="flex flex-col lg:flex-row lg:gap-x-4 sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
+        <div class="flex flex-col lg:flex-row lg:gap-x-4 justify-center items-center sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
           <div class="lg:w-1/2">
-            <%= image_tag 'complete.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
+            <%= image_tag 'tops/give_up_likes.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
           </div>
-          <div class="lg:w-1/2">
+          <div class="lg:w-1/2 flex flex-col justify-center items-center">
             <h3 class="text-xl mb-5 font-bold">GIVE UPチャレンジ</h3>
             <p class="leading-10 text-gray-500 text-justify">
             断念した挑戦も投稿できるぞ
@@ -71,11 +74,11 @@
           </div>
         </div>
 
-        <div class="flex flex-col lg:flex-row lg:gap-x-4 sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
+        <div class="flex flex-col lg:flex-row lg:gap-x-4 justify-center items-center sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
           <div class="lg:w-1/2">
             <%= image_tag 'tops/Mr_crazy.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
           </div>
-          <div class="lg:w-1/2">
+          <div class="lg:w-1/2 flex flex-col justify-center items-center">
             <h3 class="text-xl mb-5 font-bold">ランキング</h3>
             <p class="leading-10 text-gray-500 text-justify">
               COMPLETEチャレンに限り
@@ -86,11 +89,11 @@
           </div>
         </div>
 
-        <div class="flex flex-col lg:flex-row lg:gap-x-4 sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
+        <div class="flex flex-col lg:flex-row lg:gap-x-4 justify-center items-center sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
           <div class="lg:w-1/2">
-            <%= image_tag 'complete.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
+            <%= image_tag 'tops/stop.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
           </div>
-          <div class="lg:w-1/2">
+          <div class="lg:w-1/2 flex flex-col justify-center items-center">
             <h3 class="text-xl mb-5 font-bold">危険な投稿はやめてくれ</h3>
             <p class="leading-10 text-gray-500 text-justify">
               不快になるような挑戦の投稿は
@@ -111,7 +114,7 @@
       <div class="lg:columns-4 sm:columns-2">
         <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
           <h3 class="text-xl mb-5">投稿</h3>
-          <%= image_tag 'tops/profile.png', class:'rounded-md h-48 max-h-48 w-full' %>
+          <%= image_tag 'tops/post.png', class:'rounded-md h-48 max-h-48 w-full' %>
         </div>
 
         <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
@@ -126,17 +129,17 @@
 
         <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
           <h3 class="text-xl mb-5">チャット</h3>
-          <%= image_tag 'tops/profile.png', class:'rounded-md h-48 max-h-48 w-full' %>
+          <%= image_tag 'tops/plan.png', class:'rounded-md h-48 max-h-48 w-full' %>
         </div>
 
         <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
           <h3 class="text-xl mb-5">いいね</h3>
-          <%= image_tag 'tops/profile.png', class:'rounded-md h-48 max-h-48 w-full' %>
+          <%= image_tag 'tops/like.png', class:'rounded-md h-48 max-h-48 w-full' %>
         </div>
 
         <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
           <h3 class="text-xl mb-5">チャレンジ提案</h3>
-          <%= image_tag 'tops/profile.png', class:'rounded-md h-48 max-h-48 w-full' %>
+          <%= image_tag 'tops/plan.png', class:'rounded-md h-48 max-h-48 w-full' %>
         </div>
 
         <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
@@ -146,64 +149,11 @@
 
         <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
           <h3 class="text-xl mb-5">追加があれば</h3>
-          <%= image_tag 'tops/profile.png', class:'rounded-md h-48 max-h-48 w-full' %>
+          <%= image_tag 'tops/plan.png', class:'rounded-md h-48 max-h-48 w-full' %>
         </div>
       </div>
     </div>
   </section>
 
-    <!-- section -->
-    <section class="sm:p-20 p-5" id="contact">
-        <div class="sm:container mx-auto">
-            <h2 class="text-center text-4xl font-bold pb-10">Contact</h2>
-            <div class="w-full sm:flex">
-                <div class="sm:w-1/2 w-full">
-                    <div class="mb-5">
-                        <h3 class="text-xl">Address</h3>
-                        <p class="text-gray-500">Khulna, Bangladesh</p>
-                    </div>
-
-                    <div class="mb-5">
-                        <h3 class="text-xl">Email</h3>
-                        <a class="text-gray-500" href="mailto:rir.cse.71@gmail.com">rir.cse.71@gmail.com</a>
-                    </div>
-
-                    <div class="mb-5">
-                        <h3 class="text-xl">Email</h3>
-                        <a class="text-gray-500" href="https:wa.me/01750009149">+8801750009149</a>
-                    </div>
-                </div>
-
-                <div class="sm:w-1/2 w-full bg-gray-50 p-10 rounded-md">
-                    <form action="#">
-                        <div class="mt-5 grid grid-cols-1 gap-y-8 sm:grid-cols-6">
-                            <div class="sm:col-span-4">
-                                <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
-                                <input type="text" name="username" id="username" autocomplete="username" class="block w-full outline-1 border border-1 flex-1 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="Rabiul Islam">
-                            </div>
-                        </div>
-
-                        <div class="mt-5 grid grid-cols-1  gap-y-8 sm:grid-cols-6">
-                            <div class="sm:col-span-4">
-                                <label for="subject" class="block text-sm font-medium leading-6 text-gray-900">Subject</label>
-                                <input type="text" name="subject" id="subject" autocomplete="subject" class="block w-full outline-1 border border-1 flex-1 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="Hiring">
-                            </div>
-                        </div>
-
-                        <div class="mt-5 grid grid-cols-1  gap-y-8 sm:grid-cols-6">
-                            <div class="sm:col-span-4">
-                                <label for="message" class="block text-sm font-medium leading-6 text-gray-900">Message</label>
-                                <textarea name="message" id="message" autocomplete="message" class="block w-full outline-1 border border-1 flex-1 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="Message"></textarea>
-                            </div>
-                        </div>
-
-                        <div class="mt-5 grid grid-cols-1 gap-y-8 sm:grid-cols-6">
-                            <a href="#" class="bg-gray-200 mx-auto w-32 text-center rounded-md p-2 border border-1 border-gray-100 hover:bg-white">Submit</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
 
 </main>
