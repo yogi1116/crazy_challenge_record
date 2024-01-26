@@ -1,3 +1,217 @@
-<!-- component -->
-<div class="flex h-screen w-full items-center justify-center bg-gray-900 bg-cover bg-no-repeat" style="background-image:url('<%= image_path('top.jpeg') %>')">
-</div>
+<main>
+  <section class="p-20 bg-zinc-500">
+    <div class="container mx-auto">
+      <div class="flex justify-center">
+        <div class="flex flex-col gap-5 text-center">
+          <%= image_tag 'crazy_man.png', class:'h-70 w-70 mx-auto' %>
+            <div class="flex flex-col gap-3">
+              <h1 class="font-bold text-6xl -mt-20 md:-mt-32">CRAZY MAN</h1>
+              <p class="text-white text-sm">クレイジーな挑戦に挑んだ君へ</p>
+            </div>
+            <a href="#" class="bg-gray-50 mx-auto w-32 text-center rounded-md p-2 border border-1 border-gray-100 hover:bg-white">Hire me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="p-5 lg:p-20 bg-gray-50">
+    <div class="container mx-auto">
+      <div class="sm:columns-2">
+        <%= image_tag 'Mr_crazy.png', class:'sm:w-1/2 mb-10 sm:mb-0' %>
+        <div>
+          <h2 class="text-bold text-2xl mb-3">君たちのクレイジーな挑戦記を教えてくれ</h2>
+          <p class="mb-5 text-sm text-gray-400">Providing web solutions</p>
+          <p class="text-gray-500 text-justify leading-10">
+            今までの人生で、人とは変わった挑戦をしたことがある人はいないだろうか？
+            <br>どんな小さな挑戦でも構わない。
+            <br>どんなことに挑戦したのか・その結果は？
+            <br>挑戦した中で印象に残った出来事は？・その挑戦を通して得られた教訓は？
+            <br>これらを共有して目指せ<span class="font-bold text-red-500 text-xl">Mr.CRAZY MAN</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    </section>
+
+  <!-- services -->
+  <section id="services" class="sm:p-10 lg:p-20 p-5">
+    <div class="sm:container mx-auto">
+      <h2 class="text-center text-4xl font-bold pt-10 sm:pt-0 pb-10">CRAZY MANアプリについて</h2>
+      <div class="sm:grid grid-cols-2">
+
+        <div class="flex flex-col lg:flex-row lg:gap-x-4 sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
+          <div class="lg:w-1/2">
+            <%= image_tag 'complete.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
+          </div>
+          <div class="lg:w-1/2">
+            <h3 class="text-xl mb-5 font-bold">
+              Card title
+            </h3>
+            <p class="leading-10 text-gray-500 text-justify">
+              Some quick example text to build on the card title and make up the bulk of the card's content.
+            </p>
+            <p class="text-xs text-gray-500 mt-5">
+              Last updated 5 mins ago
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row lg:gap-x-4 sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
+          <div class="lg:w-1/2">
+            <%= image_tag 'complete.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
+          </div>
+          <div class="lg:w-1/2">
+            <h3 class="text-xl mb-5 font-bold">
+              Card title
+            </h3>
+            <p class="leading-10 text-gray-500 text-justify">
+              Some quick example text to build on the card title and make up the bulk of the card's content.
+            </p>
+            <p class="text-xs text-gray-500 mt-5">
+              Last updated 5 mins ago
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row lg:gap-x-4 sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
+          <div class="lg:w-1/2">
+            <%= image_tag 'complete.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
+          </div>
+          <div class="lg:w-1/2">
+            <h3 class="text-xl mb-5 font-bold">
+              Card title
+            </h3>
+            <p class="leading-10 text-gray-500 text-justify">
+              Some quick example text to build on the card title and make up the bulk of the card's content.
+            </p>
+            <p class="text-xs text-gray-500 mt-5">
+              Last updated 5 mins ago
+            </p>
+          </div>
+        </div>
+
+        <div class="flex flex-col lg:flex-row lg:gap-x-4 sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
+          <div class="lg:w-1/2">
+            <%= image_tag 'complete.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
+          </div>
+          <div class="lg:w-1/2">
+            <h3 class="text-xl mb-5 font-bold">
+              Card title
+            </h3>
+            <p class="leading-10 text-gray-500 text-justify">
+              Some quick example text to build on the card title and make up the bulk of the card's content.
+            </p>
+            <p class="text-xs text-gray-500 mt-5">
+              Last updated 5 mins ago
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    
+
+    <!-- portfolio -->
+    <section class="lg:p-20 p-5" id="portfolio">
+        <div class="lg:container mx-auto">
+            <h2 class="text-center text-4xl font-bold pb-10">Portfolio</h2>
+            <div class="lg:columns-4 sm:columns-2">
+                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+                    <h3 class="text-xl mb-5">Food Delivery</h3>
+                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/food-delivery.jpg" />
+                </div>
+
+                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+                    <h3 class="text-xl mb-5">CMS</h3>
+                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/cms.jpg" />
+                </div>
+
+                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+                    <h3 class="text-xl mb-5">LMS</h3>
+                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/lms.jpg" />
+                </div>
+
+                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+                    <h3 class="text-xl mb-5">SDR</h3>
+                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/sdr.jpg" />
+                </div>
+
+                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+                    <h3 class="text-xl mb-5">VetQ</h3>
+                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/vetq.jpg" />
+                </div>
+
+                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+                    <h3 class="text-xl mb-5">Ismile</h3>
+                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/ismile.jpg" />
+                </div>
+
+                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+                    <h3 class="text-xl mb-5">Ehaul</h3>
+                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/ecommerce.jpg" />
+                </div>
+
+                <div class="p-5 bg-gray-50 sm:me-5 sm:mb-10 mb-5 rounded-md hover:shadow-md">
+                    <h3 class="text-xl mb-5">Feedback</h3>
+                    <img class="rounded-md h-48 max-h-48 w-full" src="https://rabiulislam.dev/documents/images/portfolio/feedback.jpg" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- section -->
+    <section class="sm:p-20 p-5" id="contact">
+        <div class="sm:container mx-auto">
+            <h2 class="text-center text-4xl font-bold pb-10">Contact</h2>
+            <div class="w-full sm:flex">
+                <div class="sm:w-1/2 w-full">
+                    <div class="mb-5">
+                        <h3 class="text-xl">Address</h3>
+                        <p class="text-gray-500">Khulna, Bangladesh</p>
+                    </div>
+
+                    <div class="mb-5">
+                        <h3 class="text-xl">Email</h3>
+                        <a class="text-gray-500" href="mailto:rir.cse.71@gmail.com">rir.cse.71@gmail.com</a>
+                    </div>
+
+                    <div class="mb-5">
+                        <h3 class="text-xl">Email</h3>
+                        <a class="text-gray-500" href="https:wa.me/01750009149">+8801750009149</a>
+                    </div>
+                </div>
+
+                <div class="sm:w-1/2 w-full bg-gray-50 p-10 rounded-md">
+                    <form action="#">
+                        <div class="mt-5 grid grid-cols-1 gap-y-8 sm:grid-cols-6">
+                            <div class="sm:col-span-4">
+                                <label for="username" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
+                                <input type="text" name="username" id="username" autocomplete="username" class="block w-full outline-1 border border-1 flex-1 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="Rabiul Islam">
+                            </div>
+                        </div>
+
+                        <div class="mt-5 grid grid-cols-1  gap-y-8 sm:grid-cols-6">
+                            <div class="sm:col-span-4">
+                                <label for="subject" class="block text-sm font-medium leading-6 text-gray-900">Subject</label>
+                                <input type="text" name="subject" id="subject" autocomplete="subject" class="block w-full outline-1 border border-1 flex-1 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="Hiring">
+                            </div>
+                        </div>
+
+                        <div class="mt-5 grid grid-cols-1  gap-y-8 sm:grid-cols-6">
+                            <div class="sm:col-span-4">
+                                <label for="message" class="block text-sm font-medium leading-6 text-gray-900">Message</label>
+                                <textarea name="message" id="message" autocomplete="message" class="block w-full outline-1 border border-1 flex-1 bg-transparent py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="Message"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="mt-5 grid grid-cols-1 gap-y-8 sm:grid-cols-6">
+                            <a href="#" class="bg-gray-200 mx-auto w-32 text-center rounded-md p-2 border border-1 border-gray-100 hover:bg-white">Submit</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
