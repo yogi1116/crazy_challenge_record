@@ -231,4 +231,34 @@ RSpec.describe "Posts", type: :system do
       have_no_content('削除')
     end
   end
+
+  describe 'ランキング' do
+    it 'COMPLETEチャレンジはランキング化される' do
+      login(another_user)
+      post_id = complete_post.id
+      link = "/posts/#{post_id}"
+      expect(page).to have_selector("a[href='#{link}']")
+      find("a[href='#{link}']").click
+      link = "/posts/#{post_id}/likes"
+      expect(page).to have_selector("a[href='#{link}']")
+      find("a[href='#{link}']").click #いいねをクリック
+      click_link 'RANKING'
+      expect(page).to have_current_path(ranking_posts_path)
+      expect(page).to have_content(give_up_post.title)
+    end
+
+    it 'GIVE UPチャレンジはランキング化されない' do
+      login(user)
+      post_id = give_up_post.id
+      link = "/posts/#{post_id}"
+      expect(page).to have_selector("a[href='#{link}']")
+      find("a[href='#{link}']").click
+      link = "/posts/#{post_id}/likes"
+      expect(page).to have_selector("a[href='#{link}']")
+      find("a[href='#{link}']").click #いいねをクリック
+      click_link 'RANKING'
+      expect(page).to have_current_path(ranking_posts_path)
+      expect(page).to have_no_content(give_up_post.title)
+    end
+  end
 end
