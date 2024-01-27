@@ -7,7 +7,7 @@ class ContentModerationService
   def initialize(post)
     @post = post
     @credentials = Google::Auth::ServiceAccountCredentials.make_creds(
-      json_key_io: File.open('app/services/service_account.json'),
+      json_key_io: StringIO.new(Rails.application.credentials.google[:natural_language_credentials]),
       scope: SCOPE
     )
   end
