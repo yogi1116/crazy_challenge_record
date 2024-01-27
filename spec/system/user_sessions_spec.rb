@@ -62,7 +62,7 @@ RSpec.describe "Usersessions", type: :system do
       click_on 'ログイン'
       expect(page).to have_current_path(posts_path)
       find("#hs-dropdown-custom-trigger").click
-      click_on 'ログアウト'
+      click_on 'LOGOUT'
       expect(page).to have_current_path(root_path)
       expect(page).to have_content('ログアウトしました')
     end

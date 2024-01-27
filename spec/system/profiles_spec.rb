@@ -13,7 +13,7 @@ RSpec.describe "Profiles", type: :system do
 
     it 'ユーザーは自分のプロフィールを編集できる' do
       find("#hs-dropdown-custom-trigger").click
-      click_on 'プロフィール'
+      click_on 'PROFILE'
       click_on '編集'
       fill_in 'profile[one_word]', with: 'ひとこと'
       fill_in 'profile[birthday]', with: '2024-01-19'

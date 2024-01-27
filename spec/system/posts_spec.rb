@@ -25,8 +25,10 @@ RSpec.describe "Posts", type: :system do
         # 画像をアップロード(最大4枚)
         attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
         click_on '投稿する'
-        expect(page).to have_current_path(posts_path)
-        expect(page).to have_content('新規投稿されました')
+        using_wait_time(4) do
+          expect(page).to have_current_path(posts_path)
+          expect(page).to have_content('新規投稿されました')
+        end
       end
 
       it 'GIVE UPチャレンジの投稿が作成できる' do
@@ -44,8 +46,10 @@ RSpec.describe "Posts", type: :system do
         # 画像をアップロード
         attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
         click_on '投稿する'
-        expect(page).to have_current_path(posts_path)
-        expect(page).to have_content('新規投稿されました')
+        using_wait_time(4) do
+          expect(page).to have_current_path(posts_path)
+          expect(page).to have_content('新規投稿されました')
+        end
       end
     end
 
@@ -67,8 +71,10 @@ RSpec.describe "Posts", type: :system do
         # 画像をアップロード
         attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
         click_on '投稿する'
-        expect(page).to have_content('投稿に失敗しました')
-        expect(page).to have_content('挑戦名を入力してください')
+        using_wait_time(4) do
+          expect(page).to have_content('投稿に失敗しました')
+          expect(page).to have_content('挑戦名を入力してください')
+        end
       end
 
       it '挑戦内容未入力' do
@@ -84,8 +90,10 @@ RSpec.describe "Posts", type: :system do
         # 画像をアップロード
         attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
         click_on '投稿する'
-        expect(page).to have_content('投稿に失敗しました')
-        expect(page).to have_content('挑戦内容を入力してください')
+        using_wait_time(4) do
+          expect(page).to have_content('投稿に失敗しました')
+          expect(page).to have_content('挑戦内容を入力してください')
+        end
       end
 
       it 'カテゴリー未選択' do
@@ -98,8 +106,10 @@ RSpec.describe "Posts", type: :system do
         # 画像をアップロード
         attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
         click_on '投稿する'
-        expect(page).to have_content('投稿に失敗しました')
-        expect(page).to have_content('カテゴリーを選択してください')
+        using_wait_time(4) do
+          expect(page).to have_content('投稿に失敗しました')
+          expect(page).to have_content('カテゴリーを選択してください')
+        end
       end
 
       # GIVE UPチャレンジのみretryカラムにバリデーションを設定
@@ -115,8 +125,10 @@ RSpec.describe "Posts", type: :system do
         # 画像をアップロード
         attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
         click_on '投稿する'
-        expect(page).to have_content('投稿に失敗しました')
-        expect(page).to have_content('再挑戦する？を選択してください')
+        using_wait_time(4) do
+          expect(page).to have_content('投稿に失敗しました')
+          expect(page).to have_content('再挑戦する？を選択してください')
+        end
       end
 
       it '画像アップロード枚数上限(4枚)を超えての投稿' do
@@ -132,8 +144,10 @@ RSpec.describe "Posts", type: :system do
         # 画像をアップロード
         attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png","#{Rails.root}/spec/fixtures/files/comment.png"]
         click_on '投稿する'
-        expect(page).to have_content('投稿に失敗しました')
-        expect(page).to have_content('画像アップロードに添付できる枚数は最大4枚です')
+        using_wait_time(4) do
+          expect(page).to have_content('投稿に失敗しました')
+          expect(page).to have_content('画像アップロードに添付できる枚数は最大4枚です')
+        end
       end
 
       it '有害な投稿内容を含むとNatural language APIにより投稿阻止' do
@@ -147,8 +161,10 @@ RSpec.describe "Posts", type: :system do
         find("input[type='checkbox'][value='1']").check
         # 画像をアップロード(最大4枚)
         attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
-        click_on '投稿する'
-        expect(page).to have_content('不適切なコンテンツが含まれています：死や害・ 冒とく・ 違法ドラッグ・ 戦争')
+        using_wait_time(4) do
+          click_on '投稿する'
+          expect(page).to have_content('不適切なコンテンツが含まれています：死や害・ 冒とく・ 違法ドラッグ・ 戦争')
+        end
       end
     end
   end
@@ -200,7 +216,9 @@ RSpec.describe "Posts", type: :system do
       link = "/posts/#{post_id}"
       expect(page).to have_selector("a[href='#{link}']")
       find("a[href='#{link}']").click
-      find("[action='/posts/#{post_id}'] button[type='submit']").click
+      page.accept_confirm do
+        find("[action='/posts/#{post_id}'] button[type='submit']").click #ダイアログのOKをクリック
+      end
       expect(page).to have_current_path(posts_path)
       expect(page).to have_content('投稿を削除しました')
     end
