@@ -1,15 +1,50 @@
 <header class="bg-blue-600">
-  <div class="mx-auto flex h-20 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-    <%= link_to posts_path, class: 'block text-black' do %>
+  <div class="relative mx-auto flex h-20 w-full items-center justify-between px-4 sm:px-6 lg:px-8">
+    <%= link_to root_path, class:'block text-black pt-3' do %>
       <%= image_tag 'crazy_man.png', style: 'width: 150px; height: 133px;' %>
     <% end %>
 
-    <div class="flex flex-1 items-center justify-end">
+    <div class="hidden sm:flex flex-1">
+      <div class="flex flex-1 items-center justify-end md:justify-between">
+        <nav aria-label="Global" class="hidden md:block">
+          <ul class="flex items-center gap-6 text-xl">
+            <li>
+              <%= link_to 'RANKING', ranking_posts_path, class:'text-black transition hover:text-gray-500/75 pl-6' %>
+            </li>
+            <li>
+              <%= link_to 'POST LIST', posts_path, class:'text-black transition hover:text-gray-500/75 pl-6' %>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="hidden sm:flex flex-1 items-center justify-end">
       <div class="flex items-end gap-4">
         <div class="sm:flex sm:gap-4">
           <%= link_to 'LOGIN', login_path, class:'block rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700' %>
-
           <%= link_to 'SIGNUP', new_user_path, class:'block rounded-md bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700' %>
+        </div>
+      </div>
+    </div>
+
+    <!--モバイル版-->
+    <div class="top-0 w-10 z-30" data-controller="menu">
+      <div class="flex sm:hidden text-white">
+        <div class="menu-btn top-5 right-0 z-40 w-10 h-10 sm:hidden flex justify-center items-center bg-black cursor-pointer" data-action="click->menu#toggle">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+          </svg>
+        </div>
+        <div class="menu bg-black w-2/4 fixed top-0 left-0 h-screen z-50 hidden" data-menu-target="menu">
+          <div class="flex justify-center items-center gap-1 pt-5">
+            <%= image_tag 'CRAZY.png', class:'w-12 h-12' %>
+            <p class="text-yellow-300 text-xl font-bold">CRAZY MAN</p>
+          </div>
+          <%= link_to 'POST LIST', posts_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
+          <%= link_to 'RANKING', ranking_posts_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
+          <%= link_to 'LOGIN', login_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
+          <%= link_to 'SIGNUP', new_user_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
         </div>
       </div>
     </div>

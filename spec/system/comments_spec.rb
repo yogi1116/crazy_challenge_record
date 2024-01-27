@@ -34,6 +34,18 @@ RSpec.describe "Comments", type: :system do
         expect(page).to have_content('コメント')
       end
     end
+
+    context 'コメント失敗' do
+      it '無記入は投稿できない' do
+        post_id = comment_post_A.post_id
+        link = "/posts/#{post_id}"
+        expect(page).to have_selector("a[href='#{link}']")
+        find("a[href='#{link}']").click # 投稿詳細のリンク(READ MOREをクリック)
+        fill_in 'comment[body]', with: nil
+        click_on '投稿'
+        expect(page).to have_content('コメント内容を入力してください')
+      end
+    end
   end
 
   describe '自分のコメントの編集削除' do
@@ -63,7 +75,9 @@ RSpec.describe "Comments", type: :system do
       comment_id = comment_post_A.id
       link = "/posts/#{post_id}/comments/#{comment_id}"
       expect(page).to have_selector("a[href='#{link}']")
-      find("a[href='#{link}']").click # 削除バタンをクリック
+      page.accept_confirm do
+        find("a[href='#{link}']").click # 削除ボタンをクリック、ダイアログが表示される
+      end
       expect(page).to have_no_selector("a[href='#{link}']") # 削除ボタンがない == 自分のコメントが消えた
     end
   end

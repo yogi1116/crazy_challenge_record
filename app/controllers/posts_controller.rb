@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: [:index]
+  skip_before_action :require_login, only: [:index, :ranking]
   before_action :find_post, only: [:edit, :update, :destroy]
 
   def index
@@ -41,7 +41,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @comment = Comment.new
+    @comment = @comment.present? && @comment.errors.any? ? @comment : Comment.new
     @comments = @post.comments.includes(:user).order(created_at: :desc)
   end
 

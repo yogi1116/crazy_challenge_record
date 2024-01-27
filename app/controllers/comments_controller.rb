@@ -3,7 +3,20 @@ class CommentsController < ApplicationController
 
   def create
     @comment = @post.comments.build(comment_params.merge(user: current_user))
-    @comment.save!
+    if @comment.save
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to post_path(@post) }
+      end
+    else
+      @comments = @post.comments.includes(:user).order(created_at: :desc)
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update('comments-error', partial: 'shared/error_messages', locals: { object: @comment })
+        end
+        format.html { render 'posts/show' }
+      end
+    end
   end
 
   def edit
@@ -12,7 +25,20 @@ class CommentsController < ApplicationController
 
   def update
     @comment = current_user.comments.find(params[:id])
-    @comment.update!(comment_params)
+    if @comment.update(comment_params)
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to post_path(@post) }
+      end
+    else
+      @comments = @post.comments.includes(:user).order(created_at: :desc)
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update('comments-error', partial: 'shared/error_messages', locals: { object: @comment })
+        end
+        format.html { render 'posts/show' }
+      end
+    end
   end
 
   def destroy

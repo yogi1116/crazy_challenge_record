@@ -1,44 +1,46 @@
 <% categories.each do |category| %>
-  <% case category.name %>
-  <% when '冒険・探究' %>
-    <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-red-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
-      <div class="mt-px">冒険・探究</div>
-    </div>
-  <% when 'スポーツ' %>
-    <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-blue-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
-      <div class="mt-px">スポーツ</div>
-    </div>
-  <% when '学習・プログラミング' %>
-    <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-green-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
-      <div class="mt-px">学習・プログラミング</div>
-    </div>
-  <% when '芸術' %>
-    <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-purple-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
-      <div class="mt-px">芸術</div>
-    </div>
-  <% when '趣味' %>
-    <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-cyan-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
-      <div class="mt-px">趣味</div>
-    </div>
-  <% when 'ビジネス' %>
-    <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-teal-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
-      <div class="mt-px">ビジネス</div>
-    </div>
-  <% when '極限・忍耐' %>
-    <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-indigo-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
-      <div class="mt-px">極限・忍耐</div>
-    </div>
-  <% when '前人未到' %>
-    <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-pink-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
-      <div class="mt-px">前人未到</div>
-    </div>
-  <% when '似た挑戦した猛者いる？' %>
-    <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-amber-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
-      <div class="mt-px">似た挑戦した猛者いる？</div>
-    </div>
-  <% when 'その他' %>
-    <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-zinc-400 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
-      <div class="mt-px">その他</div>
-    </div>
-  <% end %>
+  <div class="mx-1">
+    <% case category.name %>
+    <% when '冒険・探究' %>
+      <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-red-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
+        <div class="mt-px">冒険・探究</div>
+      </div>
+    <% when 'スポーツ' %>
+      <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-blue-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
+        <div class="mt-px">スポーツ</div>
+      </div>
+    <% when '学習・プログラミング' %>
+      <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-green-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
+        <div class="mt-px">学習・プログラミング</div>
+      </div>
+    <% when '芸術' %>
+      <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-purple-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
+        <div class="mt-px">芸術</div>
+      </div>
+    <% when '趣味' %>
+      <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-cyan-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
+        <div class="mt-px">趣味</div>
+      </div>
+    <% when 'ビジネス' %>
+      <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-teal-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
+        <div class="mt-px">ビジネス</div>
+      </div>
+    <% when '極限・忍耐' %>
+      <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-indigo-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
+        <div class="mt-px">極限・忍耐</div>
+      </div>
+    <% when '前人未到' %>
+      <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-pink-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
+        <div class="mt-px">前人未到</div>
+      </div>
+    <% when '似た挑戦した猛者いる？' %>
+      <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-amber-500 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
+        <div class="mt-px">似た挑戦した猛者いる？</div>
+      </div>
+    <% when 'その他' %>
+      <div class="center relative inline-block select-none whitespace-nowrap rounded-lg bg-zinc-400 py-2 px-3.5 align-baseline font-sans text-xs font-bold uppercase leading-none text-black">
+        <div class="mt-px">その他</div>
+      </div>
+    <% end %>
+  </div>
 <% end %>
