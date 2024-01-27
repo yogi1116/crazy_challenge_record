@@ -1,14 +1,14 @@
 <main>
-  <section class="p-20 md:p-5 bg-gray-700">
+  <section class="p-20 md:p-5 bg-blue-900">
     <div class="container mx-auto">
       <div class="flex justify-center">
         <div class="flex flex-col gap-5 text-center">
           <%= image_tag 'tops/top_crazy_man.png', class:'w-64 h-64 md:h-4/5 md:w-2/3 mx-auto' %>
             <div class="flex flex-col gap-3">
-              <h1 class="font-bold text-3xl lg:text-6xl -mt-10 lg:-mt-20 md:-mt-32">CRAZY MAN</h1>
+              <h1 class="text-white font-bold text-3xl lg:text-6xl -mt-10 lg:-mt-20 md:-mt-32">CRAZY MAN</h1>
               <p class="text-white text-sm">クレイジーな挑戦に挑んだ君へ</p>
             </div>
-            <%= link_to 'はじめる', new_user_path, class:'bg-gray-50 mx-auto w-32 text-center rounded-md p-2 border border-1 border-gray-100 hover:bg-white' %>
+            <%= link_to 'はじめる', new_user_path, class:'text-white bg-black mx-auto w-32 text-center rounded-md p-2 border border-1 border-red-500 hover:bg-red-700' %>
         </div>
       </div>
     </div>
@@ -22,14 +22,14 @@
         </div>
         <div class="sm:w-1/2 flex justify-center items-center">
           <div class="text-center sm:text-left">
-            <h2 class="text-bold text-center text-2xl mb-3">クレイジーとは</h2>
-            <p class="text-gray-500 text-justify leading-10">
-              人それぞれクレイジーと感じるレベルは違う
-              <br>どんな小さなことでもいい、どんなバカげたことでもいい
-              <br>最近でも昔の挑戦でもいい
-              <br>変わった挑戦をしたことがあれば投稿してみてくれ
-              <br>その挑戦を諸君らがクレイジーか判断してくれ
-              <br>たくさんのCRAZYをもらえた君は<span class="font-bold text-red-500 text-xl">CRAZY MAN</span>だ
+            <h2 class="font-extrabold text-center text-3xl mb-3">CRAZY MANとは</h2>
+            <p class="text-gray-500 text-center leading-10 text-lg">
+              今までの人生で人とは変わった挑戦をした経験はないだろうか？<br>
+              どんな小さな挑戦でもいい。どんなバカげた挑戦でもいい。<br>
+              その挑戦で諸君らは何を感じ、何を得て、どんな結果を迎えたのか。<br>
+              それを多くの人に伝えてみてくれ！<br>
+              人それぞれクレイジーの定義は違うと思うが、より多くのクレイジーを<br>
+              もらうことができた挑戦者をこう呼ぼう<span class="font-bold text-red-500 text-xl">「CRAZY MAN」</span>と。
             </p>
           </div>
         </div>
@@ -38,18 +38,18 @@
   </section>
 
   <!-- services -->
-  <section id="services" class="sm:p-10 lg:p-20 p-5">
+  <section id="services" class="sm:p-10 lg:p-10 p-5 bg-teal-600">
     <div class="sm:container mx-auto">
       <h2 class="text-center text-4xl font-bold pt-10 sm:pt-0 pb-10">CRAZY MANアプリについて</h2>
       <div class="sm:grid grid-cols-2">
 
-        <div class="flex flex-col lg:flex-row lg:gap-x-4 justify-center items-center sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
+        <div class="flex flex-col lg:flex-row lg:gap-x-4 justify-center items-center sm:p-10 p-5 bg-white sm:me-5 mb-10 rounded-md hover:shadow-md">
           <div class="lg:w-1/2">
             <%= image_tag 'likes/crazy_1.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md md:-mt-10 lg:-mt-0' %>
           </div>
           <div class="lg:w-1/2 flex flex-col justify-center items-center">
             <h3 class="text-xl mb-5 font-bold">COMPLETEチャレンジ</h3>
-            <p class="leading-10 text-gray-500 text-justify">
+            <p class="leading-10 text-gray-500 text-center">
               完遂することができた挑戦は
               <br>このCOMPLETEチャレンジだ
               <br>クレイジーだと感じた投稿は
@@ -58,13 +58,13 @@
           </div>
         </div>
 
-        <div class="flex flex-col lg:flex-row lg:gap-x-4 justify-center items-center sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
+        <div class="flex flex-col lg:flex-row lg:gap-x-4 justify-center items-center sm:p-10 p-5 bg-white sm:me-5 mb-10 rounded-md hover:shadow-md">
           <div class="lg:w-1/2">
             <%= image_tag 'tops/give_up_likes.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
           </div>
           <div class="lg:w-1/2 flex flex-col justify-center items-center">
             <h3 class="text-xl mb-5 font-bold">GIVE UPチャレンジ</h3>
-            <p class="leading-10 text-gray-500 text-justify">
+            <p class="leading-10 text-gray-500 text-center">
             断念した挑戦も投稿できるぞ
             <br>その投稿を見た君は
             <br>応援の意を込めFight
@@ -74,14 +74,14 @@
           </div>
         </div>
 
-        <div class="flex flex-col lg:flex-row lg:gap-x-4 justify-center items-center sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
+        <div class="flex flex-col lg:flex-row lg:gap-x-4 justify-center items-center sm:p-10 p-5 bg-white sm:me-5 mb-10 rounded-md hover:shadow-md">
           <div class="lg:w-1/2">
             <%= image_tag 'tops/Mr_crazy.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
           </div>
           <div class="lg:w-1/2 flex flex-col justify-center items-center">
             <h3 class="text-xl mb-5 font-bold">ランキング</h3>
-            <p class="leading-10 text-gray-500 text-justify">
-              COMPLETEチャレンに限り
+            <p class="leading-10 text-gray-500 text-center">
+              COMPLETEチャレンジに限り
               <br>みんなからのCRAZYをもとに
               <br>ランキングが表示される
               <br>目指せ‼️ Mr.CRZY MAN
@@ -89,13 +89,13 @@
           </div>
         </div>
 
-        <div class="flex flex-col lg:flex-row lg:gap-x-4 justify-center items-center sm:p-10 p-5 bg-gray-50 sm:me-5 mb-10 rounded-md hover:shadow-md">
+        <div class="flex flex-col lg:flex-row lg:gap-x-4 justify-center items-center sm:p-10 p-5 bg-white sm:me-5 mb-10 rounded-md hover:shadow-md">
           <div class="lg:w-1/2">
             <%= image_tag 'tops/stop.png', class: 'w-full rounded-t-xl sm:rounded-none lg:rounded-l-md' %>
           </div>
           <div class="lg:w-1/2 flex flex-col justify-center items-center">
             <h3 class="text-xl mb-5 font-bold">危険な投稿はやめてくれ</h3>
-            <p class="leading-10 text-gray-500 text-justify">
+            <p class="leading-10 text-gray-500 text-center">
               不快になるような挑戦の投稿は
               <br>絶対にやめてくれ
               <br>もし不適切な言葉が混じっていると
@@ -155,13 +155,13 @@
     </div>
   </section>
 
-  <section class="p-20 bg-gray-700 md:p-30">
+  <section class="p-20 bg-blue-900 md:p-30">
     <div class="container mx-auto">
       <div class="flex justify-center">
         <div class="flex flex-col gap-5 text-center">
           <div class="flex flex-col items-center gap-3">
             <h1 class="font-bold text-2xl lg:text-5xl">CRAZY MAN</h1>
-            <p class="text-white text-sm">様々な挑戦をお待ちしてます</p>
+            <p class="text-white text-sm">君の挑戦を聞かせてくれ</p>
           </div>
           <div class="flex justify-center space-x-4 lg:spac-x-0">
             <%= link_to 'LOGIN', login_path, class:'bg-gray-50 mx-auto w-32 text-center rounded-md p-2 border border-1 border-gray-100 hover:bg-white' %>
