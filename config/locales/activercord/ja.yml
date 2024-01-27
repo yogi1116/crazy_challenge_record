@@ -31,6 +31,8 @@ ja:
         retry: '再挑戦する？'
         category_ids: "カテゴリー"
         images: '画像アップロード'
+      comment:
+        body: 'コメント内容'
       errors:
         models:
           post:
