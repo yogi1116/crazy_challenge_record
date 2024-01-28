@@ -3,14 +3,14 @@
     <% bg_color, tag_bg_color, border_color, text_color = color_classes_for_rank(index + 1) %>
     <section class="relative">
       <div class="w-full px-4 border-1">
-        <div class="relative flex flex-col min-w-0 break-words w-full mb-3  shadow-lg rounded <%= bg_color %>">
+        <div class="relative flex flex-col min-w-0 break-words w-full mb-3 rounded <%= bg_color %>">
           <div class="rounded-t mb-0 px-4 py-3 border-0">
             <div class="flex flex-wrap items-center">
               <div class="relative w-full px-4 max-w-full flex-grow flex-1">
                 <h3 class="font-semibold text-lg text-black">
                   <% case index %>
                   <% when 0 %>
-                    Mr.CRAZY MAN
+                    <div class="text-black text-xl font-bold">Mr.CRAZY MAN</div>
                   <% when 1 %>
                     <%= (index + 1) %>nd
                   <% when 2 %>

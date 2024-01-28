@@ -4,11 +4,11 @@ module ColorHelper
                                           when 1
                                             ['bg-yellow-500', 'bg-yellow-700', 'border-yellow-900', 'text-white']
                                           when 2
-                                            ['bg-slate-300', 'bg-slate-700', 'border-slate-900', 'text-white']
+                                            ['bg-slate-400', 'bg-slate-700', 'border-slate-900', 'text-white']
                                           when 3
                                             ['bg-orange-500', 'bg-orange-700', 'border-orange-900', 'text-white']
                                           else
-                                            ['bg-white', 'bg-white',  'border-black', 'text-black']
+                                            ['bg-zinc-100', 'bg-zinc-100',  'border-black', 'text-black']
                                           end
   end
 end
