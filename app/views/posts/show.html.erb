@@ -54,7 +54,7 @@
         <% end %>
       </div>
       <div class="flex items-center text-xs text-slate-500 mt-16">
-        <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+        <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
         <%= render 'comments/count', { post: @post, comment: @comment } %>
       </div>
     </div>
