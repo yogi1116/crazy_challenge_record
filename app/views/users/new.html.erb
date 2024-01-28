@@ -24,12 +24,12 @@
           <%= f.label :password_confirmation, class: 'form-label' %>
           <%= f.password_field :password_confirmation, class: 'rounded-3xl border-none bg-yellow-400 bg-opacity-50 px-6 py-2 text-center text-inherit placeholder-slate-200 shadow-lg outline-none backdrop-blur-md' %>
         </div>
-        <div class="flex items-center space-x-2">
+        <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-2">
           <%= f.check_box :agreement, required: true, class: "form-checkbox" %>
-          <span class="text-white">に同意する</span>
           <%= link_to '利用規約', terms_of_service_path, class: 'text-blue-400 hover:text-blue-600' %>
-          <span class="text-white">と</span>
+          <span class="text-white sm:hidden">と</span>
           <%= link_to 'プライバシーポリシー', privacy_policy_path, class: 'text-blue-400 hover:text-blue-600' %>
+          <div class="text-white">同意する</div>
         </div>
         <div class="mt-8 flex justify-center text-lg text-black mb-5">
           <%= f.submit (t 'defaults.register'), class: 'rounded-3xl bg-yellow-400 bg-opacity-50 px-10 py-2 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-yellow-600' %>
