@@ -13,7 +13,7 @@ RSpec.describe "Posts", type: :system do
     end
 
     context '成功' do
-      it 'COMPLETEチャレンジの投稿が作成できる' do
+      fit 'COMPLETEチャレンジの投稿が作成できる' do
         click_on 'COMPLETE'
         fill_in 'post[title]', with: 'title'
         fill_in 'post[content]', with: 'content'
