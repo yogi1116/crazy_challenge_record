@@ -42,9 +42,11 @@
         <%= render 'category', { post: @post, categories: @post.categories } %>
       </div>
 
-      <%= render 'post', { post: @post } %>
+      <div class="pb-5">
+        <%= render 'post', { post: @post } %>
+      </div>
 
-      <div class="grid grid-cols-4 col-span-2 gap-2">
+      <div class="grid grid-cols-1 md:grid-cols-4 col-span-2 gap-2">
         <% @post.images.each do |image| %>
           <div class="overflow-hidden rounded-xl col-span-1 max-h-[14rem]">
             <%= image_tag image, class: 'h-full w-full object-cover' %>

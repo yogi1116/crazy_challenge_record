@@ -10,9 +10,10 @@ class User < ApplicationRecord
 
   validates :username, presence: true, length: { maximum: 40 }
   validates :email, presence: true, uniqueness: true
-  validates :password, length: { minimum: 8 }, format: { with: /\A(?=.*?[a-z])(?=.*?[A-Z])(?=.*?\d)/, message: 'は大文字、小文字、数字をそれぞれ1種類以上含む必要があります' }
+  validates :password, length: { minimum: 5 }, format: { with: /\A(?=.*?\d)(?=.*?[a-zA-Z])/, message: 'は英数字をそれぞれ1種類以上含む必要があります' }
   validates :password, presence: true, confirmation: true
   validates :password_confirmation, presence: true
+  validates_acceptance_of :agreement, allow_nil: false, on: :create
 
   def own?(object)
     id == object.user_id

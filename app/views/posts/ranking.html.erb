@@ -1,68 +1,74 @@
-<div class="p-6 bg-gray-500 min-h-screen">
+<div class="p-6 min-h-screen w-full bg-no-repeat bg-cover bg-center" style="background-image:url('<%= image_path('top.jpeg') %>'); background-size: cover; background-position: center;">
   <% @posts.each_with_index do |post, index| %>
     <% bg_color, tag_bg_color, border_color, text_color = color_classes_for_rank(index + 1) %>
-<section class="relative bg-blueGray-50">
-<div class="w-full px-4">
-  <div class="relative flex flex-col min-w-0 break-words w-full mb-3  shadow-lg rounded <%= bg_color %> text-white">
-    <div class="rounded-t mb-0 px-4 py-3 border-0">
-      <div class="flex flex-wrap items-center">
-        <div class="relative w-full px-4 max-w-full flex-grow flex-1 ">
-          <h3 class="font-semibold text-lg text-black">
-            <% case index %>
-            <% when 0 %>
-              Mr.CRAZY MAN
-            <% when 1 %>
-              <%= (index + 1) %>nd
-            <% when 2 %>
-              <%= (index + 1) %>rd
-            <% when 9 %>
-              <%= (index + 1) %>th
-            <% else %>
-              <%= (index + 1) %>nd
-            <% end %>
-          </h3>
+    <section class="relative">
+      <div class="w-full px-4 border-1">
+        <div class="relative flex flex-col min-w-0 break-words w-full mb-3 rounded <%= bg_color %>">
+          <div class="rounded-t mb-0 px-4 py-3 border-0">
+            <div class="flex flex-wrap items-center">
+              <div class="relative w-full px-4 max-w-full flex-grow flex-1">
+                <h3 class="font-semibold text-lg text-black">
+                  <% case index %>
+                  <% when 0 %>
+                    <div class="text-black text-xl font-bold">Mr.CRAZY MAN</div>
+                  <% when 1 %>
+                    <%= (index + 1) %>nd
+                  <% when 2 %>
+                    <%= (index + 1) %>rd
+                  <% when 9 %>
+                    <%= (index + 1) %>th
+                  <% else %>
+                    <%= (index + 1) %>nd
+                  <% end %>
+                </h3>
+              </div>
+            </div>
+          </div>
+
+          <div class="block w-full overflow-x-auto">
+            <table class="items-center w-full bg-transparent border-collapse">
+              <thead>
+                <tr>
+                  <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center <%= tag_bg_color %> <%= text_color %> <%= border_color %>">ユーザー</th>
+                  <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center <%= tag_bg_color %> <%= text_color %> <%= border_color %>">タイトル</th>
+                  <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center <%= tag_bg_color %> <%= text_color %> <%= border_color %>">いいね数</th>
+                  <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center <%= tag_bg_color %> <%= text_color %> <%= border_color %>">カテゴリー</th>
+                  <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-center <%= tag_bg_color %> <%= text_color %> <%= border_color %>">投稿日 </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-ml whitespace-nowrap p-3 text-center">
+                    <div class="flex items-center justify-center">
+                      <div class="w-12 h-12 mr-2">
+                        <%= image_tag post.user.profile.avatar.url, class: 'h-full w-full rounded-full object-cover' %>
+                      </div>
+                      <%= link_to user_profile_path(post.user) do %>
+                        <span class="font-bold text-black"><%= truncate(post.user.username, length: 20) %></span>
+                      <% end %>
+                    </div>
+                  </td>
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-3 text-center">
+                    <%= link_to post_path(post) do %>
+                      <span class="text-black"><%= truncate(post.title, length: 30) %></span>
+                    <% end %>
+                  </td>
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-3 text-center">
+                    <span class="mr-2 mt-2 text-black font-bold"><%= post.likes_count %></span>
+                  </td>
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap px-3 pb-3 pt-10 text-center">
+                    <span class="mr-2 text-black"><%= render 'posts/category', { pos: post, categories: post.categories } %></span>
+                  </td>
+                  <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-3 text-center">
+                    <span class="mr-2 text-black"><%= post.created_at.strftime('%Y/%m/%d') %></span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="block w-full overflow-x-auto">
-      <table class="items-center w-full bg-transparent border-collapse">
-        <thead>
-          <tr>
-            <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left <%= tag_bg_color %> <%= text_color %> <%= border_color %>">ユーザー</th>
-            <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left <%= tag_bg_color %> <%= text_color %> <%= border_color %>">タイトル</th>
-            <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left <%= tag_bg_color %> <%= text_color %> <%= border_color %>">いいね数</th>
-            <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left <%= tag_bg_color %> <%= text_color %> <%= border_color %>">カテゴリー</th>
-            <th class="px-6 align-middle border border-solid py-3 text-ml uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left <%= tag_bg_color %> <%= text_color %> <%= border_color %>">投稿日 </th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <th class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-ml whitespace-nowrap p-4 text-left flex items-center">
-            <div class="w-12 h-12">
-              <%= image_tag post.user.profile.avatar.url, class: 'h-full w-full rounded-full object-cover' %>
-            </div>
-            <%= link_to user_profile_path(post.user) do %>
-              <span class="ml-3 font-bold text-black"><%= truncate(post.user.username, length: 20) %></span></th>
-            <% end %>
-            <%= link_to post_path(post) do %>
-              <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-ml text-black whitespace-nowrap p-4"><%= truncate(post.title, length: 30) %></td>
-            <% end %>
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-ml whitespace-nowrap p-4">
-              <span class="mr-2 text-black"><%= post.likes_count %></span>
-            </td>
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-ml whitespace-nowrap p-4">
-              <span class="mr-2 text-black"><%= render 'posts/category', { pos: post, categories: post.categories } %></span>
-            </td>
-            <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-ml whitespace-nowrap p-4">
-              <span class="mr-2 text-black"><%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %></span>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-</section>
-<% end %>
+    </section>
+  <% end %>
 </div>

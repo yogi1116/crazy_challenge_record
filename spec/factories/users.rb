@@ -4,5 +4,6 @@ FactoryBot.define do
     password { 'Password01' }
     password_confirmation { 'Password01' }
     username { 'original' }
+    agreement { true }
   end
 end
