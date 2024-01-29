@@ -334,6 +334,8 @@ GEM
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
+    scout_apm (5.3.5)
+      parser
     selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -430,6 +432,7 @@ DEPENDENCIES
   rubocop
   rubocop-checkstyle_formatter
   rubocop-rails
+  scout_apm
   sentry-rails (~> 5.14)
   sentry-ruby (~> 5.14)
   sorcery (= 0.16.5)
