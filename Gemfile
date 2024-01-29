@@ -92,3 +92,5 @@ gem 'enum_help'
 gem 'faraday'
 
 gem 'googleauth'
+
+gem "aws-sdk-s3"
