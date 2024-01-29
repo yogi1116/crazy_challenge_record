@@ -94,3 +94,5 @@ gem 'faraday'
 gem 'googleauth'
 
 gem "aws-sdk-s3"
+
+gem 'scout_apm'
