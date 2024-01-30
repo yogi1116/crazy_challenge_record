@@ -58,7 +58,7 @@
                     <span class="mr-2 mt-2 text-black font-bold"><%= post.likes_count %></span>
                   </td>
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap px-3 pb-3 pt-10 text-center">
-                    <span class="mr-2 text-black"><%= render 'posts/category', { pos: post, categories: post.categories } %></span>
+                    <span class="mr-2 text-black"><%= render 'posts/category', { post: post, categories: post.categories } %></span>
                   </td>
                   <td class="border-t-0 px-6 align-middle border-l-0 border-r-0 text-lg whitespace-nowrap p-3 text-center">
                     <span class="mr-2 text-black"><%= post.created_at.strftime('%Y/%m/%d') %></span>
