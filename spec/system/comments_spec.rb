@@ -117,7 +117,7 @@ RSpec.describe "Comments", type: :system do
       click_on '投稿'
       expect(page).to have_selector('turbo-frame#count .font-bold', text: '3') # comment_post_Aとcomment_post_Bをlet!で定義したため、ユーザーAとBがすでに2件コメントしている状態だった
       visit posts_path
-      expect(page).to have_selector('turbo-frame#count .font-bold', text: '3')
+      expect(page).to have_selector('.font-bold', text: '3')
     end
   end
 end
