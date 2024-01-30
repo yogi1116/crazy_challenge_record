@@ -63,10 +63,7 @@ class PostsController < ApplicationController
   end
 
   def ranking
-    @posts = Post.where(challenge_result: 'complete')
-                  .order('posts.likes_count DESC')
-                  .limit(10)
-                  .includes(:user, { user: :profile }, :categories)
+    @posts = Post.ranking
   end
 
   private

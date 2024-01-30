@@ -244,7 +244,7 @@ RSpec.describe "Posts", type: :system do
       find("a[href='#{link}']").click #いいねをクリック
       click_link 'RANKING'
       expect(page).to have_current_path(ranking_posts_path)
-      expect(page).to have_content(give_up_post.title)
+      expect(page).to have_content(complete_post.title)
     end
 
     it 'GIVE UPチャレンジはランキング化されない' do

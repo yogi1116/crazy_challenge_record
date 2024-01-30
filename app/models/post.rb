@@ -27,6 +27,14 @@ class Post < ApplicationRecord
     }
   end
 
+  def self.ranking
+    where(challenge_result: 'complete')
+      .where('likes_count > 0')
+      .order(likes_count: :desc)
+      .limit(10)
+      .includes(:user, { user: :profile }, :categories)
+  end
+
   private
 
   def image_count_within_limit
