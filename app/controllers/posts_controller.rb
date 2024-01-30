@@ -69,7 +69,7 @@ class PostsController < ApplicationController
                   .group('posts.id')
                   .order('likes_count DESC')
                   .limit(10)
-                  .includes(:user)
+                  .includes(:user, { user: :profile }, :categories)
   end
 
   private
