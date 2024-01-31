@@ -36,6 +36,15 @@ class Post < ApplicationRecord
       .includes(:user, { user: :profile }, :categories)
   end
 
+  def display_image
+    if images.attached?
+      variant = images.first.variant(resize_to_limit: [390, 300]).processed
+      Rails.application.routes.url_helpers.rails_representation_url(variant, only_path: true)
+    else
+      challenge_result == 'complete' ? 'complete.png' : 'give_up.png'
+    end
+  end
+
   private
 
   def image_count_within_limit
