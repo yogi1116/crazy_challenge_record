@@ -20,7 +20,7 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[record]', with: 'record'
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
-        # カテゴリーを選択(複数選択可。制限なし)
+        # カテゴリーを選択(最大3つまで選択可)
         find("input[type='checkbox'][value='1']").check
         # 画像をアップロード(最大4枚)
         attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
@@ -112,6 +112,27 @@ RSpec.describe "Posts", type: :system do
         end
       end
 
+      it 'カテゴリーを4つ以上選択すると投稿できない' do
+        click_on 'COMPLETE'
+        fill_in 'post[title]', with: 'title'
+        fill_in 'post[content]', with: 'content'
+        fill_in 'post[impression_event]', with: 'implession_event'
+        fill_in 'post[lesson]', with: 'lesson'
+        fill_in 'post[record]', with: 'record'
+        # カテゴリーを2つ選択
+        find("input[type='checkbox'][value='1']").check
+        find("input[type='checkbox'][value='2']").check
+        find("input[type='checkbox'][value='3']").check
+        find("input[type='checkbox'][value='4']").check
+        # 画像をアップロード
+        attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
+        click_on '投稿する'
+        using_wait_time(4) do
+          expect(page).to have_content('投稿に失敗しました')
+          expect(page).to have_content('カテゴリーは最大3つまでです')
+        end
+      end
+
       # GIVE UPチャレンジのみretryカラムにバリデーションを設定
       it 'retryカラム未選択' do
         click_on 'GIVE UP'
@@ -157,7 +178,7 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[record]', with: 'record'
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
-        # カテゴリーを選択(複数選択可。制限なし)
+        # カテゴリーを選択(最大3つまで選択可)
         find("input[type='checkbox'][value='1']").check
         # 画像をアップロード(最大4枚)
         attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
@@ -244,7 +265,7 @@ RSpec.describe "Posts", type: :system do
       find("a[href='#{link}']").click #いいねをクリック
       click_link 'RANKING'
       expect(page).to have_current_path(ranking_posts_path)
-      expect(page).to have_content(give_up_post.title)
+      expect(page).to have_content(complete_post.title)
     end
 
     it 'GIVE UPチャレンジはランキング化されない' do

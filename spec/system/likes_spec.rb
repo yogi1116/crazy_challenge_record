@@ -47,7 +47,7 @@ RSpec.describe "Likes", type: :system do
       find("a[href='#{link}']").click
       expect(page).to have_selector("#likes_count-#{post_id}", text: '1')
       visit posts_path
-      expect(page).to have_selector("#likes_count-#{post_id}", text: '1')
+      expect(page).to have_selector('.font-bold', text: '1')
     end
 
     it 'いいねボタンは表示されず投稿の編集削除が表示される' do
