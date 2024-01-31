@@ -20,7 +20,9 @@
           <h2 class="text-base text-black"><%= truncate(post.user.username, length: 15) %></h2>
         </div>
 
-        <%= render 'challenge_result', { post: post } %>
+        <div class="flex justify-center">
+          <%= render 'challenge_result', { post: post } %>
+        </div>
 
         <div class="nline-block my-3 text-black transition-colors duration-200 hover:text-deep-purple-accent-700">
         <p class="text-xl leading-5"><%= truncate(post.title, length: 28) %></p>
