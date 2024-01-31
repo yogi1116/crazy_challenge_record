@@ -38,6 +38,39 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
+gem "dockerfile-rails", ">= 1.5", :group => :development
+
+gem "sentry-ruby", "~> 5.14"
+gem "sentry-rails", "~> 5.14"
+
+# sorceryの導入
+gem 'sorcery', "0.16.5"
+
+# tailwindcssの導入
+gem "tailwindcss-rails", "~> 2.0"
+
+# Hotwireの導入
+gem 'turbo-rails'
+gem 'stimulus-rails'
+
+# 画像投稿gem
+gem 'carrierwave', '~> 3.0'
+
+# i18nのgem
+gem 'rails-i18n', '~> 7.0.0'
+
+# enum定義のgem
+gem 'enum_help'
+
+# API導入に伴うgem
+gem 'faraday'
+gem 'googleauth'
+
+# 本番環境での画像保存用gem
+gem "aws-sdk-s3"
+
+gem 'scout_apm'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
@@ -67,33 +100,3 @@ group :test do
   gem 'capybara'
   gem 'webdrivers'
 end
-
-gem "dockerfile-rails", ">= 1.5", :group => :development
-
-gem "sentry-ruby", "~> 5.14"
-
-gem "sentry-rails", "~> 5.14"
-
-gem "cssbundling-rails", "~> 1.3"
-
-gem 'sorcery', "0.16.5"
-
-gem "tailwindcss-rails", "~> 2.0"
-
-gem 'turbo-rails'
-
-gem 'stimulus-rails'
-
-gem 'carrierwave', '~> 3.0'
-
-gem 'rails-i18n', '~> 7.0.0'
-
-gem 'enum_help'
-
-gem 'faraday'
-
-gem 'googleauth'
-
-gem "aws-sdk-s3"
-
-gem 'scout_apm'
