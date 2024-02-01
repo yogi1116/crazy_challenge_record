@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Profiles", type: :system do
-  let(:user){ create(:user) } #ユーザーA
-  let(:another_user){ create(:user) } #ユーザーB
-  let!(:complete_post){ create(:post, :complete, user_id: user.id) } #ユーザーAの投稿
-  let!(:give_up_post){ create(:post, :give_up, user_id: another_user.id) } #ユーザーBの投稿
+  let(:user) { create(:user) } # ユーザーA
+  let(:another_user) { create(:user) } # ユーザーB
+  let!(:complete_post) { create(:post, :complete, user_id: user.id) } # ユーザーAの投稿
+  let!(:give_up_post) { create(:post, :give_up, user_id: another_user.id) } # ユーザーBの投稿
 
   describe 'プロフィール編集' do
     before do
@@ -12,7 +12,7 @@ RSpec.describe "Profiles", type: :system do
     end
 
     it 'ユーザーは自分のプロフィールを編集できる' do
-      find("#hs-dropdown-custom-trigger").click
+      find('#hs-dropdown-custom-trigger').click
       click_on 'PROFILE'
       click_on '編集'
       fill_in 'profile[one_word]', with: 'ひとこと'
@@ -40,7 +40,6 @@ RSpec.describe "Profiles", type: :system do
   describe 'プロフィール閲覧' do
     before do
       login(user)
-      login(another_user)
     end
 
     context '他人のプロフィール' do
@@ -48,7 +47,7 @@ RSpec.describe "Profiles", type: :system do
         user_id = another_user.id
         link = "/users/#{user_id}/profile"
         expect(page).to have_selector("a[href='#{link}']")
-        find("a[href='#{link}']").click
+        find("a[href='#{link}']").click # ユーザーBの投稿からユーザーBのアバターをクリック
         expect(page).to have_current_path(user_profile_path(user_id))
       end
 
@@ -56,13 +55,13 @@ RSpec.describe "Profiles", type: :system do
         post_id = give_up_post.id
         link = "/posts/#{post_id}"
         expect(page).to have_selector("a[href='#{link}']")
-        find("a[href='#{link}']").click
+        find("a[href='#{link}']").click # ユーザーBの投稿をクリック
         expect(page).to have_current_path(post_path(post_id))
-        user_id = user.id
-        link = "/users/#{another_user.id}/profile"
+        user_id = another_user.id
+        link = "/users/#{user_id}/profile"
         expect(page).to have_selector("a[href='#{link}']")
-        find("a[href='#{link}']").click
-        expect(page).to have_current_path(user_profile_path(another_user.id))
+        find("a[href='#{link}']").click # ユーザーBのアバターをクリック
+        expect(page).to have_current_path(user_profile_path(user_id))
       end
     end
   end
