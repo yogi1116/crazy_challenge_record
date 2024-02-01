@@ -4,18 +4,10 @@ class CommentsController < ApplicationController
   def create
     @comment = @post.comments.build(comment_params.merge(user: current_user))
     if @comment.save
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to post_path(@post) }
-      end
+      respond_with_comment
     else
-      @comments = @post.comments.includes(:user).order(created_at: :desc)
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.update('comments-error', partial: 'shared/error_messages', locals: { object: @comment })
-        end
-        format.html { render 'posts/show' }
-      end
+      prepare_comments
+      respond_with_error
     end
   end
 
@@ -26,18 +18,10 @@ class CommentsController < ApplicationController
   def update
     @comment = current_user.comments.find(params[:id])
     if @comment.update(comment_params)
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to post_path(@post) }
-      end
+      respond_with_comment
     else
-      @comments = @post.comments.includes(:user).order(created_at: :desc)
-      respond_to do |format|
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.update('comments-error', partial: 'shared/error_messages', locals: { object: @comment })
-        end
-        format.html { render 'posts/show' }
-      end
+      prepare_comments
+      respond_with_error
     end
   end
 
@@ -54,5 +38,29 @@ class CommentsController < ApplicationController
 
   def comment_params
     params.require(:comment).permit(:body).merge(post_id: params[:post_id])
+  end
+
+  def respond_with_comment
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to post_path(@post) }
+    end
+  end
+
+  def prepare_comments
+    @comments = @post.comments.includes(:user).order(created_at: :desc)
+  end
+
+  def respond_with_error
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(
+          'comments-error',
+          partial: 'shared/error_messages',
+          locals: { object: @comment }
+        )
+      end
+      format.html { render 'posts/show' }
+    end
   end
 end
