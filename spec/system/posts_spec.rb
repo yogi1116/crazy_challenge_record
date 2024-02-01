@@ -37,11 +37,8 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[content]', with: 'content'
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
-        # 挑戦を選択
-        choose 'post_retry_try'
-        # カテゴリーを選択(最大3つまで選択可)
+        choose 'post_retry_try' # 挑戦を選択
         check_categories('1', '2', '3')
-        # 画像をアップロード(最大4枚)
         upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
@@ -61,11 +58,8 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[content]', with: 'content'
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
-        # 挑戦を選択
         choose 'post_retry_try'
-        # カテゴリーを選択(最大3つまで選択可)
         check_categories('1', '2', '3')
-        # 画像をアップロード(最大4枚)
         upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
@@ -81,9 +75,7 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
         fill_in 'post[record]', with: 'record'
-        # カテゴリーを選択(最大3つまで選択可)
         check_categories('1', '2', '3')
-        # 画像をアップロード(最大4枚)
         upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
@@ -99,7 +91,6 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
         fill_in 'post[record]', with: 'record'
-        # 画像をアップロード(最大4枚)
         upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
@@ -115,9 +106,7 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
         fill_in 'post[record]', with: 'record'
-        # カテゴリーを4つ選択
-        check_categories('1', '2', '3', '4')
-        # 画像をアップロード(最大4枚)
+        check_categories('1', '2', '3', '4') # カテゴリーを4つ選択
         upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
@@ -133,9 +122,7 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[content]', with: 'content'
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
-        # カテゴリーを選択(最大3つまで選択可)
         check_categories('1', '2', '3')
-        # 画像をアップロード(最大4枚)
         upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
@@ -151,9 +138,7 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
         fill_in 'post[record]', with: 'record'
-        # カテゴリーを選択(最大3つまで選択可)
         check_categories('1', '2', '3')
-        # 画像をアップロード(最大4枚)
         upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png', 'comment.png')
         click_on '投稿する'
         using_wait_time(4) do
@@ -169,9 +154,7 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[record]', with: 'record'
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
-        # カテゴリーを選択(最大3つまで選択可)
         check_categories('1', '2', '3')
-        # 画像をアップロード(最大4枚)
         upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         using_wait_time(4) do
           click_on '投稿する'
