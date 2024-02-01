@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: [:index, :ranking]
-  before_action :find_post, only: [:edit, :update, :destroy]
+  skip_before_action :require_login, only: %i[index ranking]
+  before_action :find_post, only: %i[edit update destroy]
 
   def index
     @posts = Post.includes(images_attachments: :blob, user: :profile).order(created_at: :desc)
@@ -69,7 +69,10 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:challenge_result, :title, :content, :record, :impression_event, :lesson, :retry, category_ids: [], images: [])
+    params.require(:post).permit(
+      :challenge_result, :title, :content, :record, :impression_event,
+      :lesson, :retry, category_ids: [], images: []
+    )
   end
 
   def find_post
