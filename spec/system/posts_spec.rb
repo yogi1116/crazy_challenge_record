@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Posts", type: :system do
-  let(:user){ create(:user) } # ユーザーA
-  let(:another_user){ create(:user) } # ユーザーB
-  let!(:complete_post){ create(:post, :complete, user_id: user.id) } # ユーザーAの投稿
-  let!(:give_up_post){ create(:post, :give_up, user_id: another_user.id) } # ユーザーBの投稿
+  let(:user) { create(:user) } # ユーザーA
+  let(:another_user) { create(:user) } # ユーザーB
+  let!(:complete_post) { create(:post, :complete, user_id: user.id) } # ユーザーAの投稿
+  let!(:give_up_post) { create(:post, :give_up, user_id: another_user.id) } # ユーザーBの投稿
 
   describe '新規投稿' do
     before do
@@ -21,9 +21,9 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
         # カテゴリーを選択(最大3つまで選択可)
-        find("input[type='checkbox'][value='1']").check
+        check_categories('1', '2', '3')
         # 画像をアップロード(最大4枚)
-        attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
+        upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
           expect(page).to have_current_path(posts_path)
@@ -39,12 +39,10 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[lesson]', with: 'lesson'
         # 挑戦を選択
         choose 'post_retry_try'
-        # カテゴリーを3つ選択
-        find("input[type='checkbox'][value='2']").check
-        find("input[type='checkbox'][value='3']").check
-        find("input[type='checkbox'][value='4']").check
-        # 画像をアップロード
-        attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
+        # カテゴリーを選択(最大3つまで選択可)
+        check_categories('1', '2', '3')
+        # 画像をアップロード(最大4枚)
+        upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
           expect(page).to have_current_path(posts_path)
@@ -65,11 +63,10 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[lesson]', with: 'lesson'
         # 挑戦を選択
         choose 'post_retry_try'
-        # カテゴリーを2つ選択
-        find("input[type='checkbox'][value='1']").check
-        find("input[type='checkbox'][value='4']").check
-        # 画像をアップロード
-        attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
+        # カテゴリーを選択(最大3つまで選択可)
+        check_categories('1', '2', '3')
+        # 画像をアップロード(最大4枚)
+        upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
           expect(page).to have_content('投稿に失敗しました')
@@ -84,11 +81,10 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
         fill_in 'post[record]', with: 'record'
-        # カテゴリーを2つ選択
-        find("input[type='checkbox'][value='9']").check
-        find("input[type='checkbox'][value='8']").check
-        # 画像をアップロード
-        attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
+        # カテゴリーを選択(最大3つまで選択可)
+        check_categories('1', '2', '3')
+        # 画像をアップロード(最大4枚)
+        upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
           expect(page).to have_content('投稿に失敗しました')
@@ -103,8 +99,8 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
         fill_in 'post[record]', with: 'record'
-        # 画像をアップロード
-        attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
+        # 画像をアップロード(最大4枚)
+        upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
           expect(page).to have_content('投稿に失敗しました')
@@ -119,13 +115,10 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
         fill_in 'post[record]', with: 'record'
-        # カテゴリーを2つ選択
-        find("input[type='checkbox'][value='1']").check
-        find("input[type='checkbox'][value='2']").check
-        find("input[type='checkbox'][value='3']").check
-        find("input[type='checkbox'][value='4']").check
-        # 画像をアップロード
-        attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
+        # カテゴリーを4つ選択
+        check_categories('1', '2', '3', '4')
+        # 画像をアップロード(最大4枚)
+        upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
           expect(page).to have_content('投稿に失敗しました')
@@ -140,11 +133,10 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[content]', with: 'content'
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
-        # カテゴリーを2つ選択
-        find("input[type='checkbox'][value='10']").check
-        find("input[type='checkbox'][value='1']").check
-        # 画像をアップロード
-        attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
+        # カテゴリーを選択(最大3つまで選択可)
+        check_categories('1', '2', '3')
+        # 画像をアップロード(最大4枚)
+        upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
           expect(page).to have_content('投稿に失敗しました')
@@ -159,11 +151,10 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
         fill_in 'post[record]', with: 'record'
-        # カテゴリーを2つ選択
-        find("input[type='checkbox'][value='9']").check
-        find("input[type='checkbox'][value='8']").check
-        # 画像をアップロード
-        attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png","#{Rails.root}/spec/fixtures/files/comment.png"]
+        # カテゴリーを選択(最大3つまで選択可)
+        check_categories('1', '2', '3')
+        # 画像をアップロード(最大4枚)
+        upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png', 'comment.png')
         click_on '投稿する'
         using_wait_time(4) do
           expect(page).to have_content('投稿に失敗しました')
@@ -179,9 +170,9 @@ RSpec.describe "Posts", type: :system do
         fill_in 'post[impression_event]', with: 'implession_event'
         fill_in 'post[lesson]', with: 'lesson'
         # カテゴリーを選択(最大3つまで選択可)
-        find("input[type='checkbox'][value='1']").check
+        check_categories('1', '2', '3')
         # 画像をアップロード(最大4枚)
-        attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png", "#{Rails.root}/spec/fixtures/files/default.png", "#{Rails.root}/spec/fixtures/files/nice_fight_1.png", "#{Rails.root}/spec/fixtures/files/stop_1.png"]
+        upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         using_wait_time(4) do
           click_on '投稿する'
           expect(page).to have_content('不適切なコンテンツが含まれています：死や害・ 冒とく・ 違法ドラッグ・ 戦争')
@@ -209,10 +200,9 @@ RSpec.describe "Posts", type: :system do
       fill_in 'post[impression_event]', with: 'edit_implession_event'
       fill_in 'post[lesson]', with: 'lesson'
       # カテゴリ-も変更
-      find("input[type='checkbox'][value='3']").check
-      find("input[type='checkbox'][value='4']").check
+      check_categories('4', '5')
       # 画像を4枚から1枚へ変更
-      attach_file 'post[images][]', ["#{Rails.root}/spec/fixtures/files/crazy_1.png"]
+      upload_images('crazy_1.png')
       click_on '更新する'
       expect(page).to have_current_path(post_path(post_id))
       expect(page).to have_content('投稿内容を更新しました')
@@ -238,7 +228,7 @@ RSpec.describe "Posts", type: :system do
       expect(page).to have_selector("a[href='#{link}']")
       find("a[href='#{link}']").click
       page.accept_confirm do
-        find("[action='/posts/#{post_id}'] button[type='submit']").click #ダイアログのOKをクリック
+        find("[action='/posts/#{post_id}'] button[type='submit']").click # ダイアログのOKをクリック
       end
       expect(page).to have_current_path(posts_path)
       expect(page).to have_content('投稿を削除しました')
@@ -262,7 +252,7 @@ RSpec.describe "Posts", type: :system do
       find("a[href='#{link}']").click
       link = "/posts/#{post_id}/likes"
       expect(page).to have_selector("a[href='#{link}']")
-      find("a[href='#{link}']").click #いいねをクリック
+      find("a[href='#{link}']").click # いいねをクリック
       click_link 'RANKING'
       expect(page).to have_current_path(ranking_posts_path)
       expect(page).to have_content(complete_post.title)
@@ -276,7 +266,7 @@ RSpec.describe "Posts", type: :system do
       find("a[href='#{link}']").click
       link = "/posts/#{post_id}/likes"
       expect(page).to have_selector("a[href='#{link}']")
-      find("a[href='#{link}']").click #いいねをクリック
+      find("a[href='#{link}']").click # いいねをクリック
       click_link 'RANKING'
       expect(page).to have_current_path(ranking_posts_path)
       expect(page).to have_no_content(give_up_post.title)
