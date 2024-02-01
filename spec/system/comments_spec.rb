@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "Comments", type: :system do
-  let(:user){ create(:user) } # ユーザーA
-  let(:another_user){ create(:user) } # ユーザーB
-  let(:complete_post){ create(:post, :complete, user_id: user.id) } # ユーザーAの投稿
-  let(:give_up_post){ create(:post, :give_up, user_id: another_user.id) } # ユーザーBの投稿
-  let!(:comment_post_A){ create(:comment, post: complete_post, user: user) } # ユーザーAが自分の投稿にコメント
-  let!(:comment_post_B){ create(:comment, post: complete_post, user: another_user) } # ユーザーBがユーザーAの投稿にコメント
+  let(:user) { create(:user) } # ユーザーA
+  let(:another_user) { create(:user) } # ユーザーB
+  let(:complete_post) { create(:post, :complete, user_id: user.id) } # ユーザーAの投稿
+  let(:give_up_post) { create(:post, :give_up, user_id: another_user.id) } # ユーザーBの投稿
+  let!(:comment_post_A) { create(:comment, post: complete_post, user: user) } # ユーザーAが自分の投稿にコメント
+  let!(:comment_post_B) { create(:comment, post: complete_post, user: another_user) } # ユーザーBがユーザーAの投稿にコメント
 
   describe 'コメント機能' do
     before do
@@ -65,8 +65,8 @@ RSpec.describe "Comments", type: :system do
       find("a[href='#{link}']").click # 編集ボタンクリック
       within("turbo-frame#comment_#{comment_id}") do
         fill_in 'comment[body]', with: 'RUNTEQ卒業'
-        click_on '更新する'
-      end # 既存のコメントをRUNTEQ卒業に変更した
+        click_on '更新する' # 既存のコメントをRUNTEQ卒業に変更した
+      end
       expect(page).to have_content('RUNTEQ卒業')
     end
 
@@ -115,7 +115,7 @@ RSpec.describe "Comments", type: :system do
       find("a[href='#{link}']").click # 投稿詳細のリンク(READ MOREをクリック)
       fill_in 'comment[body]', with: 'コメント'
       click_on '投稿'
-      expect(page).to have_selector('turbo-frame#count .font-bold', text: '3') # comment_post_Aとcomment_post_Bをlet!で定義したため、ユーザーAとBがすでに2件コメントしている状態だった
+      expect(page).to have_selector('turbo-frame#count .font-bold', text: '3') # let!の定義により、ユーザーAとBがすでに2件コメントしている状態だった
       visit posts_path
       expect(page).to have_selector('.font-bold', text: '3')
     end

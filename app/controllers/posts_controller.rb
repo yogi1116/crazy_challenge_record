@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-  skip_before_action :require_login, only: [:index, :ranking]
-  before_action :find_post, only: [:edit, :update, :destroy]
+  skip_before_action :require_login, only: %i[index ranking]
+  before_action :find_post, only: %i[edit update destroy]
 
   def index
     @posts = Post.includes(images_attachments: :blob, user: :profile).order(created_at: :desc)
@@ -13,30 +13,17 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    moderation_service = ContentModerationService.new(@post.content)
-    begin
-      result = moderation_service.analyze
-      categories = result['moderationCategories'].to_a
-      high_confidence = categories.any? { |category| category['confidence'] > 0.8 }
-
-      if high_confidence
-        high_confidence_categories = categories.select { |category| category['confidence'] > 0.8 }
-        inappropriate_content = high_confidence_categories.map { |category| t("moderation_categories.#{category['name']}") }.join('・ ')
-        flash.now[:error] = "不適切なコンテンツが含まれています：#{inappropriate_content}"
-        render :new, status: :unprocessable_entity
-      elsif @post.valid?
-        @post.save
-        redirect_to posts_path, flash: { success: t('posts.create.success') }
-      else
-        flash.now[:error] = t('.fail')
-        render :new, status: :unprocessable_entity
-      end
-    rescue => e
-      # エラー時の処理
-      logger.error(e.message)
-      flash.now[:error] = 'Content analysis failed.'
+    if content_moderated?(@post.content) # 不適切な投稿
+      flash.now[:error] = moderation_message
+      render :new, status: :unprocessable_entity
+    elsif @post.save
+      redirect_to posts_path, flash: { success: t('posts.create.success') }
+    else
+      flash.now[:error] = t('.fail')
       render :new, status: :unprocessable_entity
     end
+  rescue => e
+    handle_content_analysis_error(e)
   end
 
   def show
@@ -68,8 +55,30 @@ class PostsController < ApplicationController
 
   private
 
+  def content_moderated?(content)
+    moderation_service = ContentModerationService.new(content)
+    result = moderation_service.analyze
+    categories = result['moderationCategories'].to_a
+    @high_confidence_categories = categories.select { |category| category['confidence'] > 0.8 }
+    @high_confidence_categories.any?
+  end
+
+  def moderation_message
+    inappropriate_content = @high_confidence_categories.map { |category| t("moderation_categories.#{category['name']}") }.join('・ ')
+    "不適切なコンテンツが含まれています：#{inappropriate_content}"
+  end
+
+  def handle_content_analysis_error(e)
+    logger.error(e.message)
+    flash.now[:error] = 'Content analysis failed.'
+    render :new, status: :unprocessable_entity
+  end
+
   def post_params
-    params.require(:post).permit(:challenge_result, :title, :content, :record, :impression_event, :lesson, :retry, category_ids: [], images: [])
+    params.require(:post).permit(
+      :challenge_result, :title, :content, :record, :impression_event,
+      :lesson, :retry, category_ids: [], images: []
+    )
   end
 
   def find_post

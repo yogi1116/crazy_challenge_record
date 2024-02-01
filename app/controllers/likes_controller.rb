@@ -1,9 +1,9 @@
 class LikesController < ApplicationController
-  before_action :find_post, only: [:create, :destroy]
+  before_action :find_post, only: %i[create destroy]
 
   def create
     button_type = determine_button_type(@post)
-    like = current_user.likes.create(post: @post, button_type: button_type)
+    current_user.likes.create(post: @post, button_type: button_type)
   end
 
   def destroy

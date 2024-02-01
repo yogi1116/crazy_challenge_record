@@ -89,7 +89,7 @@ RSpec.describe "Users", type: :system do
         fill_in 'user[password]', with: 'Password01'
         fill_in 'user[password_confirmation]', with: 'Password01'
         click_on '登録'
-        expect(page).to have_current_path(new_user_path) #会員登録できてないためログイン画面に遷移できない
+        expect(page).to have_current_path(new_user_path) # 会員登録できてないためログイン画面に遷移できない
       end
     end
   end

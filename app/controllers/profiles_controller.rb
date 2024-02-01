@@ -23,6 +23,9 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:profile).permit(:one_word, :birthday, :hobbies, :challenge,  :introduction, :avatar, :avatar_cache, :background, :background_cache)
+    params.require(:profile).permit(
+      :one_word, :birthday, :hobbies, :challenge, :introduction,
+      :avatar, :avatar_cache, :background, :background_cache
+    )
   end
 end
