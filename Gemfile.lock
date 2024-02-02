@@ -179,6 +179,18 @@ GEM
     jmespath (1.6.2)
     json (2.7.1)
     jwt (2.7.1)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     language_server-protocol (3.17.0.3)
     loofah (2.21.4)
       crass (~> 1.0.2)
@@ -425,6 +437,7 @@ DEPENDENCIES
   googleauth
   importmap-rails
   jbuilder
+  kaminari
   pg (~> 1.1)
   pry-remote
   puma (>= 5.0)

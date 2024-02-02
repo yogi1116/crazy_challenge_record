@@ -1,0 +1,30 @@
+<%# The container tag
+  - available local variables
+    current_page:  a page object for the currently displayed page
+    total_pages:   total number of pages
+    per_page:      number of items to fetch per page
+    remote:        data-remote
+    paginator:     the paginator that renders the pagination tags inside
+-%>
+<%= paginator.render do -%>
+  <nav aria-label="Page navigation example" class="pagination" role="navigation">
+    <ul class="inline-flex -space-x-px text-base h-10">
+      <li>
+        <%= link_to "Previous", url_for(page: current_page - 1), class: "flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" unless current_page.first? %>
+      </li>
+      <% each_page do |page| -%>
+        <% if page.display_tag? -%>
+          <li>
+            <%= link_to page.number, url_for(page: page.number), class: "#{page.current? ? 'text-blue-600 bg-blue-200' : 'text-gray-500 bg-white hover:bg-gray-100 hover:text-gray-700'} flex items-center justify-center px-4 h-10 leading-tight border border-gray-300" %>
+          </li>
+        <% elsif !page.was_truncated? -%>
+          <li>
+            <%= link_to "...", "#", class: "flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700" %>
+          </li>
+        <% end -%>
+      <% end -%>
+      <%= link_to "Next", url_for(page: current_page + 1), class: "flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" unless current_page.last? %>
+      </li>
+    </ul>
+  </nav>
+<% end -%>
