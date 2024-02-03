@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(images_attachments: :blob).find(params[:id])
     @comment = @comment.present? && @comment.errors.any? ? @comment : Comment.new
     @comments = @post.comments.includes(:user).order(created_at: :desc)
   end
