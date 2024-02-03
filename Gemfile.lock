@@ -435,6 +435,7 @@ DEPENDENCIES
   faker
   faraday
   googleauth
+  image_processing (~> 1.2)
   importmap-rails
   jbuilder
   kaminari
