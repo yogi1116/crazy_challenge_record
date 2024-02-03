@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  include ImageProcessingConcern
+
   skip_before_action :require_login, only: %i[index ranking]
   before_action :find_post, only: %i[edit update destroy]
 
@@ -12,11 +14,16 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params)
-    if content_moderated?(@post.content) # 不適切な投稿
+    @post = current_user.posts.build(post_params.except(:images))
+    if content_moderated?(@post.content)
       flash.now[:error] = moderation_message
       render :new, status: :unprocessable_entity
-    elsif @post.save
+      return
+    end
+
+    attach_resized_images(params[:post][:images]) if params[:post][:images].present?
+
+    if @post.save
       redirect_to posts_path, flash: { success: t('posts.create.success') }
     else
       flash.now[:error] = t('.fail')
@@ -66,6 +73,13 @@ class PostsController < ApplicationController
   def moderation_message
     inappropriate_content = @high_confidence_categories.map { |category| t("moderation_categories.#{category['name']}") }.join('・ ')
     "不適切なコンテンツが含まれています：#{inappropriate_content}"
+  end
+
+  def attach_resized_images(images)
+    images.reject(&:blank?).each do |image|
+      resized_image_attributes = process_image(image, width: 800, height: 800)
+      @post.images.attach(resized_image_attributes) if resized_image_attributes
+    end
   end
 
   def handle_content_analysis_error(e)
