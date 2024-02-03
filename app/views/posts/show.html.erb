@@ -49,7 +49,7 @@
       <div class="grid grid-cols-1 md:grid-cols-4 col-span-2 gap-2" data-controller="image-viewer">
         <% @post.images.each do |image| %>
           <div class="overflow-hidden rounded-xl col-span-1 max-h-[14rem]">
-            <%= image_tag image, class: 'h-full w-full object-cover', data: { action: "click->image-viewer#expand" } %>
+            <%= image_tag image, class:'h-full w-full object-cover', data: { action: "click->image-viewer#expand" } %>
           </div>
         <% end %>
       </div>
