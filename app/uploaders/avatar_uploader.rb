@@ -1,7 +1,16 @@
 class AvatarUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
+
+  process :conditional_resize
+
+  def conditional_resize
+    image = MiniMagick::Image.open(file.path)
+    return if image[:width] <= 300 && image[:height] <= 300
+
+    resize_to_fill(300, 300)
+  end
 
   # Choose what kind of storage to use for this uploader:
   storage :file
