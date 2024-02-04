@@ -1,6 +1,6 @@
 <header class="bg-blue-600">
   <div class="relative mx-auto flex h-20 w-full items-center justify-between px-4 sm:px-6 lg:px-8">
-  <%= link_to root_path, class:'block text-black pt-3' do %>
+  <%= link_to posts_path, class:'block text-black pt-3' do %>
     <%= image_tag 'crazy_man.png', style: 'width: 150px; height: 133px;' %>
   <% end %>
 
@@ -8,6 +8,12 @@
     <div class="flex flex-1 items-center justify-end md:justify-between">
       <nav aria-label="Global" class="hidden md:block">
         <ul class="flex items-center gap-6 text-xl">
+          <li>
+            <%= link_to 'TOP', root_path, class:'text-black transition hover:text-gray-500/75 pl-6' %>
+          </li>
+          <li>
+            <%= link_to 'POST LIST', posts_path, class:'text-black transition hover:text-gray-500/75 pl-6' %>
+          </li>
           <li>
             <%= link_to 'RANKING', ranking_posts_path, class:'text-black transition hover:text-gray-500/75 pl-6' %>
           </li>
@@ -21,9 +27,6 @@
                 <%= link_to 'GIVE UP', new_post_path(challenge_result: 'give_up'), class:'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-100' %>
               </li>
             </ul>
-          </li>
-          <li>
-            <%= link_to 'POST LIST', posts_path, class:'text-black transition hover:text-gray-500/75 pl-6' %>
           </li>
         </ul>
       </nav>
@@ -67,8 +70,9 @@
             </li>
           </ul>
         </li>
-        <%= link_to 'RANKING', ranking_posts_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
+        <%= link_to 'TOP', root_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
         <%= link_to 'POST LIST', posts_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
+        <%= link_to 'RANKING', ranking_posts_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
         <%= link_to 'PROFILE', profile_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
         <%= link_to 'LOGOUT', logout_path, class:'block px-4 pt-5 text-ml text-white transition text-center', data: { turbo_method: :delete } %>
       </div>
