@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  include ImageProcessingConcern
+
   skip_before_action :require_login, only: %i[index ranking]
   before_action :find_post, only: %i[edit update destroy]
 
@@ -12,11 +14,16 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params)
-    if content_moderated?(@post.content) # 不適切な投稿
+    @post = current_user.posts.build(post_params.except(:images))
+    if content_moderated?(@post.content)
       flash.now[:error] = moderation_message
       render :new, status: :unprocessable_entity
-    elsif @post.save
+      return
+    end
+
+    attach_resized_images(params[:post][:images]) if params[:post][:images].present?
+
+    if @post.save
       redirect_to posts_path, flash: { success: t('posts.create.success') }
     else
       flash.now[:error] = t('.fail')
@@ -35,7 +42,13 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
-    if @post.update(post_params)
+    images = params[:post][:images].present? ? params[:post][:images].reject(&:blank?) : []
+    # 既存の画像を削除
+    @post.images.purge
+    # アップロードされた画像をリサイズしてアタッチ
+    attach_resized_images(images)
+
+    if @post.update(post_params.except(:images))
       redirect_to post_path(@post), flash: { success: t('posts.update.success') }
     else
       flash.now[:error] = t('.fail')
@@ -68,6 +81,13 @@ class PostsController < ApplicationController
     "不適切なコンテンツが含まれています：#{inappropriate_content}"
   end
 
+  def attach_resized_images(images)
+    images.reject(&:blank?).each do |image|
+      resized_image_attributes = process_image(image, width: 800, height: 800)
+      @post.images.attach(resized_image_attributes) if resized_image_attributes
+    end
+  end
+
   def handle_content_analysis_error(e)
     logger.error(e.message)
     flash.now[:error] = 'Content analysis failed.'
@@ -82,6 +102,6 @@ class PostsController < ApplicationController
   end
 
   def find_post
-    @post = current_user.posts.find(params[:id])
+    @post = current_user.posts.includes(images_attachments: [:blob]).find(params[:id])
   end
 end

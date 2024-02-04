@@ -1,7 +1,16 @@
 class BackgroundUploader < CarrierWave::Uploader::Base
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
+
+  process :conditional_resize
+
+  def conditional_resize
+    image = MiniMagick::Image.open(file.path)
+    return if image[:width] <= 2000 && image[:height] <= 500
+
+    resize_to_fit(2000, 500)
+  end
 
   # Choose what kind of storage to use for this uploader:
   storage :file
