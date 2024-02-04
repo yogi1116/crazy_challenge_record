@@ -42,7 +42,13 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
-    if @post.update(post_params)
+    images = params[:post][:images].present? ? params[:post][:images].reject(&:blank?) : []
+    # 既存の画像を削除
+    @post.images.purge
+    # アップロードされた画像をリサイズしてアタッチ
+    attach_resized_images(images)
+
+    if @post.update(post_params.except(:images))
       redirect_to post_path(@post), flash: { success: t('posts.update.success') }
     else
       flash.now[:error] = t('.fail')
@@ -96,6 +102,6 @@ class PostsController < ApplicationController
   end
 
   def find_post
-    @post = current_user.posts.find(params[:id])
+    @post = current_user.posts.includes(images_attachments: [:blob]).find(params[:id])
   end
 end
