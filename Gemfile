@@ -69,8 +69,7 @@ gem 'googleauth'
 # 本番環境での画像保存用gem
 gem "aws-sdk-s3"
 
-gem 'scout_apm'
-
+# ページネーション
 gem 'kaminari'
 
 group :development, :test do
