@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :post
   has_many :comments, dependent: :destroy
+  has_many :authentications, :dependent => :destroy
+  accepts_nested_attributes_for :authentications
 
   validates :username, presence: true, length: { maximum: 40 }
   validates :email, presence: true, uniqueness: true
