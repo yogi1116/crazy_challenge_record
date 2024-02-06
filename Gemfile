@@ -46,6 +46,9 @@ gem "sentry-rails", "~> 5.14"
 # sorceryの導入
 gem 'sorcery', "0.16.5"
 
+# 定数管理
+gem 'config'
+
 # tailwindcssの導入
 gem "tailwindcss-rails", "~> 2.0"
 
