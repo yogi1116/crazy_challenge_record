@@ -19,10 +19,10 @@
       <% else %>
         <div class="flex-grow w-full sm:w-1/2 rounded-xl bg-gray-100 p-2">
           <div class="flex items-center justify-center">
-            <h4 class="text-xl font-bold text-gray-700"><%= Post.human_attribute_name(:record) %></h4>
-            <%= image_tag 'posts/record.png', class: 'h-10 w-10 text-blue-600' %>
+            <h4 class="text-xl font-bold text-gray-700"><%= Post.human_attribute_name(:retry) %></h4>
+            <%= image_tag 'posts/retry.png', class: 'h-10 w-10 text-blue-600' %>
           </div>
-          <p class="text-gray-600 my-2 text-center break-all"><%= @post.record %></p>
+          <p class="text-gray-600 my-2 text-center break-all"><%= t("enums.post.retry.#{@post.retry}") %></p>
         </div>
       <% end %>
     </div>
