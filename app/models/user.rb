@@ -18,7 +18,7 @@ class User < ApplicationRecord
   validates_acceptance_of :agreement, allow_nil: false, on: :create
 
   def social_login?
-    provider.present?
+    authentications.any?
   end
 
   def own?(object)
