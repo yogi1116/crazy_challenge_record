@@ -35,6 +35,7 @@
           <%= f.submit (t 'defaults.register'), class: 'rounded-3xl bg-yellow-400 bg-opacity-50 px-10 py-2 text-white shadow-xl backdrop-blur-md transition-colors duration-300 hover:bg-yellow-600' %>
         </div>
       <% end %>
+      <%= link_to 'Login with Line', auth_at_provider_path(provider: :line) %>
     </div>
   </div>
 </div>

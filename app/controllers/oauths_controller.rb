@@ -17,6 +17,7 @@ class OauthsController < ApplicationController
         redirect_to root_path
       rescue StandardError
         redirect_to root_path
+      end
     end
   end
 
