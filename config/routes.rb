@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   root 'top_pages#top'
+  post 'oauth/callback' => 'oauths#callback'
+  get 'oauth/callback' => 'oauths#callback'
+  get 'oauth/:provider' => 'oauths#oauth', :as => :auth_at_provider
   get '/login', to: 'user_sessions#new'
   post '/login', to: 'user_sessions#create'
   delete '/logout', to: 'user_sessions#destroy'

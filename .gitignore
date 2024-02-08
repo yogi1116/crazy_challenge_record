@@ -41,3 +41,8 @@
 !/app/assets/builds/.keep
 
 /app/services/service_account.json
+config/settings.local.yml
+config/settings/*.local.yml
+config/environments/*.local.yml
+
+/config/certs/*
