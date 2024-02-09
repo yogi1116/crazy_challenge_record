@@ -45,6 +45,10 @@ class Post < ApplicationRecord
     end
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[challenge_result category_ids]
+  end
+
   private
 
   def image_count_within_limit

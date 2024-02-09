@@ -1,0 +1,25 @@
+<%= search_form_for @q, url: posts_path, method: :get, html: { class: 'form-inline flex items-center relative' } do |f| %>
+
+  <div class="form-group mb-1 flex flex-col mr-8">
+    <%= f.label :challenge_result_eq, "Challenge Result", class: 'text-white mb-1' %>
+    <%= f.select :challenge_result_eq, options_for_select(Post.challenge_results.map{ |k, v| [k.humanize, v] }, @q.challenge_result_eq), { include_blank: 'Select' }, { class: 'bg-white p-2 rounded cursor-pointer w-full' } %>
+  </div>
+
+  <div class="form-group mb-1" data-controller="dropdown-multiselect">
+    <label for="category" class="text-white mb-1">Category</label>
+    <div data-target="dropdown-multiselect.dropdown" data-action="click->dropdown-multiselect#toggleDropdownMenu" class="dropdown bg-white p-2 rounded cursor-pointer w-48">
+      Choose category
+    </div>
+    <div data-target="dropdown-multiselect.selectedItems" class="selected-items flex flex-wrap mt-1 border-1 border-blue-400"></div>
+    <input type="hidden" name="category_ids_in[]" data-target="dropdown-multiselect.hiddenField">
+    <div class="dropdown-menu hidden bg-white absolute z-10" data-target="dropdown-multiselect.dropdownMenu">
+      <% Category.all.each do |c| %>
+        <a href="#" class="dropdown-item block p-2 hover:bg-gray-100" data-value="<%= c.id %>" data-action="click->dropdown-multiselect#select"><%= c.name %></a>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="flex flex-col absolute left-96 top-6">
+    <%= f.submit "Search", class: 'btn btn-primary rounded bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white p-2 font-semibold' %>
+  </div>
+<% end %>
