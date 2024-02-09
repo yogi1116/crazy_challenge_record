@@ -11,7 +11,7 @@ RSpec.describe "Users", type: :system do
     end
 
     context '成功' do
-      fit 'ユーザーの新規登録ができる' do
+      it 'ユーザーの新規登録ができる' do
         fill_in 'user[username]', with: 'test01'
         fill_in 'user[email]', with: 'test01@example.com'
         fill_in 'user[password]', with: 'Password01'
