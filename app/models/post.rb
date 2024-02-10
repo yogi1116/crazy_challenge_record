@@ -46,7 +46,7 @@ class Post < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    %w[challenge_result category_ids]
+    %w[challenge_result]
   end
 
   private

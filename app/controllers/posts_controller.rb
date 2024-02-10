@@ -10,7 +10,7 @@ class PostsController < ApplicationController
                 .order(created_at: :desc)
                 .page(params[:page]).per(16)
 
-    if params[:category_ids_in].present?
+    if params[:category_ids_in].present? && Category.exists?(id: params[:category_ids_in])
       @posts = @posts.joins(:categories).where(categories: { id: params[:category_ids_in] })
     end
   end
