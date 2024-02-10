@@ -2,17 +2,10 @@ class PostsController < ApplicationController
   include ImageProcessingConcern
 
   skip_before_action :require_login, only: %i[index ranking]
+  before_action :restore_search_conditions, only: [:index]
   before_action :find_post, only: %i[edit update destroy]
 
   def index
-    [:q, :category_ids_in].each do |key|
-      if params[key].present?
-        session[key] = params[key]
-      elsif session[key].present?
-        params[key] = session[key]
-      end
-    end
-
     @q = Post.ransack(params[:q])
     @posts = @q.result.includes(images_attachments: :blob, user: :profile)
                 .order(created_at: :desc)
@@ -88,6 +81,16 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def restore_search_conditions
+    [:q, :category_ids_in].each do |key|
+      if params[key].present?
+        session[key] = params[key]
+      elsif session[key].present?
+        params[key] = session[key]
+      end
+    end
+  end
 
   def content_moderated?(content)
     moderation_service = ContentModerationService.new(content)
