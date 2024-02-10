@@ -93,4 +93,4 @@ give upした挑戦は達成できてないため、ランキング化はしま�
 https://www.figma.com/file/bYm3gAgfyFwbDCRwKpCDT3/crazy_challenge_record?type=design&node-id=0%3A1&mode=design&t=Y6dHQ2dFwSjpMyqN-1
 
 ### ER図
-https://gyazo.com/65cded7ff801ec9fb3d9b6cf0c5c144d
+[![Image from Gyazo](https://i.gyazo.com/9a629fd3b14e1ad5d025ab26bf1c18bf.png)](https://gyazo.com/9a629fd3b14e1ad5d025ab26bf1c18bf)
