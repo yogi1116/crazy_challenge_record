@@ -1,7 +1,10 @@
-<div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-24 lg:px-8 lg:py-20 min-h-screen" style="background-image: url('<%= image_path('post.jpeg') %>'); background-position: center; background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
+<div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-8 md:pb-10 md:pt-5 min-h-screen" style="background-image: url('<%= image_path('post.jpeg') %>'); background-position: center; background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
+  <div class="mb-10">
+    <%= render 'search_form' %>
+  </div>
   <div class="grid gap-5 lg:grid-cols-4 sm:max-w-sm sm:mx-auto lg:max-w-full">
     <% @posts.each do |post| %>
-    <div class="overflow-hidden transition-shadow duration-300 bg-white rounded p-8 bg-white border rounded">
+    <div class="overflow-hidden transition-shadow duration-300 bg-white rounded p-8 bg-white border rounded relative">
       <%= image_tag(post.display_image, style: "width: 390px; height: 300px; object-fit: cover;") %>
       <div class="py-5">
         <p class="mb-2 text-xs font-semibold text-gray-600 uppercase"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
@@ -19,27 +22,25 @@
         </div>
 
         <div class="nline-block my-3 text-black transition-colors duration-200 hover:text-deep-purple-accent-700">
-        <p class="text-xl leading-5"><%= truncate(post.title, length: 28) %></p>
+          <p class="text-xl leading-5"><%= truncate(post.title, length: 28) %></p>
         </div>
         <p class="mb-4 text-gray-700"><%= truncate(post.content, length: 51) %></p>
 
         <div class="text-center my-4">
-          <%= link_to 'Read more', post_path(post), class: 'inline-flex items-center font-semibold transition-colors duration-200 text-blue-700 hover:text-deep-blue-800 no-underline hover:underline' %>
+          <%= link_to 'Read more', post_path(post), class: 'inline-flex items-center font-semibold transition-colors duration-200 text-blue-700 hover:text-blue-400 underline' %>
         </div>
 
-        <div class="flex space-x-2">
-          <div class="">
-            <% case post.challenge_result %>
-            <% when 'complete' %>
-              <%= image_tag 'likes/crazy_1.png', class: 'h-10 w-10' %>
+        <div class="flex space-x-2 absolute bottom-5 left-5 right-3">
+          <% case post.challenge_result %>
+          <% when 'complete' %>
+            <%= image_tag 'likes/crazy_1.png', class: 'h-10 w-10' %>
+          <% else %>
+            <% if post.retry == 'try' %>
+              <%= image_tag 'likes/fight_1.png', class: 'h-10 w-10' %>
             <% else %>
-              <% if post.retry == 'try' %>
-                <%= image_tag 'likes/fight_1.png', class: 'h-10 w-10' %>
-              <% else %>
-                <%= image_tag 'likes/nice_fight_1.png', class: 'h-10 w-10' %>
-              <% end %>
+              <%= image_tag 'likes/nice_fight_1.png', class: 'h-10 w-10' %>
             <% end %>
-          </div>
+          <% end %>
           <div class="pt-2 font-bold text-ml ml-1">
             <%= post.likes_count %>
           </div>
