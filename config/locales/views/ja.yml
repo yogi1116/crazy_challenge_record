@@ -29,6 +29,12 @@ ja:
       success: 'プロフィールを更新しました'
       fail: 'プロフィール作成に失敗しました'
   posts:
+    index:
+      search_form:
+        challenge_result: '挑戦結果'
+        category: 'カテゴリー'
+        search: '検索'
+        choose_category: '複数選択可'
     create:
       post: '投稿する'
       success: '新規投稿されました'

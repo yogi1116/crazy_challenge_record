@@ -1,14 +1,14 @@
 <%= search_form_for @q, url: posts_path, method: :get, html: { class: 'form-inline flex flex-col md:flex-row relative' } do |f| %>
   <div class="form-group mb-1 flex flex-col mr-8 w-full md:w-32">
-    <%= f.label :challenge_result_eq, "Challenge Result", class: 'text-white' %>
-    <%= f.select :challenge_result_eq, options_for_select(Post.challenge_results.map{ |k, v| [k.humanize, v] }, @q.challenge_result_eq), { include_blank: 'Select' }, { class: 'bg-white p-2 rounded cursor-pointer w-full' } %>
+    <%= f.label :challenge_result, t('posts.index.search_form.challenge_result'), "Challenge Result", class: 'text-white' %>
+    <%= f.select :challenge_result_eq, options_for_select(Post.challenge_results.map{ |k, v| [k.humanize, v] }, @q.challenge_result_eq), { include_blank: '---' }, { class: 'bg-white p-2 rounded cursor-pointer w-full' } %>
   </div>
 
   <div class="form-group mb-1" data-controller="dropdown-multiselect">
-    <label for="category" class="text-white">Category</label>
+    <label for="category" class="text-white"><%= t('posts.index.search_form.category') %></label>
     <div data-target="dropdown-multiselect.dropdown" data-action="click->dropdown-multiselect#toggleDropdownMenu" class="dropdown bg-white p-2 rounded cursor-pointer md:w-48 flex items-center border-solid border border-slate-500">
-      Choose category
-      <svg class="h-5 w-5 ml-44 md:ml-7 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <%= t('posts.index.search_form.choose_category') %>
+      <svg class="h-5 w-5 ml-[13.8rem] md:ml-[4.5rem] text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
       </svg>
     </div>
@@ -22,6 +22,6 @@
   </div>
 
   <div class="flex flex-col mt-3 md:absolute md:left-96 md:top-3">
-    <%= f.submit "Search", class: 'btn btn-primary rounded bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white p-2 font-semibold' %>
+    <%= f.submit t('posts.index.search_form.search'), class: 'btn btn-primary rounded bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500 text-white py-2 px-5 font-semibold' %>
   </div>
 <% end %>
