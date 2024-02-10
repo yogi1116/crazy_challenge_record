@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   include ImageProcessingConcern
 
-  skip_before_action :require_login, only: %i[index ranking]
+  skip_before_action :require_login, only: %i[index ranking reset_search]
   before_action :restore_search_conditions, only: [:index]
   before_action :find_post, only: %i[edit update destroy]
 
