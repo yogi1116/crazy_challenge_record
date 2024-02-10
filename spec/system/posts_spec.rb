@@ -255,4 +255,62 @@ RSpec.describe "Posts", type: :system do
       expect(page).to have_no_content(give_up_post.title)
     end
   end
+
+  describe '検索' do
+    before do
+      login(user)
+    end
+
+    context '挑戦結果のみの検索ができる' do
+      # 現在let!定義によりCOPLETEとGIVE_UP投稿がある状態
+
+      it 'COMPLETE検索' do
+        select 'Complete', from: 'q_challenge_result_eq'
+        click_button '検索'
+        expect(page).to have_content('COMPLETE')
+      end
+
+      it 'GIVE UP検索' do
+        select 'Give up', from: 'q_challenge_result_eq'
+        click_button '検索'
+        expect(page).to have_content('GIVE UP')
+      end
+    end
+
+    context 'カテゴリーのみの検索' do
+      # let!定義の投稿は冒険・探究カテゴリーを選択してる
+
+      it 'カテゴリーの検索結果が表示される' do
+        find('div[data-target="dropdown-multiselect.dropdown"]').click
+        find('a', text: '冒険・探究').click
+        click_button '検索'
+        post_id = give_up_post.id
+        link = "/posts/#{post_id}"
+        expect(page).to have_selector("a[href='#{link}']")
+        find("a[href='#{link}']").click
+        link = "/posts/#{post_id}/likes"
+        expect(page).to have_content('冒険・探究')
+      end
+
+      it '存在しないカテゴリーだと検索結果が空になる' do
+        find('div[data-target="dropdown-multiselect.dropdown"]').click
+        find('a', text: 'スポーツ').click
+        click_button '検索'
+        expect(page).to have_content('Read more', count: 0)
+      end
+    end
+
+    it '挑戦結果とカテゴリーの両方の検索ができる' do
+      select 'Complete', from: 'q_challenge_result_eq'
+      find('div[data-target="dropdown-multiselect.dropdown"]').click
+      find('a', text: '冒険・探究').click
+      click_button '検索'
+      post_id = complete_post.id
+      link = "/posts/#{post_id}"
+      expect(page).to have_selector("a[href='#{link}']")
+      find("a[href='#{link}']").click
+      expect(page).to have_content('COMPLETE')
+      expect(page).to have_content('冒険・探究')
+    end
+  end
 end

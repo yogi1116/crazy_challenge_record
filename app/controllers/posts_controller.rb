@@ -2,10 +2,18 @@ class PostsController < ApplicationController
   include ImageProcessingConcern
 
   skip_before_action :require_login, only: %i[index ranking]
+  before_action :restore_search_conditions, only: [:index]
   before_action :find_post, only: %i[edit update destroy]
 
   def index
-    @posts = Post.includes(images_attachments: :blob, user: :profile).order(created_at: :desc).page(params[:page]).per(16)
+    @q = Post.ransack(params[:q])
+    @posts = @q.result.includes(images_attachments: :blob, user: :profile)
+                .order(created_at: :desc)
+                .page(params[:page]).per(16)
+
+    if params[:category_ids_in].present? && Category.exists?(id: params[:category_ids_in])
+      @posts = @posts.joins(:categories).where(categories: { id: params[:category_ids_in] })
+    end
   end
 
   def new
@@ -66,7 +74,23 @@ class PostsController < ApplicationController
     @posts = Post.ranking
   end
 
+  def reset_search
+    session.delete(:q)
+    session.delete(:category_ids_in)
+    redirect_to posts_path
+  end
+
   private
+
+  def restore_search_conditions
+    [:q, :category_ids_in].each do |key|
+      if params[key].present?
+        session[key] = params[key]
+      elsif session[key].present?
+        params[key] = session[key]
+      end
+    end
+  end
 
   def content_moderated?(content)
     moderation_service = ContentModerationService.new(content)
