@@ -1,20 +1,23 @@
-<%= search_form_for @q, url: posts_path, method: :get, html: { class: 'form-inline flex items-center relative' } do |f| %>
+<%= search_form_for @q, url: posts_path, method: :get, html: { class: 'form-inline flex flex-row relative' } do |f| %>
 
   <div class="form-group mb-1 flex flex-col mr-8">
-    <%= f.label :challenge_result_eq, "Challenge Result", class: 'text-white mb-1' %>
+    <%= f.label :challenge_result_eq, "Challenge Result", class: 'text-white' %>
     <%= f.select :challenge_result_eq, options_for_select(Post.challenge_results.map{ |k, v| [k.humanize, v] }, @q.challenge_result_eq), { include_blank: 'Select' }, { class: 'bg-white p-2 rounded cursor-pointer w-full' } %>
   </div>
 
   <div class="form-group mb-1" data-controller="dropdown-multiselect">
-    <label for="category" class="text-white mb-1">Category</label>
-    <div data-target="dropdown-multiselect.dropdown" data-action="click->dropdown-multiselect#toggleDropdownMenu" class="dropdown bg-white p-2 rounded cursor-pointer w-48">
+    <label for="category" class="text-white">Category</label>
+    <div data-target="dropdown-multiselect.dropdown" data-action="click->dropdown-multiselect#toggleDropdownMenu" class="dropdown bg-white p-2 rounded cursor-pointer w-48 flex items-center">
       Choose category
+      <svg class="h-5 w-5 ml-2 ml-7 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+      </svg>
     </div>
     <div data-target="dropdown-multiselect.selectedItems" class="selected-items flex flex-wrap mt-1 border-1 border-blue-400"></div>
     <input type="hidden" name="category_ids_in[]" data-target="dropdown-multiselect.hiddenField">
-    <div class="dropdown-menu hidden bg-white absolute z-10" data-target="dropdown-multiselect.dropdownMenu">
+    <div class="dropdown-menu hidden bg-gray-300 absolute z-10 rounded" data-target="dropdown-multiselect.dropdownMenu">
       <% Category.all.each do |c| %>
-        <a href="#" class="dropdown-item block p-2 hover:bg-gray-100" data-value="<%= c.id %>" data-action="click->dropdown-multiselect#select"><%= c.name %></a>
+        <a href="#" class="dropdown-item block p-2 hover:bg-blue-500 rounded" data-value="<%= c.id %>" data-action="click->dropdown-multiselect#select"><%= c.name %></a>
       <% end %>
     </div>
   </div>
