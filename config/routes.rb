@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     resources :comments, only: %i[create edit update destroy]
     collection do
       get 'ranking'
+      get 'reset_search'
     end
   end
 end

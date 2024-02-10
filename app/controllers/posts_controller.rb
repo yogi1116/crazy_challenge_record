@@ -5,6 +5,14 @@ class PostsController < ApplicationController
   before_action :find_post, only: %i[edit update destroy]
 
   def index
+    [:q, :category_ids_in].each do |key|
+      if params[key].present?
+        session[key] = params[key]
+      elsif session[key].present?
+        params[key] = session[key]
+      end
+    end
+
     @q = Post.ransack(params[:q])
     @posts = @q.result.includes(images_attachments: :blob, user: :profile)
                 .order(created_at: :desc)
@@ -71,6 +79,12 @@ class PostsController < ApplicationController
 
   def ranking
     @posts = Post.ranking
+  end
+
+  def reset_search
+    session.delete(:q)
+    session.delete(:category_ids_in)
+    redirect_to posts_path
   end
 
   private
