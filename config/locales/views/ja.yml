@@ -41,6 +41,7 @@ ja:
         category: 'カテゴリー'
         search: '検索'
         choose_category: '複数選択可'
+        reset: '検索条件リセット'
     create:
       post: '投稿する'
       success: '新規投稿されました'
