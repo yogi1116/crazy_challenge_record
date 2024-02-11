@@ -88,6 +88,7 @@ group :development, :test do
   gem 'rubocop-checkstyle_formatter'
   gem 'pry-remote'
   gem 'rspec-rails'
+  gem 'letter_opener_web'
 end
 
 group :development do
