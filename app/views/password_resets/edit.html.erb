@@ -4,11 +4,12 @@
     </div>
     <div class="text-white relative px-5 py-10 bg-indigo-400 shadow-lg rounded-3xl sm:p-20">
       <div class="text-center pb-6">
-        <h1 class="text-3xl font-bold">パスワード再設定</h1>
-        <p class="text-gray-700">英数字を含む5文字以上で入力してください。</p>
+        <h1 class="text-3xl font-bold"><%= t('.title') %></h1>
+        <p class="text-gray-700"><%= t('.password_policy') %></p>
       </div>
 
       <%= form_with model: @user, url: password_reset_path(@token), local: true do |f| %>
+        <%= render 'shared/error_messages', object: f.object, text_color: 'text-red-200' %>
         <div class="flex flex-col items-center mb-2">
           <%= f.label :email, class: 'font-bold' %>
           <%= @user.email %>
