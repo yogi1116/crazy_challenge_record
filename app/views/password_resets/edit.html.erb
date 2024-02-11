@@ -1,46 +1,34 @@
-<div class="min-h-screen bg-gray-800 py-6 flex flex-col justify-center sm:py-12">
-    <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-        <div
-            class="absolute inset-0 bg-gradient-to-r from-indigo-700 to-purple-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl">
-        </div>
-        <div class="text-white relative px-4 py-10 bg-indigo-400 shadow-lg sm:rounded-3xl sm:p-20">
-
-            <div class="text-center pb-6">
-                <h1 class="text-3xl">Contact Us!</h1>
-
-                <p class="text-gray-300">
-                    Fill up the form below to send us a message.
-                </p>
-            </div>
-
-            <form>
-
-                <input
-                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        type="text" placeholder="Name" name="name">
-
-                <input
-                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        type="email" placeholder="Email" name="email">
-
-                <input
-                        class="shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        type="text" placeholder="Subject" name="_subject">
-
-                <textarea
-                        class="shadow mb-4 min-h-0 appearance-none border rounded h-64 w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        type="text" placeholder="Type your message here..." name="message" style="height: 121px;"></textarea>
-
-                <div class="flex justify-between">
-                    <input
-                        class="shadow bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="submit" value="Send ➤">
-                    <input
-                        class="shadow bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="reset">
-                </div>
-
-            </form>
-        </div>
+<div class="bg-gray-800 flex flex-col justify-center py-16 md:p-[8.8rem]">
+  <div class="relative py-3 px-1 sm:max-w-xl sm:mx-auto">
+    <div class="absolute inset-0 bg-gradient-to-r from-indigo-700 to-purple-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl px-4 py-3">
     </div>
+    <div class="text-white relative px-5 py-10 bg-indigo-400 shadow-lg rounded-3xl sm:p-20">
+      <div class="text-center pb-6">
+        <h1 class="text-3xl font-bold">パスワード再設定</h1>
+        <p class="text-gray-700">英数字を含む5文字以上で入力してください。</p>
+      </div>
+
+      <%= form_with model: @user, url: password_reset_path(@token), local: true do |f| %>
+        <div class="flex flex-col items-center mb-2">
+          <%= f.label :email, class: 'font-bold' %>
+          <%= @user.email %>
+        </div>
+
+        <%= f.label :password, class: 'font-bold' %>
+        <%= f.password_field :password, class: 'shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', placeholder: 'password' %>
+
+        <%= f.label :password_confirmation, class: 'font-bold' %>
+        <%= f.password_field :password_confirmation, class: 'shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', placeholder: 'password_confirmation' %>
+
+        <div class="flex flex-col items-center mt-2">
+          <button type="submit" class="w-full md:w-3/4 py-3 font-medium text-white bg-blue-600 hover:bg-blue-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 mr-2">
+              <path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z" clip-rule="evenodd" />
+            </svg>
+            <%= t('.resetting') %>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

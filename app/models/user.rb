@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 5 }, format: { with: /\A(?=.*?\d)(?=.*?[a-zA-Z])/, message: 'は英数字をそれぞれ1種類以上含む必要があります' }, if: :password_required?
   validates :password, presence: true, confirmation: true, if: :password_required?
   validates :password_confirmation, presence: true, if: :password_required?
-  validates :reset_password_token, uniqueness: true, allow_nil: true
+  validates :reset_password_token, presence: true, uniqueness: true, allow_nil: true
   validates_acceptance_of :agreement, allow_nil: false, on: :create
 
   def social_login?

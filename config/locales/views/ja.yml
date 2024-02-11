@@ -22,6 +22,8 @@ ja:
     new:
       email: 'メールアドレス'
       send: 'リンクを送信'
+    edit:
+      resetting: 'パスワードを再設定'
   profiles:
     show:
       title: 'プロフィール'
