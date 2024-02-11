@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resource :profile, only: %i[show]
   end
   resource :profile, only: %i[show edit update]
+  resources :password_resets, only: %i[new create edit update]
   resources :posts do
     resources :likes, only: %i[create destroy]
     resources :comments, only: %i[create edit update destroy]

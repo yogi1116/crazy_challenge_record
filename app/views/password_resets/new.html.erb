@@ -1,0 +1,23 @@
+<div class="bg-cyan-100 py-16 md:p-[8.8rem]">
+  <div class="px-5 py-1 md:px-20">
+    <div class="max-w-lg mx-auto my-10 bg-white p-8 rounded-xl shadow shadow-slate-300">
+      <h1 class="flex justify-center text-4xl font-medium mb-8">Reset password</h1>
+
+      <%= form_with url: password_resets_path, local: true do |f| %>
+        <div class="flex flex-col space-y-1">
+          <%= f.label :email, t('.email'), class: 'font-bold text-slate-700' %>
+          <%= f.email_field :email, class: 'w-full py-3 border border-slate-200 rounded-lg px-3 focus:outline-none focus:border-slate-500 hover:shadow', placeholder: 'Enter email address' %>
+        </div>
+        <div class="flex justify-center mt-7">
+          <button type="submit" class="w-full md:w-3/4 py-3 font-medium text-white bg-indigo-600 hover:bg-indigo-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 mr-2 p-1">
+              <path d="M1.5 8.67v8.58a3 3 0 0 0 3 3h15a3 3 0 0 0 3-3V8.67l-8.928 5.493a3 3 0 0 1-3.144 0L1.5 8.67Z" />
+              <path d="M22.5 6.908V6.75a3 3 0 0 0-3-3h-15a3 3 0 0 0-3 3v.158l9.714 5.978a1.5 1.5 0 0 0 1.572 0L22.5 6.908Z" />
+            </svg>
+            <%= t('.send') %>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

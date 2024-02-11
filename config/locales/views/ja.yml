@@ -18,6 +18,10 @@ ja:
       fail: 'ログインに失敗しました'
     destroy:
       success: 'ログアウトしました'
+  password_resets:
+    new:
+      email: 'メールアドレス'
+      send: 'リンクを送信'
   profiles:
     show:
       title: 'プロフィール'
