@@ -97,4 +97,7 @@ Rails.application.configure do
   # ]
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # パスワードリセット時のメール送信する際のホスト情報の設定
+  config.action_mailer.default_url_options = { host: 'fierce-plateau-48229-09e6d0eb36ec.herokuapp.com', protocol: 'https' }
 end
