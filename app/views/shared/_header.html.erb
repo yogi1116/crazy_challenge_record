@@ -34,8 +34,8 @@
 
     <div class="hs-dropdown relative inline-flex" data-controller="dropdown">
       <button id="hs-dropdown-custom-trigger" type="button" class="hs-dropdown-toggle py-1 ps-1 pe-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" data-action="click->dropdown#toggleMenu">
-        <%= image_tag @profile.avatar.url, class:'w-10 h-10 rounded-full' %>
-        <span class="text-gray-600 text-ms truncate max-w-[7.5rem] dark:text-gray-400"><%= @profile.user.username %></span>
+        <%= image_tag current_user.profile.avatar.url, class:'w-10 h-10 rounded-full' %>
+        <span class="text-gray-600 text-ms truncate max-w-[7.5rem] dark:text-gray-400"><%= current_user.username %></span>
         <svg class="hs-dropdown-open:rotate-180 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
       </button>
 
@@ -56,8 +56,8 @@
       </div>
       <div class="menu bg-black w-2/4 fixed top-0 left-0 h-screen z-50 hidden" data-menu-target="menu">
         <div class="flex justify-center items-center gap-4 pt-5">
-          <%= image_tag @profile.avatar.url, class:'w-12 h-12 rounded-full items-center border-2 border-white' %>
-          <p class=""><%= @profile.user.username %></p>
+          <%= image_tag current_user.profile.avatar.url, class:'w-12 h-12 rounded-full items-center border-2 border-white' %>
+          <p class=""><%= current_user.username %></p>
         </div>
         <li data-controller="dropdown" class="z-20 block px-4 p-3 text-ml text-white transition text-center">
           <button type="button" class="text-white transition" data-action="click->dropdown#toggleMenu">POST</button>
