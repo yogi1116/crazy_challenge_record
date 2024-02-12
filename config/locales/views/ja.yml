@@ -6,6 +6,9 @@ ja:
     logout: 'ログアウト'
     profile: 'プロフィール'
     require_login: 'ログインしてください'
+    terms_of_service: '利用規約'
+    privacy_policy: 'プライバシーポリシー'
+    inquiry: 'お問い合わせ'
   users:
     create:
       success: 'ユーザー登録が完了しました'
