@@ -22,6 +22,8 @@ ja:
     new:
       email: 'メールアドレス'
       send: 'リンクを送信'
+    create:
+      success: 'メールを送信しました'
     edit:
       title: 'パスワード再設定'
       resetting: 'パスワードを再設定'
