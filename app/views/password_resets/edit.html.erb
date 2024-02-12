@@ -1,0 +1,35 @@
+<div class="bg-gray-800 flex flex-col justify-center py-16 md:p-[8.8rem]">
+  <div class="relative py-3 px-1 sm:max-w-xl sm:mx-auto">
+    <div class="absolute inset-0 bg-gradient-to-r from-indigo-700 to-purple-500 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 rounded-3xl px-4 py-3">
+    </div>
+    <div class="text-white relative px-5 py-10 bg-indigo-400 shadow-lg rounded-3xl sm:p-20">
+      <div class="text-center pb-6">
+        <h1 class="text-3xl font-bold"><%= t('.title') %></h1>
+        <p class="text-gray-700"><%= t('.password_policy') %></p>
+      </div>
+
+      <%= form_with model: @user, url: password_reset_path(@token), local: true do |f| %>
+        <%= render 'shared/error_messages', object: f.object, text_color: 'text-red-200' %>
+        <div class="flex flex-col items-center mb-2">
+          <%= f.label :email, class: 'font-bold' %>
+          <%= @user.email %>
+        </div>
+
+        <%= f.label :password, class: 'font-bold' %>
+        <%= f.password_field :password, class: 'shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', placeholder: 'password' %>
+
+        <%= f.label :password_confirmation, class: 'font-bold' %>
+        <%= f.password_field :password_confirmation, class: 'shadow mb-4 appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline', placeholder: 'password_confirmation' %>
+
+        <div class="flex flex-col items-center mt-2">
+          <button type="submit" class="w-full md:w-3/4 py-3 font-medium text-white bg-blue-600 hover:bg-blue-500 rounded-lg border-indigo-500 hover:shadow inline-flex space-x-2 items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 mr-2">
+              <path fill-rule="evenodd" d="M12 1.5a5.25 5.25 0 0 0-5.25 5.25v3a3 3 0 0 0-3 3v6.75a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3v-6.75a3 3 0 0 0-3-3v-3c0-2.9-2.35-5.25-5.25-5.25Zm3.75 8.25v-3a3.75 3.75 0 1 0-7.5 0v3h7.5Z" clip-rule="evenodd" />
+            </svg>
+            <%= t('.resetting') %>
+          </button>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

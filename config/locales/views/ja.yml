@@ -6,6 +6,9 @@ ja:
     logout: 'ログアウト'
     profile: 'プロフィール'
     require_login: 'ログインしてください'
+    terms_of_service: '利用規約'
+    privacy_policy: 'プライバシーポリシー'
+    inquiry: 'お問い合わせ'
   users:
     create:
       success: 'ユーザー登録が完了しました'
@@ -18,6 +21,20 @@ ja:
       fail: 'ログインに失敗しました'
     destroy:
       success: 'ログアウトしました'
+  password_resets:
+    new:
+      email: 'メールアドレス'
+      send: 'リンクを送信'
+    create:
+      success: 'メールを送信しました'
+    edit:
+      title: 'パスワード再設定'
+      resetting: 'パスワードを再設定'
+      password_policy: '英数字を含む5文字以上で入力してください。'
+    update:
+      empty_password: 'パスワードを入力してください'
+      success: 'パスワードが変更されました'
+      fail: 'パスワードの変更に失敗しました'
   profiles:
     show:
       title: 'プロフィール'
@@ -35,6 +52,7 @@ ja:
         category: 'カテゴリー'
         search: '検索'
         choose_category: '複数選択可'
+        reset: '検索条件リセット'
     create:
       post: '投稿する'
       success: '新規投稿されました'

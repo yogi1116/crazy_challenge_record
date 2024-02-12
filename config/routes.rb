@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
+
   root 'top_pages#top'
   post 'oauth/callback' => 'oauths#callback'
   get 'oauth/callback' => 'oauths#callback'
@@ -13,6 +15,7 @@ Rails.application.routes.draw do
     resource :profile, only: %i[show]
   end
   resource :profile, only: %i[show edit update]
+  resources :password_resets, only: %i[new create edit update]
   resources :posts do
     resources :likes, only: %i[create destroy]
     resources :comments, only: %i[create edit update destroy]

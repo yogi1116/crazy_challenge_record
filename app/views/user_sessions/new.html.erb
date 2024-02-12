@@ -1,5 +1,5 @@
 <!-- component -->
-<div class="flex h-screen w-full items-center justify-center bg-cover bg-no-repeat" style="background-image:url('<%= image_path('top.jpeg') %>'); background-position: center; background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
+<div class="flex py-10 w-full items-center justify-center bg-cover bg-no-repeat" style="background-image:url('<%= image_path('top.jpeg') %>'); background-position: center; background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
   <div class="rounded-xl bg-gray-800 bg-opacity-50 px-16 py-10 shadow-lg backdrop-blur-md max-sm:px-8">
     <div class="text-white">
       <div class="flex flex-col items-center">
@@ -24,6 +24,7 @@
         <%= image_tag 'line_login.png', alt: 'Login with Line' %>
       <% end %>
       <%= link_to '会員登録ページへ', new_user_path, class: 'text-blue-300 hover:text-blue-500 mt-5' %>
+      <%= link_to 'パスワードをお忘れの方はこちら', new_password_reset_path, class: 'text-blue-300 hover:text-blue-500 mt-3' %>
     </div>
   </div>
 </div>

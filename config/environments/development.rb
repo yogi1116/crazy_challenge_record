@@ -87,4 +87,8 @@ Rails.application.configure do
   config.action_controller.raise_on_missing_callback_actions = true
 
   config.force_ssl = true
+
+  # パスワードリセットによるメール送信の設定
+  config.action_mailer.delivery_method = :letter_opener_web
+  config.action_mailer.default_url_options = Settings.default_url_options.to_h
 end

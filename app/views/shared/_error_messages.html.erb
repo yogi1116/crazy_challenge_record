@@ -1,6 +1,8 @@
+<% text_color = local_assigns[:text_color] || 'text-red-500' %>
+
 <% if object.errors.any? %>
   <div id="error_messages" class="alert alert-danger">
-    <ul class="mb-2 text-blue-500">
+    <ul class="mb-2 <%= text_color %>">
       <% object.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>

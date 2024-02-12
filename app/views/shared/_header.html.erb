@@ -59,7 +59,7 @@
           <%= image_tag @profile.avatar.url, class:'w-12 h-12 rounded-full items-center border-2 border-white' %>
           <p class=""><%= @profile.user.username %></p>
         </div>
-        <li data-controller="dropdown" class="z-20 block px-4 pt-5 text-ml text-white transition text-center">
+        <li data-controller="dropdown" class="z-20 block px-4 p-3 text-ml text-white transition text-center">
           <button type="button" class="text-white transition" data-action="click->dropdown#toggleMenu">POST</button>
           <ul class="hidden absolute w-48 bg-white shadow-md mt-2 rounded-md" data-dropdown-target="menu">
             <li>
@@ -70,11 +70,14 @@
             </li>
           </ul>
         </li>
-        <%= link_to 'TOP', root_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
-        <%= link_to 'POST LIST', posts_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
-        <%= link_to 'RANKING', ranking_posts_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
-        <%= link_to 'PROFILE', profile_path, class:'block px-4 pt-5 text-ml text-white transition text-center' %>
-        <%= link_to 'LOGOUT', logout_path, class:'block px-4 pt-5 text-ml text-white transition text-center', data: { turbo_method: :delete } %>
+        <%= link_to 'TOP', root_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
+        <%= link_to 'POST LIST', posts_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
+        <%= link_to 'RANKING', ranking_posts_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
+        <%= link_to 'PROFILE', profile_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
+        <%= link_to 'LOGOUT', logout_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300', data: { turbo_method: :delete } %>
+        <%= link_to t('defaults.terms_of_service'), terms_of_service_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
+        <%= link_to t('defaults.privacy_policy'), privacy_policy_path, class:'block px-4 p-3 text-sm text-white transition flex items-center justify-center hover:bg-blue-300' %>
+        <%= link_to t('defaults.inquiry'), 'https://docs.google.com/forms/d/e/1FAIpQLSc_mvgTgd0pRUfX0sO5TjrnUxZAtf-M9j6MdoeQ8g4chVuRjA/viewform?usp=send_form', class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
       </div>
     </div>
   </div>
