@@ -1,2 +1,6 @@
 sorcery:
     line_callback_url: 'https://fierce-plateau-48229-09e6d0eb36ec.herokuapp.com/oauth/callback?provider=line'
+
+default_url_options:
+    protocol: 'https'
+    host: 'fierce-plateau-48229-09e6d0eb36ec.herokuapp.com'
