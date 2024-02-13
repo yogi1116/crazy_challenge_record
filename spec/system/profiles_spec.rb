@@ -28,11 +28,11 @@ RSpec.describe "Profiles", type: :system do
     end
 
     it 'ユーザーは他人のプロフィールを編集できない' do
-      user_id = another_user.id
-      link = "/users/#{user_id}/profile"
+      user_uuid = another_user.uuid
+      link = "/users/#{user_uuid}/profile"
       expect(page).to have_selector("a[href='#{link}']")
       find("a[href='#{link}']").click
-      expect(page).to have_current_path(user_profile_path(user_id))
+      expect(page).to have_current_path(user_profile_path(user_uuid))
       expect(page).to have_no_content('編集')
     end
   end
@@ -44,11 +44,11 @@ RSpec.describe "Profiles", type: :system do
 
     context '他人のプロフィール' do
       it '投稿一覧画面から遷移' do
-        user_id = another_user.id
-        link = "/users/#{user_id}/profile"
+        user_uuid = another_user.uuid
+        link = "/users/#{user_uuid}/profile"
         expect(page).to have_selector("a[href='#{link}']")
         find("a[href='#{link}']").click # ユーザーBの投稿からユーザーBのアバターをクリック
-        expect(page).to have_current_path(user_profile_path(user_id))
+        expect(page).to have_current_path(user_profile_path(user_uuid))
       end
 
       it '投稿詳細画面から遷移' do
@@ -57,11 +57,11 @@ RSpec.describe "Profiles", type: :system do
         expect(page).to have_selector("a[href='#{link}']")
         find("a[href='#{link}']").click # ユーザーBの投稿をクリック
         expect(page).to have_current_path(post_path(post_id))
-        user_id = another_user.id
-        link = "/users/#{user_id}/profile"
+        user_uuid = another_user.uuid
+        link = "/users/#{user_uuid}/profile"
         expect(page).to have_selector("a[href='#{link}']")
         find("a[href='#{link}']").click # ユーザーBのアバターをクリック
-        expect(page).to have_current_path(user_profile_path(user_id))
+        expect(page).to have_current_path(user_profile_path(user_uuid))
       end
     end
   end
