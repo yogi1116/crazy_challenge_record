@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get '/terms_of_service', to: 'top_pages#terms_of_service'
 
   resources :users, only: %i[new create] do
-    resource :profile, only: %i[show]
+    resource :profile, only: [:show]
   end
   resource :profile, only: %i[show edit update]
   resources :password_resets, only: %i[new create edit update]
