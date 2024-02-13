@@ -38,13 +38,15 @@ class User < ApplicationRecord
     liked_posts.destroy(post)
   end
 
+  def to_param
+    uuid
+  end
+
   private
 
   def create_user_profile
     build_profile.save
   end
-
-  private
 
   # パスワードが必要かどうかを判断するメソッド
   def password_required?
