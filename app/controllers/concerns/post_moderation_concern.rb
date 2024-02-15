@@ -1,8 +1,18 @@
 module PostModerationConcern
   extend ActiveSupport::Concern
 
-  def content_moderated?(content)
-    moderation_service = ContentModerationService.new(content)
+  def generate_full_text(post)
+    [
+      post.title,
+      post.content,
+      post.record,
+      post.impression_event,
+      post.lesson
+    ].join("\n")
+  end
+
+  def content_moderated?(full_text)
+    moderation_service = ContentModerationService.new(full_text)
     result = moderation_service.analyze
     categories = result['moderationCategories'].to_a
     @high_confidence_categories = categories.select { |category| category['confidence'] > 0.8 }

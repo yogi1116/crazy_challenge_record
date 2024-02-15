@@ -149,11 +149,11 @@ RSpec.describe "Posts", type: :system do
 
       it '有害な投稿内容を含むとNatural language APIにより投稿阻止' do
         click_on 'COMPLETE'
-        fill_in 'post[title]', with: 'title'
-        fill_in 'post[content]', with: '死・犯罪・災害・戦争・暴力・薬物' # 挑戦内容に有害な単語を記載
-        fill_in 'post[record]', with: 'record'
-        fill_in 'post[impression_event]', with: 'implession_event'
-        fill_in 'post[lesson]', with: 'lesson'
+        fill_in 'post[title]', with: '死'
+        fill_in 'post[content]', with: '災害' # 挑戦内容に有害な単語を記載
+        fill_in 'post[record]', with: '暴力'
+        fill_in 'post[impression_event]', with: '戦争'
+        fill_in 'post[lesson]', with: '大麻'
         check_categories('1', '2', '3')
         upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         using_wait_time(4) do
