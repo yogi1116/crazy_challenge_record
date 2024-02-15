@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   include ImageProcessingConcern
+  include PostModerationConcern
 
   skip_before_action :require_login, only: %i[index ranking reset_search]
   before_action :restore_search_conditions, only: [:index]
@@ -92,30 +93,11 @@ class PostsController < ApplicationController
     end
   end
 
-  def content_moderated?(content)
-    moderation_service = ContentModerationService.new(content)
-    result = moderation_service.analyze
-    categories = result['moderationCategories'].to_a
-    @high_confidence_categories = categories.select { |category| category['confidence'] > 0.8 }
-    @high_confidence_categories.any?
-  end
-
-  def moderation_message
-    inappropriate_content = @high_confidence_categories.map { |category| t("moderation_categories.#{category['name']}") }.join('・ ')
-    "不適切なコンテンツが含まれています：#{inappropriate_content}"
-  end
-
   def attach_resized_images(images)
     images.reject(&:blank?).each do |image|
       resized_image_attributes = process_image(image, width: 800, height: 800)
       @post.images.attach(resized_image_attributes) if resized_image_attributes
     end
-  end
-
-  def handle_content_analysis_error(e)
-    logger.error(e.message)
-    flash.now[:error] = 'Content analysis failed.'
-    render :new, status: :unprocessable_entity
   end
 
   def post_params
