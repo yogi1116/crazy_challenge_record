@@ -23,22 +23,25 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params.except(:images))
-    full_text = generate_full_text(@post)
+    @post = current_user.posts.build(post_params)
+    if @post.invalid?
+      flash.now[:error] = t('.fail')
+      render :new, status: :unprocessable_entity
+      return
+    end
+    @post.images.purge # オリジナル画像とリサイズ画像の両方を保存させないため
 
+    full_text = generate_full_text(@post)
     if content_moderated?(full_text)
       flash.now[:error] = moderation_message
       render :new, status: :unprocessable_entity
       return
     end
 
-    attach_resized_images(params[:post][:images]) if params[:post][:images].present?
+    attach_resized_images(params[:post][:images].reject(&:blank?)) if params[:post][:images].reject(&:blank?).present?
 
-    if @post.save
+    if @post.save!
       redirect_to posts_path, flash: { success: t('posts.create.success') }
-    else
-      flash.now[:error] = t('.fail')
-      render :new, status: :unprocessable_entity
     end
   rescue => e
     handle_content_analysis_error(e)
@@ -96,7 +99,7 @@ class PostsController < ApplicationController
   end
 
   def attach_resized_images(images)
-    images.reject(&:blank?).each do |image|
+    images.each do |image|
       resized_image_attributes = process_image(image, width: 800, height: 800)
       @post.images.attach(resized_image_attributes) if resized_image_attributes
     end
