@@ -46,7 +46,7 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
-    @post.update(post_params)
+    @post.assign_attributes(post_params) # 仮代入のためupdateメソッドは使わない
     return if post_invalid
     return if content_moderated(@post)
 
@@ -54,7 +54,9 @@ class PostsController < ApplicationController
     images = params[:post][:images].present? ? params[:post][:images].reject(&:blank?) : []
     attach_resized_images(images)
 
-    redirect_to post_path(@post), flash: { success: t('posts.update.success') }
+    if @post.save! # 上記を満たせば保存
+      redirect_to post_path(@post), flash: { success: t('posts.update.success') }
+    end
   rescue => e
     handle_content_analysis_error(e)
   end
