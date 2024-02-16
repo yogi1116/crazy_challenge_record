@@ -24,20 +24,10 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.posts.build(post_params)
-    if @post.invalid?
-      flash.now[:error] = t('.fail')
-      render :new, status: :unprocessable_entity
-      return
-    end
+    return if post_invalid
+    return if content_moderated(@post)
+
     @post.images.purge # オリジナル画像とリサイズ画像の両方を保存させないため
-
-    full_text = generate_full_text(@post) # APIの呼び出し
-    if content_moderated?(full_text)
-      flash.now[:error] = moderation_message
-      render :new, status: :unprocessable_entity
-      return
-    end
-
     attach_resized_images(params[:post][:images].reject(&:blank?)) if params[:post][:images].reject(&:blank?).present?
 
     if @post.save!
@@ -57,30 +47,13 @@ class PostsController < ApplicationController
 
   def update
     @post.update(post_params)
-    if @post.invalid?
-      flash.now[:error] = t('.fail')
-      render :edit, status: :unprocessable_entity
-      return
-    end
+    return if post_invalid
+    return if content_moderated(@post)
 
     images = params[:post][:images].present? ? params[:post][:images].reject(&:blank?) : []
-    # 既存の画像を削除
-    @post.images.purge if params[:post][:images].present?
-    # アップロードされた画像をリサイズしてアタッチ
     attach_resized_images(images)
 
-
-    full_text = generate_full_text(@post)
-
-    # APIを呼び出して内容が適切かチェック
-    if content_moderated?(full_text)
-      # 問題があった場合、編集画面に戻す
-      flash.now[:error] = moderation_message
-      render :edit, status: :unprocessable_entity
-      return
-    else
-      redirect_to post_path(@post), flash: { success: t('posts.update.success') }
-    end
+    redirect_to post_path(@post), flash: { success: t('posts.update.success') }
   rescue => e
     handle_content_analysis_error(e)
   end

@@ -1,6 +1,23 @@
 module PostModerationConcern
   extend ActiveSupport::Concern
 
+  def post_invalid
+    if @post.invalid?
+      flash.now[:error] = t('.fail')
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def content_moderated(post)
+    full_text = generate_full_text(post)
+    if content_moderated?(full_text)
+      flash.now[:error] = moderation_message
+      render :new, status: :unprocessable_entity
+      return true
+    end
+    false
+  end
+
   def generate_full_text(post)
     [
       post.title,
