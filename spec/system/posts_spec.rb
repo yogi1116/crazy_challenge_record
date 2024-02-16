@@ -174,7 +174,7 @@ RSpec.describe "Posts", type: :system do
       link = "/posts/#{post_id}"
       expect(page).to have_selector("a[href='#{link}']")
       find("a[href='#{link}']").click
-      link = "/posts/#{post_id}/callback"
+      link = "/posts/callback?post_id=#{post_id}"
       expect(page).to have_selector("a[href='#{link}']")
       find("a[href='#{link}']").click
       fill_in 'post[title]', with: 'edit_title'
@@ -204,7 +204,7 @@ RSpec.describe "Posts", type: :system do
       link = "/posts/#{post_id}"
       expect(page).to have_selector("a[href='#{link}']")
       find("a[href='#{link}']").click
-      link = "/posts/#{post_id}/callback"
+      link = "/posts/callback?post_id=#{post_id}"
       expect(page).to have_selector("a[href='#{link}']")
       find("a[href='#{link}']").click
       fill_in 'post[title]', with: '死'
@@ -307,7 +307,6 @@ RSpec.describe "Posts", type: :system do
         link = "/posts/#{post_id}"
         expect(page).to have_selector("a[href='#{link}']")
         find("a[href='#{link}']").click
-        link = "/posts/#{post_id}/likes"
         expect(page).to have_content('冒険・探究')
       end
 

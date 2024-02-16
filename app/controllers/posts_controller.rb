@@ -50,6 +50,7 @@ class PostsController < ApplicationController
     return if post_invalid
     return if content_moderated(@post)
 
+    @post.images.purge
     images = params[:post][:images].present? ? params[:post][:images].reject(&:blank?) : []
     attach_resized_images(images)
 
@@ -75,12 +76,16 @@ class PostsController < ApplicationController
   end
 
   def callback
-    # OAuth認証の結果を受け取り、必要な情報をセッションに保存
-    # ここでは例として、セッションに投稿のIDを保存するコードを書く
-    session[:id] = params[:id] # 仮のコード
-    
-    # 認証が完了したら、編集ページにリダイレクト
-    redirect_to edit_post_path(session[:id])
+    if params[:post_id].present?
+      redirect_to edit_post_path(params[:post_id])
+    else
+      case params[:challenge_result]
+      when 'complete'
+        redirect_to new_post_path(challenge_result: 'complete')
+      when 'give_up'
+        redirect_to new_post_path(challenge_result: 'give_up')
+      end
+    end
   end
 
   private
