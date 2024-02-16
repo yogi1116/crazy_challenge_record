@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     end
     @post.images.purge # オリジナル画像とリサイズ画像の両方を保存させないため
 
-    full_text = generate_full_text(@post)
+    full_text = generate_full_text(@post) # APIの呼び出し
     if content_moderated?(full_text)
       flash.now[:error] = moderation_message
       render :new, status: :unprocessable_entity
@@ -56,18 +56,33 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
+    @post.update(post_params)
+    if @post.invalid?
+      flash.now[:error] = t('.fail')
+      render :edit, status: :unprocessable_entity
+      return
+    end
+
     images = params[:post][:images].present? ? params[:post][:images].reject(&:blank?) : []
     # 既存の画像を削除
-    @post.images.purge
+    @post.images.purge if params[:post][:images].present?
     # アップロードされた画像をリサイズしてアタッチ
     attach_resized_images(images)
 
-    if @post.update(post_params.except(:images))
-      redirect_to post_path(@post), flash: { success: t('posts.update.success') }
-    else
-      flash.now[:error] = t('.fail')
+
+    full_text = generate_full_text(@post)
+
+    # APIを呼び出して内容が適切かチェック
+    if content_moderated?(full_text)
+      # 問題があった場合、編集画面に戻す
+      flash.now[:error] = moderation_message
       render :edit, status: :unprocessable_entity
+      return
+    else
+      redirect_to post_path(@post), flash: { success: t('posts.update.success') }
     end
+  rescue => e
+    handle_content_analysis_error(e)
   end
 
   def destroy
@@ -84,6 +99,15 @@ class PostsController < ApplicationController
     session.delete(:q)
     session.delete(:category_ids_in)
     redirect_to posts_path
+  end
+
+  def callback
+    # OAuth認証の結果を受け取り、必要な情報をセッションに保存
+    # ここでは例として、セッションに投稿のIDを保存するコードを書く
+    session[:id] = params[:id] # 仮のコード
+    
+    # 認証が完了したら、編集ページにリダイレクト
+    redirect_to edit_post_path(session[:id])
   end
 
   private
