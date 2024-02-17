@@ -30,9 +30,7 @@ class PostsController < ApplicationController
     @post.images.purge # オリジナル画像とリサイズ画像の両方を保存させないため
     attach_resized_images(params[:post][:images].reject(&:blank?)) if params[:post][:images].reject(&:blank?).present?
 
-    if @post.save!
-      redirect_to posts_path, flash: { success: t('posts.create.success') }
-    end
+    redirect_to posts_path, flash: { success: t('posts.create.success') } if @post.save!
   rescue => e
     handle_content_analysis_error(e)
   end
@@ -50,13 +48,12 @@ class PostsController < ApplicationController
     return if post_invalid
     return if content_moderated(@post)
 
+    @post.reload
     @post.images.purge
     images = params[:post][:images].present? ? params[:post][:images].reject(&:blank?) : []
     attach_resized_images(images)
 
-    if @post.save! # 上記を満たせば保存
-      redirect_to post_path(@post), flash: { success: t('posts.update.success') }
-    end
+    redirect_to post_path(@post), flash: { success: t('posts.update.success') } if @post.save!
   rescue => e
     handle_content_analysis_error(e)
   end
@@ -93,7 +90,7 @@ class PostsController < ApplicationController
   private
 
   def restore_search_conditions
-    [:q, :category_ids_in].each do |key|
+    %i[q category_ids_in].each do |key|
       if params[key].present?
         session[key] = params[key]
       elsif session[key].present?
