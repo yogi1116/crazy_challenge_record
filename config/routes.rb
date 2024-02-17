@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     collection do
       get 'ranking'
       get 'reset_search'
+      get 'callback'
     end
   end
 end

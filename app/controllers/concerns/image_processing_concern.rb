@@ -2,7 +2,6 @@ module ImageProcessingConcern
   extend ActiveSupport::Concern
 
   def process_image(image, width: 800, height: 800)
-    return unless image
 
     if image.content_type == 'image/heic'
       processed_image = ::ImageProcessing::Vips

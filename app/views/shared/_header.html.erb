@@ -21,10 +21,10 @@
             <button type="button" class="text-black transition hover:text-white pl-6" data-action="click->dropdown#toggleMenu">POST</button>
             <ul class="hidden absolute w-48 bg-white shadow-md mt-2 rounded-md py-1" data-dropdown-target="menu">
               <li>
-                <%= link_to 'COMPLETE', new_post_path(challenge_result: 'complete'), class:'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-300' %>
+                <%= link_to 'COMPLETE', callback_posts_path(challenge_result: 'complete'), class:'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-300' %>
               </li>
               <li>
-                <%= link_to 'GIVE UP', new_post_path(challenge_result: 'give_up'), class:'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-300' %>
+                <%= link_to 'GIVE UP', callback_posts_path(challenge_result: 'give_up'), class:'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-300' %>
               </li>
             </ul>
           </li>
@@ -63,10 +63,10 @@
           <button type="button" class="text-white transition" data-action="click->dropdown#toggleMenu">POST</button>
           <ul class="hidden absolute w-48 bg-white shadow-md mt-2 rounded-md" data-dropdown-target="menu">
             <li>
-              <%= link_to 'COMPLETE', new_post_path(challenge_result: 'complete'), class:'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-300' %>
+              <%= link_to 'COMPLETE', callback_posts_path(challenge_result: 'complete'), class:'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-300' %>
             </li>
             <li>
-              <%= link_to 'GIVE UP', new_post_path(challenge_result: 'give_up'), class:'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-300' %>
+              <%= link_to 'GIVE UP', callback_posts_path(challenge_result: 'give_up'), class:'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-300' %>
             </li>
           </ul>
         </li>

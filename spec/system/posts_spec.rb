@@ -149,11 +149,11 @@ RSpec.describe "Posts", type: :system do
 
       it '有害な投稿内容を含むとNatural language APIにより投稿阻止' do
         click_on 'COMPLETE'
-        fill_in 'post[title]', with: 'title'
-        fill_in 'post[content]', with: '死・犯罪・災害・戦争・暴力・薬物' # 挑戦内容に有害な単語を記載
-        fill_in 'post[record]', with: 'record'
-        fill_in 'post[impression_event]', with: 'implession_event'
-        fill_in 'post[lesson]', with: 'lesson'
+        fill_in 'post[title]', with: '死'
+        fill_in 'post[content]', with: '災害'
+        fill_in 'post[record]', with: '暴力'
+        fill_in 'post[impression_event]', with: '戦争'
+        fill_in 'post[lesson]', with: '大麻'
         check_categories('1', '2', '3')
         upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         using_wait_time(4) do
@@ -174,7 +174,7 @@ RSpec.describe "Posts", type: :system do
       link = "/posts/#{post_id}"
       expect(page).to have_selector("a[href='#{link}']")
       find("a[href='#{link}']").click
-      link = "/posts/#{post_id}/edit"
+      link = "/posts/callback?post_id=#{post_id}"
       expect(page).to have_selector("a[href='#{link}']")
       find("a[href='#{link}']").click
       fill_in 'post[title]', with: 'edit_title'
@@ -197,6 +197,25 @@ RSpec.describe "Posts", type: :system do
       expect(page).to have_selector("a[href='#{link}']")
       find("a[href='#{link}']").click
       have_no_content('編集')
+    end
+
+    it '有害な投稿内容を含むとNatural language APIにより投稿阻止' do
+      post_id = complete_post.id
+      link = "/posts/#{post_id}"
+      expect(page).to have_selector("a[href='#{link}']")
+      find("a[href='#{link}']").click
+      link = "/posts/callback?post_id=#{post_id}"
+      expect(page).to have_selector("a[href='#{link}']")
+      find("a[href='#{link}']").click
+      fill_in 'post[title]', with: '死'
+      fill_in 'post[content]', with: '災害'
+      fill_in 'post[record]', with: '暴力'
+      fill_in 'post[impression_event]', with: '戦争'
+      fill_in 'post[lesson]', with: '大麻'
+      using_wait_time(4) do
+        click_on '更新する'
+        expect(page).to have_content('不適切なコンテンツが含まれています：死や害・ 冒とく・ 違法ドラッグ・ 戦争')
+      end
     end
   end
 
@@ -288,7 +307,6 @@ RSpec.describe "Posts", type: :system do
         link = "/posts/#{post_id}"
         expect(page).to have_selector("a[href='#{link}']")
         find("a[href='#{link}']").click
-        link = "/posts/#{post_id}/likes"
         expect(page).to have_content('冒険・探究')
       end
 

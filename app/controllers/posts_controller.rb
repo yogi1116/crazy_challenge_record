@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   include ImageProcessingConcern
+  include PostModerationConcern
 
   skip_before_action :require_login, only: %i[index ranking reset_search]
   before_action :restore_search_conditions, only: [:index]
@@ -22,21 +23,14 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(post_params.except(:images))
-    if content_moderated?(@post.content)
-      flash.now[:error] = moderation_message
-      render :new, status: :unprocessable_entity
-      return
-    end
+    @post = current_user.posts.build(post_params)
+    return if post_invalid
+    return if content_moderated(@post)
 
-    attach_resized_images(params[:post][:images]) if params[:post][:images].present?
+    @post.images.purge # オリジナル画像とリサイズ画像の両方を保存させないため
+    attach_resized_images(params[:post][:images].reject(&:blank?)) if params[:post][:images].reject(&:blank?).present?
 
-    if @post.save
-      redirect_to posts_path, flash: { success: t('posts.create.success') }
-    else
-      flash.now[:error] = t('.fail')
-      render :new, status: :unprocessable_entity
-    end
+    redirect_to posts_path, flash: { success: t('posts.create.success') } if @post.save!
   rescue => e
     handle_content_analysis_error(e)
   end
@@ -50,18 +44,18 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
-    images = params[:post][:images].present? ? params[:post][:images].reject(&:blank?) : []
-    # 既存の画像を削除
+    @post.assign_attributes(post_params) # 仮代入のためupdateメソッドは使わない
+    return if post_invalid
+    return if content_moderated(@post)
+
+    @post.reload
     @post.images.purge
-    # アップロードされた画像をリサイズしてアタッチ
+    images = params[:post][:images].present? ? params[:post][:images].reject(&:blank?) : []
     attach_resized_images(images)
 
-    if @post.update(post_params.except(:images))
-      redirect_to post_path(@post), flash: { success: t('posts.update.success') }
-    else
-      flash.now[:error] = t('.fail')
-      render :edit, status: :unprocessable_entity
-    end
+    redirect_to post_path(@post), flash: { success: t('posts.update.success') } if @post.save!
+  rescue => e
+    handle_content_analysis_error(e)
   end
 
   def destroy
@@ -80,10 +74,23 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def callback
+    if params[:post_id].present?
+      redirect_to edit_post_path(params[:post_id])
+    else
+      case params[:challenge_result]
+      when 'complete'
+        redirect_to new_post_path(challenge_result: 'complete')
+      when 'give_up'
+        redirect_to new_post_path(challenge_result: 'give_up')
+      end
+    end
+  end
+
   private
 
   def restore_search_conditions
-    [:q, :category_ids_in].each do |key|
+    %i[q category_ids_in].each do |key|
       if params[key].present?
         session[key] = params[key]
       elsif session[key].present?
@@ -92,30 +99,11 @@ class PostsController < ApplicationController
     end
   end
 
-  def content_moderated?(content)
-    moderation_service = ContentModerationService.new(content)
-    result = moderation_service.analyze
-    categories = result['moderationCategories'].to_a
-    @high_confidence_categories = categories.select { |category| category['confidence'] > 0.8 }
-    @high_confidence_categories.any?
-  end
-
-  def moderation_message
-    inappropriate_content = @high_confidence_categories.map { |category| t("moderation_categories.#{category['name']}") }.join('・ ')
-    "不適切なコンテンツが含まれています：#{inappropriate_content}"
-  end
-
   def attach_resized_images(images)
-    images.reject(&:blank?).each do |image|
+    images.each do |image|
       resized_image_attributes = process_image(image, width: 800, height: 800)
       @post.images.attach(resized_image_attributes) if resized_image_attributes
     end
-  end
-
-  def handle_content_analysis_error(e)
-    logger.error(e.message)
-    flash.now[:error] = 'Content analysis failed.'
-    render :new, status: :unprocessable_entity
   end
 
   def post_params
