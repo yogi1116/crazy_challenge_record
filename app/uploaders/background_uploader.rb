@@ -3,7 +3,17 @@ class BackgroundUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   include CarrierWave::MiniMagick
 
+  process :convert_heic_to_jpeg
   process :conditional_resize
+
+  def convert_heic_to_jpeg
+    if file.extension.downcase == 'heic'
+      cache_stored_file! if !cached?
+      image = MiniMagick::Image.open(current_path)
+      image.format('jpg')
+      image.write(current_path)
+    end
+  end
 
   def conditional_resize
     image = MiniMagick::Image.open(file.path)
@@ -41,9 +51,9 @@ class BackgroundUploader < CarrierWave::Uploader::Base
 
   # Add an allowlist of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_allowlist
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_allowlist
+    %w[jpg jpeg gif png]
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
