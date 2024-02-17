@@ -1,11 +1,15 @@
-<div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-8 md:pb-10 md:pt-5 min-h-screen" style="background-image: url('<%= image_path('post.jpeg') %>'); background-position: center; background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
+<div class="px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-8 md:pb-10 md:pt-5 min-h-screen bg-fixed" style="background-image: url('<%= image_path('post.jpeg') %>'); background-position: center; background-repeat: no-repeat; background-size: cover;">
   <div class="mb-10">
     <%= render 'search_form' %>
   </div>
   <div class="grid gap-5 lg:grid-cols-4 sm:max-w-sm sm:mx-auto lg:max-w-full">
     <% @posts.each do |post| %>
     <div class="overflow-hidden transition-shadow duration-300 bg-white rounded py-8 bg-white border rounded relative flex flex-col items-center">
-      <%= image_tag(post.display_image, style: 'width: 250px; height: 250px; object-fit: cover;') %>
+      <% if post.images.present? %>
+      <%= image_tag post.images.first, class: 'h-72 w-72 object-cover' %>
+      <% else %>
+      <%= image_tag post.display_image, class: 'h-72 w-72 object-cover' %>
+      <% end %>
       <div class="flex flex-col py-5 w-3/4">
         <p class="mb-2 text-xs font-semibold text-gray-600 uppercase"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></p>
         <div class="flex space-x-2 items-center mb-6">

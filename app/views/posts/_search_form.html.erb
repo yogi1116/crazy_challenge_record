@@ -6,9 +6,9 @@
 
   <div class="form-group mb-1" data-controller="dropdown-multiselect">
     <label for="category" class="text-white"><%= t('posts.index.search_form.category') %></label>
-    <div data-target="dropdown-multiselect.dropdown" data-action="click->dropdown-multiselect#toggleDropdownMenu" class="dropdown bg-white p-2 rounded cursor-pointer md:w-48 flex items-center border-solid border border-slate-500">
-      <%= t('posts.index.search_form.choose_category') %>
-      <svg class="h-5 w-5 ml-60 md:ml-[4.5rem] text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <div data-target="dropdown-multiselect.dropdown" data-action="click->dropdown-multiselect#toggleDropdownMenu" class="dropdown bg-white p-2 rounded cursor-pointer md:w-48 flex justify-between items-center border-solid border border-slate-500">
+      <span><%= t('posts.index.search_form.choose_category') %></span>
+      <svg class="h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
       </svg>
     </div>

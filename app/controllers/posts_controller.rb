@@ -30,7 +30,7 @@ class PostsController < ApplicationController
     @post.images.purge # オリジナル画像とリサイズ画像の両方を保存させないため
     attach_resized_images(params[:post][:images].reject(&:blank?)) if params[:post][:images].reject(&:blank?).present?
 
-    redirect_to posts_path, flash: { success: t('posts.create.success') } if @post.save!
+    redirect_to post_path(@post), flash: { success: t('posts.create.success') } if @post.save!
   rescue => e
     handle_content_analysis_error(e)
   end

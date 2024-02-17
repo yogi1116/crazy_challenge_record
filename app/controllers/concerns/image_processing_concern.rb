@@ -8,13 +8,11 @@ module ImageProcessingConcern
                           .source(image.tempfile)
                           .convert('jpg') # HEICをJPEGに変換
                           .resize_to_limit(width, height)
-                          .saver(quality: 80)
                           .call
     else
       processed_image = ::ImageProcessing::Vips
                           .source(image.tempfile)
                           .resize_to_limit(width, height)
-                          .saver(quality: 80)
                           .call
     end
 
