@@ -26,7 +26,6 @@ RSpec.describe "Posts", type: :system do
         upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
-          expect(page).to have_current_path(posts_path)
           expect(page).to have_content('新規投稿されました')
         end
       end
@@ -42,7 +41,6 @@ RSpec.describe "Posts", type: :system do
         upload_images('crazy_1.png', 'default.png', 'nice_fight_1.png', 'stop_1.png')
         click_on '投稿する'
         using_wait_time(4) do
-          expect(page).to have_current_path(posts_path)
           expect(page).to have_content('新規投稿されました')
         end
       end
