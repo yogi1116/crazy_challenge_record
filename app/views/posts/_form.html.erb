@@ -1,6 +1,6 @@
 <%= form_with model: post, local: true do |f| %>
 <%= f.hidden_field :challenge_result, value: post.challenge_result %>
-<div data-controller="background" class="flex flex-col items-center justify-center min-h-screen" style="background-image:url('<%= image_path('post.jpeg') %>');">
+<div data-controller="background" class="bg-fit bg-cover flex flex-col items-center justify-center min-h-screen" style="background-image:url('<%= image_path('post.jpeg') %>');">
   <%= render 'shared/error_messages', object: f.object, text_color: 'text-red-600' %>
   <div class="container m-4">
     <div class="max-w-3xl w-full mx-auto grid gap-4 grid-cols-1">
