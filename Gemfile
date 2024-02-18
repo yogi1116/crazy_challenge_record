@@ -71,6 +71,7 @@ gem 'googleauth'
 
 # 本番環境での画像保存用gem
 gem "aws-sdk-s3"
+gem "carrierwave-aws"
 
 # ページネーション
 gem 'kaminari'

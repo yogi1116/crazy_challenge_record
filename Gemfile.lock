@@ -119,6 +119,9 @@ GEM
       image_processing (~> 1.1)
       marcel (~> 1.0.0)
       ssrf_filter (~> 1.0)
+    carrierwave-aws (1.6.0)
+      aws-sdk-s3 (~> 1.0)
+      carrierwave (>= 2.0, < 4)
     coderay (1.1.3)
     concurrent-ruby (1.2.2)
     config (5.1.0)
@@ -476,6 +479,7 @@ DEPENDENCIES
   bullet
   capybara
   carrierwave (~> 3.0)
+  carrierwave-aws
   config
   debug
   dockerfile-rails (>= 1.5)
