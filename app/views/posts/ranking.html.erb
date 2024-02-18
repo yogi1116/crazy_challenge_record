@@ -1,4 +1,4 @@
-<div class="p-6 min-h-screen w-full bg-no-repeat bg-cover bg-center" style="background-image:url('<%= image_path('top.jpeg') %>'); background-repeat: no-repeat; background-size: cover; background-attachment: fixed;">
+<div data-controller="background" class="p-6 min-h-screen w-full bg-no-repeat bg-cover bg-center" style="background-image:url('<%= image_path('top.jpeg') %>');">
   <% @posts.each_with_index do |post, index| %>
     <% bg_color, tag_bg_color, border_color, text_color = color_classes_for_rank(index + 1) %>
     <section class="relative">
