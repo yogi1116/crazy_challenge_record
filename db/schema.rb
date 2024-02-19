@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_13_105527) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_19_074432) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -78,6 +78,16 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_13_105527) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "body", null: false
+    t.bigint "user_id", null: false
+    t.bigint "receiver_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["receiver_id"], name: "index_messages_on_receiver_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "post_categories", force: :cascade do |t|
     t.bigint "post_id", null: false
     t.bigint "category_id", null: false
@@ -140,6 +150,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_13_105527) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "messages", "users"
+  add_foreign_key "messages", "users", column: "receiver_id"
   add_foreign_key "post_categories", "categories"
   add_foreign_key "post_categories", "posts"
   add_foreign_key "posts", "users"
