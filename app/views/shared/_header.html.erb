@@ -41,6 +41,7 @@
 
       <div class="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden top-full" data-target="dropdown.menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
         <%= link_to 'PROFILE', profile_path, class:'block px-4 py-2 text-sm text-slate-950 hover:bg-gray-300', id:'user-menu-item-0' %>
+        <%= link_to 'CHAT LIST', messages_path, class:'block px-4 py-2 text-sm text-slate-950 hover:bg-gray-300', id:'user-menu-item-0' %>
         <%= link_to 'LOGOUT', logout_path, class:'block px-4 py-2 text-sm text-slate-950 hover:bg-gray-300', id:'user-menu-item-2', data: { turbo_method: :delete } %>
       </div>
     </div>
@@ -74,6 +75,7 @@
         <%= link_to 'POST LIST', posts_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
         <%= link_to 'RANKING', ranking_posts_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
         <%= link_to 'PROFILE', profile_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
+        <%= link_to 'CHAT LIST', messages_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
         <%= link_to 'LOGOUT', logout_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300', data: { turbo_method: :delete } %>
         <%= link_to t('defaults.terms_of_service'), terms_of_service_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
         <%= link_to t('defaults.privacy_policy'), privacy_policy_path, class:'block px-4 p-3 text-sm text-white transition flex items-center justify-center hover:bg-blue-300' %>
