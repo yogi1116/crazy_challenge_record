@@ -25,4 +25,5 @@ Rails.application.routes.draw do
       get 'callback'
     end
   end
+  resources :messages, only: %i[index create show destroy]
 end
