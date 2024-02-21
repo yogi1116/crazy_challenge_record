@@ -25,8 +25,10 @@
         <% if @messages.empty? %>
           <p>まだメッセージがありません</p>
         <% else %>
+          <% previous_time = nil %>
           <% @messages.each do |message| %>
-            <%= render 'message', { message: message } %>
+            <%= render 'message', { message: message, previous_time: previous_time } %>
+            <% previous_time = message.created_at.strftime('%H:%M') %>
           <% end %>
         <% end %>
 
