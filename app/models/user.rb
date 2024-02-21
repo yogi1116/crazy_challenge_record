@@ -40,8 +40,14 @@ class User < ApplicationRecord
     liked_posts.destroy(post)
   end
 
+  # パラメータからidを取得する際はuuidがデフォルト
   def to_param
     uuid
+  end
+
+  # uuidをidに変換
+  def self.find_id_by_uuid(uuid)
+    find_by(uuid: uuid)&.id
   end
 
   private
