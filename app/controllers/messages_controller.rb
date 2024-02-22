@@ -23,6 +23,17 @@ class MessagesController < ApplicationController
                               current_user.id, receiver_id, receiver_id, current_user.id)
     @message = Message.new
     @message.receiver_id = @receiver.id
+
+    last_message_id = params[:last_message_id]
+    if last_message_id
+      additional_messages = Message.where("id < ?", last_message_id).limit(10)
+      @messages = @messages.or(additional_messages)
+    end
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
 
   def destory

@@ -1,16 +1,16 @@
-<div class="mt-auto flex flex-row items-center  h-16 rounded-xl bg-white w-full px-4">
+<div class="flex flex-row items-center rounded-xl bg-white px-4">
   <%= form_with model: message, data: { turbo_frame: "message_frame" } do |f| %>
     <%= f.hidden_field :receiver_id %>
-    <div class="flex items-center">
+    <div class="flex items-center p-2">
       <button class="flex items-center justify-center text-gray-400 hover:text-gray-600 mr-2">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
         </svg>
       </button>
-      <%= f.text_area :body, class: 'border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10' %>
+      <%= f.text_area :body, class: 'border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10 p-2 w-full' %>
       <button class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-2 flex-shrink-0 ml-3">
         <span class="ml-2">
-          <svg class="w-4 h-4 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg class="w-5 h-5 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
           </svg>
         </span>

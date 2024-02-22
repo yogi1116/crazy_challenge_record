@@ -20,20 +20,22 @@
       </div>
     </div>
 
-    <div class="flex flex-col flex-auto h-full p-6">
-      <div class="flex flex-col flex-auto flex-shrink-0 rounded-2xl bg-gray-100 h-full p-4">
-        <% if @messages.empty? %>
-          <p>まだメッセージがありません</p>
-        <% else %>
-          <% previous_time = nil %>
-          <% @messages.each do |message| %>
-            <%= render 'message', { message: message, previous_time: previous_time } %>
-            <% previous_time = message.created_at.strftime('%H:%M') %>
+    <div data-controller="infinite-scroll" class="flex flex-col h-full p-6">
+      <%= turbo_frame_tag "messages" do %>
+        <div class="flex flex-col rounded-2xl bg-gray-100 p-4 overflow-y-auto" style="max-height: 80vh;">
+          <% if @messages.empty? %>
+            <p>まだメッセージがありません</p>
+          <% else %>
+            <% previous_time = nil %>
+            <% @messages.each do |message| %>
+              <%= render 'message', { message: message, previous_time: previous_time } %>
+              <% previous_time = message.created_at.strftime('%H:%M') %>
+            <% end %>
+            <div id="scroll-anchor" data-action="infinite-scroll#loadMore"></div>
           <% end %>
-        <% end %>
-
-        <%= render 'form', { message: @message } %>
-      </div>
+        </div>
+      <% end %>
+      <%= render 'form', { message: @message } %>
     </div>
   </div>
 </div>
