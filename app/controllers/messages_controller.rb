@@ -6,13 +6,15 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.sent_messages.build(message_params)
     if @message.save
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to messages_path }
-      end
+      ChatChannel.broadcast_to(
+        @message.receiver,  # メッセージの受信者を指定
+        { message: @message.as_json, sender: current_user.username }  # メッセージと送信者の情報をJSON形式で送る
+      )
     else
-      prepare_messages
-      respond_with_error
+      ChatChannel.broadcast_to(
+        current_user,  # 現在のユーザー（メッセージの送信者）にエラーを通知
+        { error: @message.errors.full_messages.to_sentence }  # エラーメッセージを含むJSONオブジェクト
+      )
     end
   end
 
