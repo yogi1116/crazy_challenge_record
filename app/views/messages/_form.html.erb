@@ -1,5 +1,5 @@
 <div class="flex flex-row items-center rounded-xl bg-white px-4">
-  <%= form_with model: message, data: { turbo_frame: "message_frame" } do |f| %>
+  <%= form_with model: message, local: true do |f| %>
     <%= f.hidden_field :receiver_id %>
     <div class="flex items-center p-2">
       <button class="flex items-center justify-center text-gray-400 hover:text-gray-600 mr-2">
