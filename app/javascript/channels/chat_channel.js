@@ -1,8 +1,9 @@
 import consumer from "./consumer"
 
+// メッセージ送信用の関数を追加
 consumer.subscriptions.create({ channel: "ChatChannel", conversation_id: conversationId }, {
   connected() {
-    console.log("チャンネルに接続しました");
+    console.log("Conversation ID:", this.conversation_id);
   },
 
   disconnected() {
@@ -18,5 +19,17 @@ consumer.subscriptions.create({ channel: "ChatChannel", conversation_id: convers
     if (data.error) {
       alert(data.error);
     }
+  },
+
+  // メッセージ送信用のメソッド
+  send_message: function(message) {
+    return this.perform('send_message', { message: message });
   }
+});
+
+// 送信ボタンクリックイベントにメッセージ送信機能を組み込む
+document.getElementById('send_button').addEventListener('click', function() {
+  var message = document.getElementById('message_input').value;
+  // ここでメッセージを送信
+  consumer.subscriptions.subscriptions[0].send_message(message);
 });
