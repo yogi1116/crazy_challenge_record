@@ -8,7 +8,7 @@ class User < ApplicationRecord
   has_many :liked_posts, through: :likes, source: :post
   has_many :comments, dependent: :destroy
   has_many :authentications, :dependent => :destroy
-  has_many :sent_messages, class_name: 'Message', foreign_key: 'user_id'
+  has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id'
   has_many :received_messages, class_name: 'Message', foreign_key: 'receiver_id'
   accepts_nested_attributes_for :authentications
 

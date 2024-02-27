@@ -80,12 +80,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_19_074432) do
 
   create_table "messages", force: :cascade do |t|
     t.text "body", null: false
-    t.bigint "user_id", null: false
+    t.bigint "sender_id", null: false
     t.bigint "receiver_id", null: false
+    t.datetime "sent_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["receiver_id"], name: "index_messages_on_receiver_id"
-    t.index ["user_id"], name: "index_messages_on_user_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
   end
 
   create_table "post_categories", force: :cascade do |t|
@@ -150,8 +151,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_19_074432) do
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
-  add_foreign_key "messages", "users"
   add_foreign_key "messages", "users", column: "receiver_id"
+  add_foreign_key "messages", "users", column: "sender_id"
   add_foreign_key "post_categories", "categories"
   add_foreign_key "post_categories", "posts"
   add_foreign_key "posts", "users"
