@@ -1,9 +1,9 @@
 import consumer from "./consumer"
 
 // メッセージ送信用の関数を追加
-consumer.subscriptions.create({ channel: "ChatChannel", conversation_id: conversationId }, {
+consumer.subscriptions.create( "ChatChannel", {
   connected() {
-    console.log("Conversation ID:", this.conversation_id);
+    console.log("チャンネルを接続しました");
   },
 
   disconnected() {

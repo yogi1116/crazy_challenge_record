@@ -1,7 +1,7 @@
 <div class="flex flex-col h-full">
   <div class="flex flex-col h-full">
     <div class="grid grid-cols-12 gap-y-2">
-      <% if message.user_id == current_user.id %>
+      <% if message.sender_id == current_user.id %>
         <div class="col-start-3 col-end-13 rounded-lg">
           <div class="flex flex-row justify-end items-end">
             <div class="text-xs mr-1 text-gray-500">
@@ -13,7 +13,7 @@
           </div>
         </div>
       <% else %>
-        <% current_time = message.created_at.strftime('%H:%M') %>
+        <% current_time = message.sent_at.strftime('%H:%M') %>
         <div class="col-start-1 col-end-11 rounded-lg m-1">
           <div class="flex flex-row items-center">
             <% if previous_time != current_time %>
