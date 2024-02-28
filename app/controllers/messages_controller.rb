@@ -10,7 +10,7 @@ class MessagesController < ApplicationController
       ChatChannel.broadcast_to(
         @message.receiver,
         { message: @message.as_json, type: 'message' }
-    )
+      )
     else
       ChatChannel.broadcast_to(
         current_user,

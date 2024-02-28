@@ -1,4 +1,4 @@
-<div class="flex h-screen antialiased text-gray-800">
+<div data-receiver-id="<%= @receiver.id %>" class="flex h-screen antialiased text-gray-800">
   <div class="flex flex-row h-full w-full overflow-x-hidden">
     <div class="hidden sm:block">
       <div class="flex flex-col py-8 pl-6 pr-2 w-64 bg-white flex-shrink-0">
@@ -36,3 +36,9 @@
     </div>
   </div>
 </div>
+
+<% content_for :js do %>
+  <script type="module">
+    import "channels/chat_channel"
+  </script>
+<% end %>
