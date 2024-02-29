@@ -1,6 +1,16 @@
 class MessagesController < ApplicationController
   def index
+    sent_messages = current_user.sent_messages.select(:receiver_id).distinct
+    received_messages = current_user.received_messages.select(:sender_id).distinct
 
+    user_ids = sent_messages.pluck(:receiver_id) + received_messages.pluck(:sender_id)
+    user_ids.uniq!
+
+    @users_with_last_message = user_ids.map do |user_id|
+      user = User.find(user_id)
+      last_message = Message.where(sender: [current_user, user], receiver: [current_user, user]).order(created_at: :desc).first
+      { user: user, last_message: last_message }
+    end
   end
 
   def create
