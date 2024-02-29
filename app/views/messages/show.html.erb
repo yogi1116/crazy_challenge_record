@@ -21,9 +21,11 @@
     </div>
 
     <div class="flex flex-col p-6 w-full">
-      <div class="flex flex-col rounded-2xl bg-gray-200 p-4 overflow-y-auto" id="messages" style="max-height: 80vh;">
+      <div  class="flex flex-col rounded-2xl bg-gray-200 p-4 overflow-y-auto" id="messages" style="max-height: 80vh; min-height: 80vh;">
         <% if @messages.empty? %>
-          <p>まだメッセージがありません</p>
+          <div id="no-messages" class="items-center justify-center" style="flex-grow: 1; display: flex; justify-content: center; align-items: center;">
+            <p>メッセージがありません</p>
+          </div>
         <% else %>
           <% previous_time = nil %>
           <% @messages.each do |message| %>

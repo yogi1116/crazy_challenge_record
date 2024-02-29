@@ -83,6 +83,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_19_074432) do
     t.bigint "sender_id", null: false
     t.bigint "receiver_id", null: false
     t.datetime "sent_at"
+    t.string "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["receiver_id"], name: "index_messages_on_receiver_id"
