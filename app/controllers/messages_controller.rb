@@ -7,15 +7,14 @@ class MessagesController < ApplicationController
     @message = current_user.sent_messages.build(message_params)
     @message.sent_at = Time.current
     if @message.save
-      ChatChannel.broadcast_to(
-        @message.receiver,
-        { message: @message.as_json, type: 'message' }
-      )
+      respond_to do |format|
+        format.turbo_stream
+        format.html { redirect_to message_path(current_user) }
+      end
     else
-      ChatChannel.broadcast_to(
-        current_user,
-        { error: @message.errors.full_messages.to_sentence }
-      )
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace("message_form", partial: "messages/form", locals: { message: @message }) }
+      end
     end
   end
 

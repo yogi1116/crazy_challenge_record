@@ -1,5 +1,14 @@
-<div class="flex flex-row items-center rounded-xl bg-white px-4">
-  <%= form_with model: message, local: true do |f| %>
+<div class="flex flex-row items-center rounded-xl bg-white px-4" id="message_form">
+  <%= form_with model: message, local: true, data: { controller: "reset-form" } do |f| %>
+    <div id="message_form_errors">
+      <% if message.errors.any? %>
+        <ul>
+          <% message.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
     <%= f.hidden_field :receiver_id %>
     <div class="flex items-center p-2">
       <button class="flex items-center justify-center text-gray-400 hover:text-gray-600 mr-2">
