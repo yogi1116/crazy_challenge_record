@@ -1,7 +1,6 @@
 <div data-controller="background" class="bg-fit bg-cover px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-2xl md:px-8 md:pb-10 md:pt-5 min-h-screen" style="background-image: url('<%= image_path('post.jpeg') %>'); ">
   <div class="container px-6 py-10 mx-auto">
     <h1 class="text-3xl font-semibold text-center text-white capitalize lg:text-4xl">You are chat list</h1>
-
     <div class="grid grid-cols-1 gap-8 mt-8 xl:mt-16 md:grid-cols-2">
       <% @users_with_last_message.each do |item| %>
         <%= link_to message_path(item[:user].uuid) do %>
@@ -22,4 +21,4 @@
       <% end %>
     </div>
   </div>
-</section>
+</div>

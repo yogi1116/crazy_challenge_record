@@ -2,28 +2,35 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="infinite-scroll"
 export default class extends Controller {
-  static targets = ["container"]
+  static debouncedLoadMessages = null; // デバウンス用のタイマーIDを保持
 
-  connect() {
-    this.loadMore()
+  initialize() {
+    this.loading = false;
+    this.page = 1;
+    this.debounceInterval = 200; // デバウンスの間隔（ミリ秒）
   }
 
-  loadMore() {
-    window.addEventListener('scroll', () => {
-      if (window.scrollY + window.innerHeight > document.body.offsetHeight - 100) { // 100px はトリガーとなる閾値
-        let lastMessage = this.containerTarget.lastElementChild
-        let lastMessageId = lastMessage.dataset.messageId
-
-        fetch(`/your_endpoint?last_message_id=${lastMessageId}`, {
-          headers: {
-            'Accept': 'text/vnd.turbo-stream.html',
-          },
-        })
-        .then(response => response.text())
-        .then(html => Turbo.renderStreamMessage(html))
+  scroll() {
+    // デバウンス処理
+    clearTimeout(this.constructor.debouncedLoadMessages); // 既存のタイマーをクリア
+    this.constructor.debouncedLoadMessages = setTimeout(() => {
+      if (this.element.scrollTop < 100 && !this.loading) {
+        this.loadMessages();
       }
-    }, { passive: true })
+    }, this.debounceInterval);
+  }
+
+  loadMessages() {
+    if (this.loading) return;
+    this.loading = true;
+
+    fetch(`/messages?page=${this.page}`)
+      .then(response => response.text())
+      .then(data => {
+        // メッセージの追加処理
+        this.page += 1;
+      })
+      .catch(error => console.error("Error loading messages:", error))
+      .finally(() => this.loading = false);
   }
 }
-
-
