@@ -1,4 +1,6 @@
 class MessagesController < ApplicationController
+  skip_before_action :require_login
+
   def index
     sent_messages = current_user.sent_messages.select(:receiver_id).distinct
     received_messages = current_user.received_messages.select(:sender_id).distinct
