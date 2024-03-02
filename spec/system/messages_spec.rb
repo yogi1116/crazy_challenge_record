@@ -38,5 +38,15 @@ RSpec.describe "Messages", type: :system do
       message = Message.order(created_at: :desc).first
       expect(page).to have_selector("img[src='/uploads/message/image/#{message.id}/comment.png']")
     end
+
+    it '無記入のメッセージは送信できない' do
+      login(user)
+      user_uuid = another_user.uuid
+      visit_user_profile(user_uuid) # ユーザーBのプロフィールへ
+      visit_user_messages(user_uuid)
+      fill_in 'message[body]', with: ''
+      find('.bg-lime-400').click
+      expect(page).to have_content('メッセージか画像のいずれかを入力してください')
+    end
   end
 end

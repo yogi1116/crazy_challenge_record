@@ -3,7 +3,7 @@
     <%= form_with model: message, local: true, multipart: true, data: { controller: "reset-form message-preview", action: "submit->message-preview#clearPreview" } do |f| %>
       <div id="message_form_errors">
         <% if message.errors.any? %>
-          <ul>
+          <ul class="text-white">
             <% message.errors.full_messages.each do |msg| %>
               <li><%= msg %></li>
             <% end %>
