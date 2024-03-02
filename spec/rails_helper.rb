@@ -66,4 +66,5 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
   config.include LoginSupport
   config.include PasswordResetHelpers
+  config.include ChatRouteHelpers
 end

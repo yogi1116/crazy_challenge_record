@@ -6,6 +6,7 @@ class UserSessionsController < ApplicationController
   def create
     @user = login(params[:email], params[:password])
     if @user
+      session[:user_id] = @user.id
       redirect_back_or_to posts_path, success: t('.success')
     else
       flash.now[:error] = t('.fail')
