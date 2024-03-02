@@ -20,7 +20,6 @@ class Post < ApplicationRecord
   enum retry: { try: 0, no_try: 1 }
 
   def likes_count_by_button_type
-    # ここに各ボタンタイプのいいね数を返すロジックを実装
     {
       'crazy_2' => likes.where(button_type: 'crazy').count,
       'fight_2' => likes.where(button_type: 'fight').count,
