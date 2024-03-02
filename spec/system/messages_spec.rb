@@ -26,5 +26,17 @@ RSpec.describe "Messages", type: :system do
         expect(page).to have_content('おはよう')
       end
     end
+
+    it '画像を送信できる' do
+      login(user)
+      user_uuid = another_user.uuid
+      visit_user_profile(user_uuid) # ユーザーBのプロフィールへ
+      visit_user_messages(user_uuid)
+      attach_file('message[image]', 'spec/fixtures/files/comment.png', make_visible: true)
+      find('.bg-lime-400').click # 送信ボタンをクリック
+      sleep 1 # 非同期処理のため待ち時間必須（messageがnilになるの防ぐ目的）
+      message = Message.order(created_at: :desc).first
+      expect(page).to have_selector("img[src='/uploads/message/image/#{message.id}/comment.png']")
+    end
   end
 end
