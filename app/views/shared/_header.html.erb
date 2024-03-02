@@ -39,7 +39,7 @@
         <svg class="hs-dropdown-open:rotate-180 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
       </button>
 
-      <div class="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden top-full" data-target="dropdown.menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+      <div class="absolute right-0 z-10 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden top-full" data-dropdown-target="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
         <%= link_to 'PROFILE', profile_path, class:'block px-4 py-2 text-sm text-slate-950 hover:bg-gray-300', id:'user-menu-item-0' %>
         <%= link_to 'CHAT', messages_path, class:'block px-4 py-2 text-sm text-slate-950 hover:bg-gray-300', id:'user-menu-item-0' %>
         <%= link_to 'LOGOUT', logout_path, class:'block px-4 py-2 text-sm text-slate-950 hover:bg-gray-300', id:'user-menu-item-2', data: { turbo_method: :delete } %>
