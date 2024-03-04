@@ -354,6 +354,10 @@ GEM
       i18n
     rdoc (6.6.0)
       psych (>= 4.0.0)
+    redis (5.1.0)
+      redis-client (>= 0.17.0)
+    redis-client (0.21.0)
+      connection_pool
     regexp_parser (2.8.3)
     reline (0.4.0)
       io-console (~> 0.5)
@@ -499,6 +503,7 @@ DEPENDENCIES
   rails (~> 7.1.1)
   rails-i18n (~> 7.0.0)
   ransack
+  redis (>= 4.0.1)
   rspec-rails
   rubocop
   rubocop-checkstyle_formatter
