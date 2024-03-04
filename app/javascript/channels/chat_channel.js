@@ -1,4 +1,4 @@
-import consumer from "./consumer"
+import consumer from "channels/consumer"
 
 document.addEventListener("turbo:load", () => {
   const receiverIdElement = document.querySelector('[data-receiver-id]');
