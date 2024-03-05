@@ -19,6 +19,7 @@ class MessagesController < ApplicationController
     @message = current_user.sent_messages.build(message_params)
     @message.sent_at = Time.current
     if @message.save
+      MessageBroadcastJob.perform_later(@message, current_user)
       respond_to do |format|
         format.turbo_stream
         format.html { redirect_to message_path(current_user) }
