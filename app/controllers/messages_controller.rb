@@ -29,7 +29,8 @@ class MessagesController < ApplicationController
         sender_id: sender_id,
         receiver_id: receiver_id,
         message_id: @message.id,
-        current_user_id: current_user.id
+        current_user_id: current_user.id,
+        sender_avatar_url: @message.sender.profile.avatar.url
       }
     else
       ActionCable.server.broadcast private_chat_room, { error: render_errors(@message) }

@@ -32,9 +32,10 @@ consumer.subscriptions.create(
 function buildMessageHTML(data, isSender) {
   const imageContent = buildImageContent(data, isSender);
   const avatarContent = buildAvatarContent(data, isSender);
-  const timeContent = `<div class="text-xs ${isSender ? 'mr-1' : 'ml-1'} text-gray-500">${data.message_sent_at}</div>`;
+  const timeContent = `<div class="text-xs ${isSender ? 'mr-1' : 'ml-1 mt-auto'} text-gray-500">${data.message_sent_at}</div>`;
 
   if (isSender) {
+    console.log(data)
     return `
       <div class="col-start-5 md:col-start-3 col-end-13 rounded-lg">
         <div class="flex flex-row justify-end items-end" data-controller="image-viewer">
@@ -60,8 +61,12 @@ function buildImageContent(data, isSender) {
     `<div class="relative text-sm bg-${isSender ? 'indigo-500' : 'white'} py-2 px-4 shadow rounded-xl ${isSender ? 'text-white' : ''} m-1 break-all">${data.message_body}</div>`;
 }
 
+let lastMessageTime = null;
 function buildAvatarContent(data, isSender) {
-  if (!isSender && !data.is_previous_time) {
+  const isPreviousTime = data.message_sent_at === lastMessageTime;
+  lastMessageTime = data.message_sent_at;
+
+  if (!isSender && !isPreviousTime) {
     return `<img src="${data.sender_avatar_url}" class="flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0">`;
   }
   return '';
