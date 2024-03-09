@@ -14,11 +14,15 @@ consumer.subscriptions.create(
     },
 
     received(data) {
-      const messages = document.getElementById('messages');
-      messages.insertAdjacentHTML('beforeend', data['message']);
-      console.log(data)
+      if (data.error) {
+        const errorMessagesContainer = document.getElementById('error-messages');
+        errorMessagesContainer.innerHTML = data.error;
+      } else {
+        const messages = document.getElementById('messages');
+        messages.insertAdjacentHTML('beforeend', data['message']);
 
-      messages.scrollTop = messages.scrollHeight;
+        messages.scrollTop = messages.scrollHeight;
+      }
     }
   }
 );

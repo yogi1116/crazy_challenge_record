@@ -1,7 +1,9 @@
 <div class="bg-yellow-700 mt-3 rounded-lg py-3>
   <div class="items-center rounded-xl px-4">
     <%= form_with model: message, multipart: true, data: { controller: "reset-form message-preview submit-button", action: "submit->message-preview#clearPreview input->submit-button#toggle keyup->submit-button#toggle turbo:submit-end->submit-button#submitEnd" } do |f| %>
-      <%= render 'shared/error_messages', object: f.object, text_color: 'text-white' %>
+      <div class="ml-3 mt-3 font-bold" id="error-messages">
+        <%= render 'shared/error_messages', object: f.object, text_color: 'text-white' %>
+      </div>
       <%= f.hidden_field :receiver_id %>
       <div class="flex items-center p-2">
         <%= f.file_field :image, class: 'hidden', data: { message_preview_target: "input", submit_button_target: "input", action: "change->message-preview#previewImage change->submit-button#toggle" } %>

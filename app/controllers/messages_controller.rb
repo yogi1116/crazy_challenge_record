@@ -18,11 +18,13 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.sent_messages.build(message_params)
     @message.sent_at = Time.current
-    if @message.save!
-      receiver_id = @message.receiver_id
-      sender_id = current_user.id
-      private_chat_room = Message.private_chat_room_name(sender_id, receiver_id)
+    receiver_id = @message.receiver_id
+    sender_id = current_user.id
+    private_chat_room = Message.private_chat_room_name(sender_id, receiver_id)
+    if @message.save
       ActionCable.server.broadcast private_chat_room, { message: render_message(@message, current_user) }
+    else
+      ActionCable.server.broadcast private_chat_room, { error: render_errors(@message) }
     end
   end
 
@@ -43,5 +45,9 @@ class MessagesController < ApplicationController
 
   def render_message(message, current_user)
     ApplicationController.renderer.render(partial: 'messages/message', locals: { message: message, current_user: current_user })
+  end
+
+  def render_errors(message)
+    ApplicationController.renderer.render(partial: 'shared/error_messages', locals: { object: message, text_color: 'text-white' }, formats: [:html])
   end
 end
