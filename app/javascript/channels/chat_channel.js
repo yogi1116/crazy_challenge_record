@@ -18,10 +18,24 @@ consumer.subscriptions.create(
         const errorMessagesContainer = document.getElementById('error-messages');
         errorMessagesContainer.innerHTML = data.error;
       } else {
-        const messages = document.getElementById('messages');
-        messages.insertAdjacentHTML('beforeend', data['message']);
+        const currentUserId = document.body.dataset.userId; // current_userのidをbodyタグから取得
+        const isCurrentUser = Number(data.current_user_id) === Number(currentUserId); // サーバーサイドとクライアントサイドのcurrent_userを比較
+        const messagesContainer = document.getElementById('messages'); // 過去のメッセージ一覧
 
-        messages.scrollTop = messages.scrollHeight;
+        const messageElement = document.createElement('div'); // 新規メッセージ
+        messageElement.innerHTML = data.message; // 受け取ったデータを_message.htmlに当てはめる
+
+        if (isCurrentUser) {
+          // メッセージを送信したユーザーが現在のユーザーの場合
+          messageElement.classList.add('message-sent');
+        } else {
+          // メッセージを送信したユーザーが他のユーザーの場合
+          messageElement.classList.add('message-received');
+        }
+
+        // メッセージをページに挿入
+        messagesContainer.appendChild(messageElement);
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
       }
     }
   }

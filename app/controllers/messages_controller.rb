@@ -22,7 +22,10 @@ class MessagesController < ApplicationController
     sender_id = current_user.id
     private_chat_room = Message.private_chat_room_name(sender_id, receiver_id)
     if @message.save
-      ActionCable.server.broadcast private_chat_room, { message: render_message(@message, current_user) }
+      ActionCable.server.broadcast private_chat_room, {
+      message: render_message(@message, current_user),
+      current_user_id: current_user.id
+      }
     else
       ActionCable.server.broadcast private_chat_room, { error: render_errors(@message) }
     end
