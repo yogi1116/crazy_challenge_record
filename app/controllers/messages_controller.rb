@@ -18,13 +18,11 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.sent_messages.build(message_params)
     @message.sent_at = Time.current
-    if @message.save
+    if @message.save!
       receiver_id = @message.receiver_id
       sender_id = current_user.id
       private_chat_room = Message.private_chat_room_name(sender_id, receiver_id)
       ActionCable.server.broadcast private_chat_room, { message: render_message(@message, current_user) }
-    else
-      
     end
   end
 
