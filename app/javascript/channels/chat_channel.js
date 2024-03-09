@@ -68,6 +68,8 @@ function buildAvatarContent(data, isSender) {
 
   if (!isSender && !isPreviousTime) {
     return `<img src="${data.sender_avatar_url}" class="flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0">`;
+  } else if (!isSender && isPreviousTime) {
+    return `<div class="h-10 w-10 flex-shrink-0"></div>`;
   }
   return '';
 }
