@@ -1,6 +1,6 @@
 <div class="grid grid-cols-12 gap-y-2">
   <% if message.sender_id == current_user.id %>
-    <div class="col-start-5 md:col-start-3 col-end-13 rounded-lg message-sent">
+    <div class="col-start-5 md:col-start-3 col-end-13 rounded-lg">
       <div class="flex flex-row justify-end items-end" data-controller="image-viewer">
         <div class="text-xs mr-1 text-gray-500">
           <%= message.sent_at.strftime('%H:%M') %>
@@ -16,7 +16,7 @@
     </div>
   <% else %>
     <% current_time = message.sent_at.strftime('%H:%M') %>
-    <div class="col-start-1 col-end-11 rounded-lg m-1 message-received">
+    <div class="col-start-1 col-end-11 rounded-lg m-1">
       <div class="flex flex-row items-center" data-controller="image-viewer">
         <% if previous_time != current_time %>
           <%= image_tag @receiver.profile.avatar.url, class: 'flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0' %>

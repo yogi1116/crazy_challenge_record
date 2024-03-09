@@ -1,10 +1,10 @@
 import consumer from "channels/consumer"
 
-const receiver_id_element = document.querySelector('[data-receiver-id]');
-const receiver_id = receiver_id_element.getAttribute('data-receiver-id');
+const receiverIdElement = document.querySelector('[data-receiver-id]');
+const receiverId = receiverIdElement.getAttribute('data-receiver-id');
 
 consumer.subscriptions.create(
-  { channel: "ChatChannel", receiver_id: receiver_id },
+  { channel: "ChatChannel", receiver_id: receiverId },
   {
     connected() {
       console.log("チャンネルを接続しました");
@@ -18,25 +18,56 @@ consumer.subscriptions.create(
         const errorMessagesContainer = document.getElementById('error-messages');
         errorMessagesContainer.innerHTML = data.error;
       } else {
-        const currentUserId = document.body.dataset.userId; // current_userのidをbodyタグから取得
-        const isCurrentUser = Number(data.current_user_id) === Number(currentUserId); // サーバーサイドとクライアントサイドのcurrent_userを比較
-        const messagesContainer = document.getElementById('messages'); // 過去のメッセージ一覧
+        const currentUserId = document.body.dataset.userId;
+        const isSender = Number(data.sender_id) === Number(currentUserId);
+        const messageHTML = buildMessageHTML(data, isSender);
 
-        const messageElement = document.createElement('div'); // 新規メッセージ
-        messageElement.innerHTML = data.message; // 受け取ったデータを_message.htmlに当てはめる
-
-        if (isCurrentUser) {
-          // メッセージを送信したユーザーが現在のユーザーの場合
-          messageElement.classList.add('message-sent');
-        } else {
-          // メッセージを送信したユーザーが他のユーザーの場合
-          messageElement.classList.add('message-received');
-        }
-
-        // メッセージをページに挿入
-        messagesContainer.appendChild(messageElement);
-        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        document.getElementById('messages').insertAdjacentHTML('beforeend', messageHTML);
+        scrollToBottom();
       }
     }
   }
 );
+
+function buildMessageHTML(data, isSender) {
+  const imageContent = buildImageContent(data, isSender);
+  const avatarContent = buildAvatarContent(data, isSender);
+  const timeContent = `<div class="text-xs ${isSender ? 'mr-1' : 'ml-1'} text-gray-500">${data.message_sent_at}</div>`;
+
+  if (isSender) {
+    return `
+      <div class="col-start-5 md:col-start-3 col-end-13 rounded-lg">
+        <div class="flex flex-row justify-end items-end" data-controller="image-viewer">
+          ${timeContent}
+          ${imageContent}
+        </div>
+      </div>`;
+  } else {
+    return `
+      <div class="col-start-1 col-end-11 rounded-lg m-1">
+        <div class="flex flex-row items-center" data-controller="image-viewer">
+          ${avatarContent}
+          ${imageContent}
+          ${timeContent}
+        </div>
+      </div>`;
+  }
+}
+
+function buildImageContent(data, isSender) {
+  return data.message_image_url ?
+    `<img src="${data.message_image_url}" class="w-48 h-48 m-1" data-action="click->image-viewer#expand">` :
+    `<div class="relative text-sm bg-${isSender ? 'indigo-500' : 'white'} py-2 px-4 shadow rounded-xl ${isSender ? 'text-white' : ''} m-1 break-all">${data.message_body}</div>`;
+}
+
+function buildAvatarContent(data, isSender) {
+  if (!isSender && !data.is_previous_time) {
+    return `<img src="${data.sender_avatar_url}" class="flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0">`;
+  }
+  return '';
+}
+
+function scrollToBottom() {
+  const messagesContainer = document.getElementById('messages');
+  messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}

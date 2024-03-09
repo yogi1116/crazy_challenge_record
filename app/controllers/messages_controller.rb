@@ -23,8 +23,13 @@ class MessagesController < ApplicationController
     private_chat_room = Message.private_chat_room_name(sender_id, receiver_id)
     if @message.save
       ActionCable.server.broadcast private_chat_room, {
-      message: render_message(@message, current_user),
-      current_user_id: current_user.id
+        message_body: @message.body,
+        message_image_url: @message.image.file.present? ? @message.image.url : '',
+        message_sent_at: @message.sent_at.strftime('%H:%M'),
+        sender_id: sender_id,
+        receiver_id: receiver_id,
+        message_id: @message.id,
+        current_user_id: current_user.id
       }
     else
       ActionCable.server.broadcast private_chat_room, { error: render_errors(@message) }
@@ -44,10 +49,6 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:body, :receiver_id, :sent_at, :image)
-  end
-
-  def render_message(message, current_user)
-    ApplicationController.renderer.render(partial: 'messages/message', locals: { message: message, current_user: current_user })
   end
 
   def render_errors(message)
