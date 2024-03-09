@@ -18,16 +18,13 @@ class MessagesController < ApplicationController
   def create
     @message = current_user.sent_messages.build(message_params)
     @message.sent_at = Time.current
+    receiver_id = @message.receiver_id
+    sender_id = current_user.id
+    private_chat_room = Message.private_chat_room_name(sender_id, receiver_id)
     if @message.save
-      MessageBroadcastJob.perform_later(@message, current_user)
-      respond_to do |format|
-        format.turbo_stream
-        format.html { redirect_to message_path(current_user) }
-      end
+      ActionCable.server.broadcast private_chat_room, { message: render_message(@message, current_user) }
     else
-      respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.replace("message_form", partial: "messages/form", locals: { message: @message }) }
-      end
+      ActionCable.server.broadcast private_chat_room, { error: render_errors(@message) }
     end
   end
 
@@ -44,5 +41,13 @@ class MessagesController < ApplicationController
 
   def message_params
     params.require(:message).permit(:body, :receiver_id, :sent_at, :image)
+  end
+
+  def render_message(message, current_user)
+    ApplicationController.renderer.render(partial: 'messages/message', locals: { message: message, current_user: current_user })
+  end
+
+  def render_errors(message)
+    ApplicationController.renderer.render(partial: 'shared/error_messages', locals: { object: message, text_color: 'text-white' }, formats: [:html])
   end
 end

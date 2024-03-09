@@ -1,10 +1,12 @@
-<div class="bg-yellow-700 mt-3 rounded-lg py-3">
-  <div class="items-center rounded-xl  px-4" id="message_form">
-    <%= form_with model: message, local: true, multipart: true, data: { controller: "reset-form message-preview", action: "submit->message-preview#clearPreview" } do |f| %>
-      <%= render 'shared/error_messages', object: f.object, text_color: 'text-white' %>
+<div class="bg-yellow-700 mt-3 rounded-lg py-3>
+  <div class="items-center rounded-xl px-4">
+    <%= form_with model: message, multipart: true, data: { controller: "reset-form message-preview submit-button", action: "submit->message-preview#clearPreview input->submit-button#toggle keyup->submit-button#toggle turbo:submit-end->submit-button#submitEnd" } do |f| %>
+      <div class="ml-3 mt-3 font-bold" id="error-messages">
+        <%= render 'shared/error_messages', object: f.object, text_color: 'text-white' %>
+      </div>
       <%= f.hidden_field :receiver_id %>
       <div class="flex items-center p-2">
-        <%= f.file_field :image, class: 'hidden', data: { message_preview_target: "input", action: "change->message-preview#previewImage" } %>
+        <%= f.file_field :image, class: 'hidden', data: { message_preview_target: "input", submit_button_target: "input", action: "change->message-preview#previewImage change->submit-button#toggle" } %>
         <label for="<%= f.object_name %>_image" class="flex items-center justify-center text-white hover:text-black mr-2 cursor-pointer">
           <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
@@ -12,9 +14,9 @@
         </label>
         <img data-message-preview-target="preview" class="hidden w-40 h-40 object-cover mr-2">
 
-        <%= f.text_area :body, class: 'border rounded-xl focus:outline-none focus:border-yellow-400 pl-4 h-10 p-2 w-full', data: { message_preview_target: "textArea" } %>
+        <%= f.text_area :body, class: 'border rounded-xl focus:outline-none focus:border-yellow-400 pl-4 h-10 p-2 w-full', data: { message_preview_target: "textArea", submit_button_target: "textArea" } %>
 
-        <button class="flex items-center justify-center bg-lime-400 hover:bg-lime-500 rounded-xl text-black px-4 py-2 flex-shrink-0 ml-3">
+        <button class="flex items-center justify-center bg-lime-400 rounded-xl text-black px-4 py-2 flex-shrink-0 ml-3" data-submit-button-target="submit">
           <span class="ml-2">
             <svg class="w-5 h-5 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>

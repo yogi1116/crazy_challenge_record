@@ -45,8 +45,18 @@ RSpec.describe "Messages", type: :system do
       visit_user_profile(user_uuid) # ユーザーBのプロフィールへ
       visit_user_messages(user_uuid)
       fill_in 'message[body]', with: ''
+      find('.bg-gray-400').click
+      expect(page).not_to have_selector('#message', text: '')
+    end
+
+    it '301文字以上での送信はできない' do
+      login(user)
+      user_uuid = another_user.uuid
+      visit_user_profile(user_uuid) # ユーザーBのプロフィールへ
+      visit_user_messages(user_uuid)
+      fill_in 'message[body]', with: 'a' * 301
       find('.bg-lime-400').click
-      expect(page).to have_content('メッセージか画像のいずれかを入力してください')
+      expect(page).to have_content('Bodyは300文字以内で入力してください')
     end
   end
 end
