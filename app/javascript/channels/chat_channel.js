@@ -18,6 +18,7 @@ consumer.subscriptions.create(
         const errorMessagesContainer = document.getElementById('error-messages');
         errorMessagesContainer.innerHTML = data.error;
       } else {
+        console.log(data);
         const currentUserId = document.body.dataset.userId;
         const isSender = Number(data.sender_id) === Number(currentUserId);
         const messageHTML = buildMessageHTML(data, isSender);
@@ -35,7 +36,6 @@ function buildMessageHTML(data, isSender) {
   const timeContent = `<div class="text-xs ${isSender ? 'mr-1' : 'ml-1 mt-auto'} text-gray-500">${data.message_sent_at}</div>`;
 
   if (isSender) {
-    console.log(data)
     return `
       <div class="col-start-5 md:col-start-3 col-end-13 rounded-lg">
         <div class="flex flex-row justify-end items-end" data-controller="image-viewer">
