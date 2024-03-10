@@ -72,3 +72,8 @@ ja:
       create: '投稿'
       update: '更新する'
       cancel: 'キャンセル'
+  challenge_posts:
+    form:
+      title: 'チャレンジ名'
+      content: 'チャレンジ内容'
+      post: '投稿'
