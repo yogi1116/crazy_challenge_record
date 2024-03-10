@@ -3,7 +3,7 @@ class ChallengePostsController < ApplicationController
   before_action :find_challenge_post, only: %i[edit update destroy]
 
   def index
-    @challenge_posts = ChallengePost.includes(user: :profile).all
+    @challenge_posts = ChallengePost.includes(:categories, user: :profile).all
   end
 
   def new

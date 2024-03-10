@@ -6,8 +6,10 @@
       </h1>
       <p class="text-gray-400 font-normal text-base">こんなチャレンジをしてみませんか？</p>
     </div>
-    <% @challenge_posts.each do |challenge_post| %>
-      <%= render 'post', { challenge_post: challenge_post } %>
-    <% end %>
+    <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+      <% @challenge_posts.each do |challenge_post| %>
+        <%= render 'post', { challenge_post: challenge_post } %>
+      <% end %>
+    </div>
   </div>
 </div>
