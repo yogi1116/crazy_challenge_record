@@ -12,9 +12,9 @@
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
       </svg>
     </div>
-    <div data-target="dropdown-multiselect.selectedItems" class="selected-items flex flex-wrap mt-1 border-1 border-blue-400"></div>
-    <input type="hidden" name="category_ids_in[]" data-target="dropdown-multiselect.hiddenField">
-    <div class="dropdown-menu hidden bg-gray-300 absolute z-10 rounded" data-target="dropdown-multiselect.dropdownMenu">
+    <div data-dropdown-multiselect-target="selectedItems" class="selected-items flex flex-wrap mt-1 border-1 border-blue-400"></div>
+    <input type="hidden" name="category_ids_in[]" data-dropdown-multiselect-target="hiddenField">
+    <div class="dropdown-menu hidden bg-gray-300 absolute z-10 rounded" data-dropdown-multiselect-target="dropdownMenu">
       <% Category.all.each do |c| %>
         <a href="#" class="dropdown-item block p-2 hover:bg-blue-500 rounded" data-value="<%= c.id %>" data-action="click->dropdown-multiselect#select"><%= c.name %></a>
       <% end %>
