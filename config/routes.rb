@@ -26,4 +26,5 @@ Rails.application.routes.draw do
     end
   end
   resources :messages, only: %i[index create show]
+  resources :challenge_posts, only: %i[index new create edit update destroy]
 end
