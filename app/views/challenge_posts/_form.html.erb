@@ -9,12 +9,29 @@
 		</div>
 
 		<%= form_with model: challenge_post, local: true do |f| %>
+			<div class="flex justify-center">
+				<%= render 'shared/error_messages', object: f.object, text_color: 'text-red-500' %>
+			</div>
 			<div class="flex flex-col">
-				<%= f.label :title, t('challenge_posts.form.title'), class: 'text-lg font-bold text-gray-700 tracking-wide' %>
+				<%= f.label :title, ChallengePost.human_attribute_name(:title), class: 'text-lg font-bold text-gray-700 tracking-wide' %>
         <%= f.text_field :title, class: 'text-lg w-full text-base py-2 border-gray-300 rounded-xl' %>
       </div>
 			<div class="flex flex-col mt-3">
-        <%= f.label :content, t('challenge_posts.form.content'), class: 'text-lg font-bold text-gray-700 tracking-wide' %>
+				<div class="w-full flex-none text-lg text-black font-bold leading-none mb-1"><%= ChallengePost.human_attribute_name(:category_ids) %></div>
+					<div class="bg-white border border-gray-300 rounded-2xl p-4">
+            <p class="text-gray-500 mb-2">カテゴリーは最大3つまで選択できます</p>
+          <div class="flex flex-wrap -mx-2">
+            <% Category.all.each do |category| %>
+              <div class="w-1/2 px-2">
+                <%= check_box_tag 'challenge_post[category_ids][]', category.id, challenge_post.categories.include?(category) %>
+                <%= label_tag "challenge_post_category_ids_#{category.id}", category.name %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+			<div class="flex flex-col mt-3">
+        <%= f.label :content, ChallengePost.human_attribute_name(:content), class: 'text-lg font-bold text-gray-700 tracking-wide' %>
         <%= f.text_area :content, class: 'text-lg w-full h-40 p-3 border-b border-gray-300 rounded-xl' %>
       </div>
 			<div class="flex justify-center mt-20">

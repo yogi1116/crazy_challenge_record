@@ -13,6 +13,9 @@
     </div>
     <div class="flex flex-col items-center">
       <div class="text-2xl"><%= challenge_post.title %></div>
+      <div class="flex justify-center flex-wrap my-2">
+        <%= render 'posts/category', { post: challenge_post, categories: challenge_post.categories } %>
+      </div>
       <p class="text-gray-400 leading-loose font-normal text-base text-xl"><%= challenge_post.content %></p>
     </div>
   </div>

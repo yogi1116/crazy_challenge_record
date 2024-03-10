@@ -22,10 +22,8 @@
       <!-- category -->
       <div class="flex flex-col">
         <div class="bg-slate-100 border border-gray-800 shadow-lg rounded-2xl p-4">
-
-            <div class="w-full flex-none text-lg text-black font-bold leading-none mb-1"><%= Post.human_attribute_name(:category_ids) %></div>
-            <p class="text-gray-500 mb-2">カテゴリーは最大3つまで選択できます</p>
-
+          <div class="w-full flex-none text-lg text-black font-bold leading-none mb-1"><%= Post.human_attribute_name(:category_ids) %></div>
+          <p class="text-gray-500 mb-2">カテゴリーは最大3つまで選択できます</p>
           <div class="flex flex-wrap -mx-2">
             <% Category.all.each do |category| %>
               <div class="w-1/2 px-2">

@@ -33,6 +33,10 @@ ja:
         images: '画像アップロード'
       comment:
         body: 'コメント内容'
+      challenge_post:
+        title: チャレンジ名
+        category_ids: カテゴリー
+        content: チャレンジ内容
       errors:
         models:
           post:

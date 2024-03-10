@@ -15,7 +15,7 @@ class ChallengePostsController < ApplicationController
     if @challenge_post.save
       redirect_to challenge_posts_path
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -30,6 +30,7 @@ class ChallengePostsController < ApplicationController
   end
 
   def destroy
+    @challenge_post.challenge_post_categories.destroy_all
     @challenge_post.destroy!
     redirect_to challenge_posts_path, flash: { success: t('posts.destroy.success') }
   end
@@ -37,7 +38,7 @@ class ChallengePostsController < ApplicationController
   private
 
   def challenge_post_params
-    params.require(:challenge_post).permit(:title, :content)
+    params.require(:challenge_post).permit(:title, :content, category_ids: [])
   end
 
   def find_challenge_post
