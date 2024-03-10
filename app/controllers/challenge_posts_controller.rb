@@ -3,7 +3,7 @@ class ChallengePostsController < ApplicationController
   before_action :find_challenge_post, only: %i[edit update destroy]
 
   def index
-    @challenge_posts = ChallengePost.all
+    @challenge_posts = ChallengePost.includes(user: :profile).all
   end
 
   def new
@@ -30,7 +30,8 @@ class ChallengePostsController < ApplicationController
   end
 
   def destroy
-    @challenge_post.destroy
+    @challenge_post.destroy!
+    redirect_to challenge_posts_path, flash: { success: t('posts.destroy.success') }
   end
 
   private

@@ -77,3 +77,6 @@ ja:
       title: 'チャレンジ名'
       content: 'チャレンジ内容'
       post: '投稿'
+      update: '更新'
+    destroy:
+      success: '投稿を削除しました'
