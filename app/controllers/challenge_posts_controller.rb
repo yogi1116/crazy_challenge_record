@@ -2,10 +2,18 @@ class ChallengePostsController < ApplicationController
   include PostModerationConcern
 
   skip_before_action :require_login, only: %i[index]
+  before_action :restore_search_conditions, only: [:index]
   before_action :find_challenge_post, only: %i[edit update destroy]
 
   def index
-    @challenge_posts = ChallengePost.includes(:categories, user: :profile).all
+    @q = ChallengePost.ransack(params[:q])
+    @challenge_posts = @q.result.includes(:categories, user: :profile)
+                        .order(created_at: :desc)
+                        .page(params[:page]).per(16)
+
+    if params[:category_ids_in].present? && Category.exists?(id: params[:category_ids_in])
+      @challenge_posts = @challenge_posts.joins(:categories).where(categories: { id: params[:category_ids_in] })
+    end
   end
 
   def new
@@ -40,6 +48,12 @@ class ChallengePostsController < ApplicationController
     redirect_to challenge_posts_path, flash: { success: t('challenge_posts.destroy.success') }
   end
 
+  def reset_search
+    session.delete(:q)
+    session.delete(:category_ids_in)
+    redirect_to challenge_posts_path
+  end
+
   private
 
   def challenge_post_params
@@ -48,5 +62,15 @@ class ChallengePostsController < ApplicationController
 
   def find_challenge_post
     @challenge_post = ChallengePost.find(params[:id])
+  end
+
+  def restore_search_conditions
+    %i[q category_ids_in].each do |key|
+      if params[key].present?
+        session[key] = params[key]
+      elsif session[key].present?
+        params[key] = session[key]
+      end
+    end
   end
 end
