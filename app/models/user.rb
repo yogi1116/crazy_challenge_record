@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :authentications, :dependent => :destroy
   has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id'
   has_many :received_messages, class_name: 'Message', foreign_key: 'receiver_id'
+  has_many :challenge_posts, dependent: :destroy
   accepts_nested_attributes_for :authentications
 
   validates :username, presence: true, length: { maximum: 40 }
