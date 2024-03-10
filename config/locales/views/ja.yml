@@ -78,5 +78,11 @@ ja:
       content: 'チャレンジ内容'
       post: '投稿'
       update: '更新'
+    create:
+      success: '新規投稿されました'
+      fail: '投稿に失敗しました'
+    update:
+      success: '投稿内容を更新しました'
+      fail: '投稿内容の更新に失敗しました'
     destroy:
       success: '投稿を削除しました'

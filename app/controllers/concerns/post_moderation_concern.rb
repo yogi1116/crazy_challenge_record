@@ -28,6 +28,30 @@ module PostModerationConcern
     ].join("\n")
   end
 
+  def challenge_post_invalid
+    if @challenge_post.invalid?
+      flash.now[:error] = t('.fail')
+      render :new, status: :unprocessable_entity
+    end
+  end
+
+  def challenge_content_moderated(challenge_post)
+    full_text = challenge_generate_full_text(challenge_post)
+    if content_moderated?(full_text)
+      flash.now[:error] = moderation_message
+      render :new, status: :unprocessable_entity
+      return true
+    end
+    false
+  end
+
+  def challenge_generate_full_text(challenge_post)
+    [
+      challenge_post.title,
+      challenge_post.content
+    ].join("\n")
+  end
+
   def content_moderated?(full_text)
     moderation_service = ContentModerationService.new(full_text)
     result = moderation_service.analyze

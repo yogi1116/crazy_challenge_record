@@ -1,4 +1,6 @@
 class ChallengePostsController < ApplicationController
+  include PostModerationConcern
+
   skip_before_action :require_login, only: %i[index]
   before_action :find_challenge_post, only: %i[edit update destroy]
 
@@ -12,27 +14,30 @@ class ChallengePostsController < ApplicationController
 
   def create
     @challenge_post = current_user.challenge_posts.build(challenge_post_params)
-    if @challenge_post.save
-      redirect_to challenge_posts_path
-    else
-      render :new, status: :unprocessable_entity
-    end
+    return if challenge_post_invalid
+    return if challenge_content_moderated(@challenge_post)
+
+    redirect_to challenge_posts_path, flash: { success: t('challenge_posts.create.success') } if @challenge_post.save!
+  rescue => e
+    handle_content_analysis_error(e)
   end
 
   def edit; end
 
   def update
-    if @challenge_post.update(challenge_post_params)
-      redirect_to challenge_posts_path
-    else
-      render :edit
-    end
+    @challenge_post.assign_attributes(challenge_post_params) # 仮代入のためupdateメソッドは使わない
+    return if challenge_post_invalid
+    return if challenge_content_moderated(@challenge_post)
+
+    redirect_to challenge_posts_path, flash: { success: t('challenge_posts.update.success') } if @challenge_post.save!
+  rescue => e
+    handle_content_analysis_error(e)
   end
 
   def destroy
     @challenge_post.challenge_post_categories.destroy_all
     @challenge_post.destroy!
-    redirect_to challenge_posts_path, flash: { success: t('posts.destroy.success') }
+    redirect_to challenge_posts_path, flash: { success: t('challenge_posts.destroy.success') }
   end
 
   private
