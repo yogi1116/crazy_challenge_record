@@ -14,6 +14,9 @@
             <li>
               <%= link_to 'POST LIST', posts_path, class:'text-black transition hover:text-white pl-6' %>
             </li>
+            <li>
+              <%= link_to 'CHALLENGE LIST', challenge_posts_path, class:'text-black transition hover:text-white pl-6' %>
+            </li>
           </ul>
         </nav>
       </div>
@@ -43,6 +46,7 @@
           </div>
           <%= link_to 'POST LIST', posts_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
           <%= link_to 'RANKING', ranking_posts_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
+          <%= link_to 'CHALLENGE LIST', challenge_posts_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
           <%= link_to 'LOGIN', login_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
           <%= link_to 'SIGNUP', new_user_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
         </div>
