@@ -11,6 +11,9 @@ class User < ApplicationRecord
   has_many :sent_messages, class_name: 'Message', foreign_key: 'sender_id'
   has_many :received_messages, class_name: 'Message', foreign_key: 'receiver_id'
   has_many :challenge_posts, dependent: :destroy
+  has_many :challenge_post_likes, dependent: :destroy
+  has_many :liked_posts, through: :challenge_post_likes, source: :challenge_post
+
   accepts_nested_attributes_for :authentications
 
   validates :username, presence: true, length: { maximum: 40 }

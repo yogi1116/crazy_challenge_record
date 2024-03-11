@@ -2,6 +2,8 @@ class ChallengePost < ApplicationRecord
   belongs_to :user
   has_many :challenge_post_categories
   has_many :categories, through: :challenge_post_categories
+  has_many :challenge_post_likes, dependent: :destroy
+  has_many :liking_users, through: :challenge_post_likes, source: :user
 
   validates :title, presence: true
   validates :content, presence: true

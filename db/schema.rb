@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_10_151715) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_11_051418) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,6 +65,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_10_151715) do
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_challenge_post_categories_on_category_id"
     t.index ["challenge_post_id"], name: "index_challenge_post_categories_on_challenge_post_id"
+  end
+
+  create_table "challenge_post_likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "challenge_post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_post_id"], name: "index_challenge_post_likes_on_challenge_post_id"
+    t.index ["user_id"], name: "index_challenge_post_likes_on_user_id"
   end
 
   create_table "challenge_posts", force: :cascade do |t|
@@ -168,6 +177,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_10_151715) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "challenge_post_categories", "categories"
   add_foreign_key "challenge_post_categories", "challenge_posts"
+  add_foreign_key "challenge_post_likes", "challenge_posts"
+  add_foreign_key "challenge_post_likes", "users"
   add_foreign_key "challenge_posts", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
