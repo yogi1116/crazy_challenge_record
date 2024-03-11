@@ -2,6 +2,6 @@
 
 <% if like %>
   <%= link_to challenge_post_challenge_post_like_path(challenge_post_id: challenge_post.id, id: like.id), id: "unlike-#{challenge_post.id}", data: { turbo_method: :delete }, class: 'like-button' do %>
-    <%= image_tag 'likes/fight_1.png', class: 'h-14 w-14' %>
+    <%= image_tag 'challenge_post/do_it.png', class: 'h-14 w-14' %>
   <% end %>
 <% end %>
