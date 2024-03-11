@@ -8,7 +8,12 @@
     </div>
     <div class="flex justify-end lg:mr-20">
       <% if current_user.own?(challenge_post) %>
-        <%= render 'crud', { challenge_post: challenge_post } %>
+        <div class="flex items-center">
+          <%= image_tag 'challenge_post/do_it.png', class: 'h-14 w-14' %>
+          <div class="ml-3">
+            <%= render 'likes_count', {challenge_post: challenge_post } %>
+          </div>
+        </div>
       <% else %>
         <div class="flex items-center">
           <%= render 'like_button', { challenge_post: challenge_post } %>
@@ -25,5 +30,10 @@
       <%= render 'posts/category', { post: challenge_post, categories: challenge_post.categories } %>
     </div>
     <p class="text-black leading-loose font-normal text-base text-md break-all"><%= challenge_post.content %></p>
+  </div>
+  <div class="flex justify-end">
+    <% if current_user.own?(challenge_post) %>
+      <%= render 'crud', { challenge_post: challenge_post } %>
+    <% end %>
   </div>
 </div>
