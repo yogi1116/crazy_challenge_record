@@ -10,6 +10,14 @@ class ChallengePost < ApplicationRecord
   validates :category_ids, presence: { message: 'を選択してください' }
   validate :category_count_within_limit
 
+  def self.ransackable_attributes(auth_object = nil)
+    %w[category_ids challenge_post_likes_count]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    %w[categories]
+  end
+
   private
 
   def category_count_within_limit

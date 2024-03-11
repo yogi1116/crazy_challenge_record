@@ -7,12 +7,19 @@ class ChallengePostsController < ApplicationController
 
   def index
     @q = ChallengePost.ransack(params[:q])
-    @challenge_posts = @q.result.includes(:categories, user: :profile)
-                        .order(created_at: :desc)
+    @challenge_posts = @q.result(distinct: true)
+                        .includes(:categories, user: :profile)
                         .page(params[:page]).per(16)
 
     if params[:category_ids_in].present? && Category.exists?(id: params[:category_ids_in])
       @challenge_posts = @challenge_posts.joins(:categories).where(categories: { id: params[:category_ids_in] })
+    end
+
+    if params[:q] && params[:q][:s].present?
+      order_condition = params[:q][:s]
+      @challenge_posts = @challenge_posts.reorder(order_condition)
+    else
+      @challenge_posts = @challenge_posts.order('challenge_posts.created_at DESC')
     end
   end
 
