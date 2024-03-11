@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "unlike-#{@challenge_post.id}" do %>
+  <%= render 'challenge_posts/like', challenge_post: @challenge_post %>
+<% end %>

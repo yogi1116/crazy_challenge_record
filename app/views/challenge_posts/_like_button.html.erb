@@ -1,5 +1,5 @@
 <% if current_user.challenge_post_like?(challenge_post) %>
-  <%= render 'unlike', { challege_post: challenge_post } %>
+  <%= render 'unlike', { challenge_post: challenge_post } %>
 <% else %>
   <%= render 'like', { challenge_post: challenge_post } %>
 <% end %>
