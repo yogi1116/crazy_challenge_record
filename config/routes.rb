@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   end
   resources :messages, only: %i[index create show]
   resources :challenge_posts, only: %i[index new create edit update destroy] do
+    resources :challenge_post_likes, only: %i[create destroy]
     collection do
       get 'reset_search'
     end

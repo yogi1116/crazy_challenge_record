@@ -6,9 +6,15 @@
       <% end %>
       <p class="text-lg text-gray-700 font-normal mb-1"><%= challenge_post.user.username %></p>
     </div>
-    <% if challenge_post.user_id == current_user.id %>
-      <%= render 'crud', { challenge_post: challenge_post } %>
-    <% end %>
+    <div class="flex justify-end lg:mr-20">
+      <% if current_user.own?(challenge_post) %>
+        <%= render 'crud', { challenge_post: challenge_post } %>
+      <% else %>
+        <div class="flex items-center">
+          <%= render 'like_button', { challenge_post: challenge_post } %>
+        </div>
+      <% end %>
+    </div>
   </div>
   <div class="flex flex-col items-center">
     <div class="text-2xl break-all"><%= challenge_post.title %></div>

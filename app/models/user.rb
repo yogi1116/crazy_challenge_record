@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :received_messages, class_name: 'Message', foreign_key: 'receiver_id'
   has_many :challenge_posts, dependent: :destroy
   has_many :challenge_post_likes, dependent: :destroy
-  has_many :liked_posts, through: :challenge_post_likes, source: :challenge_post
+  has_many :liked_challenge_posts, through: :challenge_post_likes, source: :challenge_post
 
   accepts_nested_attributes_for :authentications
 
@@ -42,6 +42,18 @@ class User < ApplicationRecord
 
   def unlike(post)
     liked_posts.destroy(post)
+  end
+
+  def challenge_post_like?(challenge_post)
+    liked_challenge_posts.include?(challenge_post)
+  end
+
+  def challenge_post_like(challenge_post)
+    liked_challenge_posts << challenge_post
+  end
+
+  def unlike(challenge_post)
+    liked_challenge_posts.destroy(challenge_post)
   end
 
   # パラメータからidを取得する際はuuidがデフォルト
