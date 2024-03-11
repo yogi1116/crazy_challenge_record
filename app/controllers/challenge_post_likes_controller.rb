@@ -7,7 +7,13 @@ class ChallengePostLikesController < ApplicationController
 
   def destroy
     @like = current_user.challenge_post_likes.find_by(id: params[:id])
+    @challenge_post = @like.challenge_post if @like
     @like&.destroy
+
+    respond_to do |format|
+      format.turbo_stream
+      format.html { redirect_to challenge_posts_path, notice: "いいねを解除しました。" }
+    end
   end
 
   private

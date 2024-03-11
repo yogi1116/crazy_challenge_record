@@ -12,6 +12,9 @@
       <% else %>
         <div class="flex items-center">
           <%= render 'like_button', { challenge_post: challenge_post } %>
+          <div class="ml-3">
+            <%= render 'likes_count', { challenge_post: challenge_post } %>
+          </div>
         </div>
       <% end %>
     </div>
