@@ -32,4 +32,5 @@ Rails.application.routes.draw do
       get 'reset_search'
     end
   end
+  resources :chat_ais, only: %i[new create]
 end
