@@ -1,0 +1,3 @@
+<%= link_to challenge_post_challenge_post_likes_path(challenge_post_id: challenge_post.id), id: "like-#{challenge_post.id}", data: { turbo_method: :post } do %>
+  <%= image_tag 'challenge_post/do_it_2.png', class: 'h-14 w-14' %>
+<% end %>

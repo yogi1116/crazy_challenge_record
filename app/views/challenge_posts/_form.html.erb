@@ -1,0 +1,44 @@
+<div data-controller="background" class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 bg-no-repeat bg-cover relative items-center" style="background-image: url('<%= image_path('challenge_post/challenge.jpeg') %>');">
+	<div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+	<div class="max-w-2xl w-full p-10 bg-yellow-700 rounded-xl z-10">
+		<div class="flex flex-col items-center">
+			<%= image_tag 'challenge_post/challenge_post.png', class: 'w-64 h-64' %>
+			<p class="mb-6 text-sm text-white">君が思うおすすめの挑戦を教えてくれ！</p>
+		</div>
+
+		<%= form_with model: challenge_post, local: true do |f| %>
+			<div class="flex justify-center">
+				<%= render 'shared/error_messages', object: f.object, text_color: 'text-red-500' %>
+			</div>
+			<div class="flex flex-col">
+				<%= f.label :title, ChallengePost.human_attribute_name(:title), class: 'text-lg font-bold text-black tracking-wide' %>
+        <%= f.text_field :title, class: 'text-lg w-full text-base py-2 border-gray-300 rounded-xl' %>
+      </div>
+			<div class="flex flex-col mt-3">
+				<div class="w-full flex-none text-lg text-black font-bold leading-none mb-1"><%= ChallengePost.human_attribute_name(:category_ids) %></div>
+					<div class="bg-white border border-gray-300 rounded-2xl p-4">
+            <p class="text-gray-500 mb-2">カテゴリーは最大3つまで選択できます</p>
+          <div class="flex flex-wrap -mx-2">
+            <% Category.all.each do |category| %>
+              <div class="w-1/2 px-2">
+                <%= check_box_tag 'challenge_post[category_ids][]', category.id, challenge_post.categories.include?(category) %>
+                <%= label_tag "challenge_post_category_ids_#{category.id}", category.name %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+			<div class="flex flex-col mt-3">
+        <%= f.label :content, ChallengePost.human_attribute_name(:content), class: 'text-lg font-bold text-black tracking-wide' %>
+        <%= f.text_area :content, class: 'text-lg w-full h-40 p-3 border-b border-gray-300 rounded-xl' %>
+      </div>
+			<div class="flex justify-center mt-20">
+				<% if challenge_post.persisted? %>
+					<%= f.submit t('challenge_posts.form.update'), class: 'w-1/4 flex justify-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-green-600 shadow-lg cursor-pointer transition ease-in duration-300' %>
+				<% else %>
+					<%= f.submit t('challenge_posts.form.post'), class: 'w-1/4 flex justify-center bg-blue-600 text-gray-100 p-4 rounded-full tracking-wide font-semibold  focus:outline-none focus:shadow-outline hover:bg-blue-700 shadow-lg cursor-pointer transition ease-in duration-300' %>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+</div>

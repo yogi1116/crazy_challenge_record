@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_19_074432) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_11_070509) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -56,6 +56,34 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_19_074432) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "challenge_post_categories", force: :cascade do |t|
+    t.bigint "challenge_post_id", null: false
+    t.bigint "category_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_challenge_post_categories_on_category_id"
+    t.index ["challenge_post_id"], name: "index_challenge_post_categories_on_challenge_post_id"
+  end
+
+  create_table "challenge_post_likes", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "challenge_post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["challenge_post_id"], name: "index_challenge_post_likes_on_challenge_post_id"
+    t.index ["user_id"], name: "index_challenge_post_likes_on_user_id"
+  end
+
+  create_table "challenge_posts", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "title", null: false
+    t.text "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "challenge_post_likes_count", default: 0, null: false
+    t.index ["user_id"], name: "index_challenge_posts_on_user_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -148,6 +176,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_19_074432) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "challenge_post_categories", "categories"
+  add_foreign_key "challenge_post_categories", "challenge_posts"
+  add_foreign_key "challenge_post_likes", "challenge_posts"
+  add_foreign_key "challenge_post_likes", "users"
+  add_foreign_key "challenge_posts", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "likes", "posts"
