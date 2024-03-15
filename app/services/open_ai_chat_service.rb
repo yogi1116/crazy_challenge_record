@@ -6,7 +6,7 @@ class OpenAiChatService
   end
 
   def chat
-    client = OpenAI::Client.new(api_key: ENV['OPENAI_SECRET_KEY'])
+    client = OpenAI::Client.new
     response = client.chat(
       parameters: {
         model: "gpt-3.5-turbo",
