@@ -18,7 +18,6 @@ consumer.subscriptions.create(
         const errorMessagesContainer = document.getElementById('error-messages');
         errorMessagesContainer.innerHTML = data.error;
       } else {
-        console.log(data);
         const currentUserId = document.body.dataset.userId;
         const isSender = Number(data.sender_id) === Number(currentUserId);
         const messageHTML = buildMessageHTML(data, isSender);

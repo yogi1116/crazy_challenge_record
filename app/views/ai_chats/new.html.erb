@@ -6,7 +6,7 @@
       </div>
       <div class="flex flex-col leading-tight">
         <div class="text-2xl mt-1 flex items-center">
-          <span class="text-white mr-3">CHALLENGEロボ</span>
+          <span class="text-white mr-3">チャレンジロボ</span>
         </div>
         <span class="text-lg text-gray-600">Junior Developer</span>
       </div>
@@ -16,23 +16,31 @@
   <div class="flex flex-col px-5 md:px-20 w-full">
     <div data-controller="scroll infinite-scroll" data-action="scroll->infinite-scroll#scroll" class="flex flex-col rounded-2xl bg-gray-200 p-4 overflow-y-auto" style="max-height: 80vh; min-height: 80vh;">
       <div id="chat-messages" class="grid grid-cols-12 gap-y-2">
+        <div class="col-start-1 col-end-11 rounded-lg p-2 m-2">
+          <div class="flex flex-row items-center">
+            <%= image_tag 'AI.png', class: 'flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0' %>
+            <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl break-all">
+              わたしはAIロボです。
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="bg-yellow-700 mt-7 mb-7 rounded-lg py-3">
         <div class="items-center rounded-xl px-4">
-          <%= form_with url: ai_chats_path, method: :post, id: "chat-form", data: { turbo_frame: "_top" } do |f| %>
-            <div class="flex items-center p-2">
-              <%= f.text_area :body, id: "chat-message", class: 'border rounded-xl focus:outline-none focus:border-yellow-400 pl-4 h-10 p-2 w-full' %>
-              <button type="submit" class="flex items-center justify-center bg-lime-400 rounded-xl text-black px-4 py-2 flex-shrink-0 ml-3">
-                <span class="ml-2">
-                  <svg class="w-5 h-5 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                  </svg>
-                </span>
-              </button>
-            </div>
-          <% end %>
+        <%= form_with url: ai_chats_path, method: :post, id: "chat-form", data: { turbo_frame: "_top", controller: "submit-button reset-form", action: "turbo:submit->submit-button#submitEnd" } do |f| %>
+        <div class="flex items-center p-2">
+          <%= f.text_area :body, id: "chat-message", class: 'border rounded-xl focus:outline-none focus:border-yellow-400 pl-4 h-10 p-2 w-full', data: { "submit-button-target": "textArea", action: "input->submit-button#toggle keyup->submit-button#toggle" } %>
+          <button type="submit" class="flex items-center justify-center bg-lime-400 rounded-xl text-black px-4 py-2 flex-shrink-0 ml-3" data-submit-button-target="submit">
+            <span class="ml-2">
+              <svg class="w-5 h-5 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+              </svg>
+            </span>
+          </button>
+        </div>
+      <% end %>
         </div>
       </div>
   </div>

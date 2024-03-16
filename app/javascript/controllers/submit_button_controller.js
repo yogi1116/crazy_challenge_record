@@ -9,10 +9,11 @@ export default class extends Controller {
   }
 
   toggle() {
-    const hasContent = this.textAreaTarget.value.trim() !== '' || this.inputTarget.files.length > 0
-    this.submitTarget.classList.toggle('bg-lime-400', hasContent)
-    this.submitTarget.classList.toggle('bg-gray-400', !hasContent)
-    this.submitTarget.disabled = !hasContent
+    const inputFiles = this.hasInputTarget ? this.inputTarget.files.length : 0;
+    const hasContent = this.textAreaTarget.value.trim() !== '' || inputFiles > 0;
+    this.submitTarget.classList.toggle('bg-lime-400', hasContent);
+    this.submitTarget.classList.toggle('bg-gray-400', !hasContent);
+    this.submitTarget.disabled = !hasContent;
   }
 
   resetForm() {
