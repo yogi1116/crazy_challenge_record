@@ -1,5 +1,6 @@
 # [サービス名]
 CRAZY MAN
+[![Image from Gyazo](https://i.gyazo.com/6c8fd350656c44d89adb2c5e66206b8c.png)](https://gyazo.com/6c8fd350656c44d89adb2c5e66206b8c)
 
 ## サービス概要
 一般人が真似できないようなクレイジーな挑戦に挑んだ人々の、その挑戦談について投稿共有できるサービスです。
