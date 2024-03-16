@@ -11,15 +11,12 @@
           <li>
             <%= link_to 'TOP', root_path, class:'text-black transition hover:text-white pl-6' %>
           </li>
-          <li>
-            <%= link_to 'POST LIST', posts_path, class:'text-black transition hover:text-white pl-6' %>
-          </li>
-          <li>
-            <%= link_to 'RANKING', ranking_posts_path, class:'text-black transition hover:text-white pl-6' %>
-          </li>
           <li data-controller="dropdown" class="z-20">
             <button type="button" class="text-black transition hover:text-white pl-6" data-action="click->dropdown#toggleMenu">POST</button>
             <ul class="hidden absolute w-36 bg-white shadow-md mt-2 rounded-md py-1" data-dropdown-target="menu">
+              <li>
+                <%= link_to 'POST LIST', posts_path, class:'flex justify-center block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-300' %>
+              </li>
               <li>
                 <%= link_to 'COMPLETE', callback_posts_path(challenge_result: 'complete'), class:'flex justify-center block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-300' %>
               </li>
@@ -38,6 +35,9 @@
                 <%= link_to 'POST', new_challenge_post_path, class:'flex justify-center block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-300' %>
               </li>
             </ul>
+          </li>
+          <li>
+            <%= link_to 'RANKING', ranking_posts_path, class:'text-black transition hover:text-white pl-6' %>
           </li>
         </ul>
       </nav>
@@ -71,9 +71,13 @@
           <%= image_tag current_user.profile.avatar.url, class:'w-12 h-12 rounded-full items-center border-2 border-white' %>
           <p class=""><%= current_user.username %></p>
         </div>
+        <%= link_to 'TOP', root_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
         <li data-controller="dropdown" class="z-20 block px-4 p-3 text-ml text-white transition text-center">
           <button type="button" class="text-white transition" data-action="click->dropdown#toggleMenu">POST</button>
           <ul class="hidden absolute w-36 bg-white shadow-md mt-2 rounded-md" data-dropdown-target="menu">
+            <li>
+              <%= link_to 'POST LIST', posts_path, class:'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-300' %>
+            </li>
             <li>
               <%= link_to 'COMPLETE', callback_posts_path(challenge_result: 'complete'), class:'block px-4 py-2 text-sm text-slate-950 transition hover:bg-gray-300' %>
             </li>
@@ -82,9 +86,6 @@
             </li>
           </ul>
         </li>
-        <%= link_to 'TOP', root_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
-        <%= link_to 'POST LIST', posts_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
-        <%= link_to 'RANKING', ranking_posts_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
         <li data-controller="dropdown" class="z-20 block px-4 p-3 text-ml text-white transition text-center">
           <button type="button" class="text-white transition" data-action="click->dropdown#toggleMenu">CHALLENGE</button>
           <ul class="hidden absolute w-36 bg-white shadow-md mt-2 rounded-md" data-dropdown-target="menu">
@@ -96,6 +97,7 @@
             </li>
           </ul>
         </li>
+        <%= link_to 'RANKING', ranking_posts_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
         <%= link_to 'PROFILE', profile_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
         <%= link_to 'CHAT', messages_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300' %>
         <%= link_to 'LOGOUT', logout_path, class:'block px-4 p-3 text-ml text-white transition flex items-center justify-center hover:bg-blue-300', data: { turbo_method: :delete } %>

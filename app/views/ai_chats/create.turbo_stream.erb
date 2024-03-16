@@ -1,0 +1,24 @@
+<turbo-stream action="append" target="chat-messages">
+  <template>
+    <div class="col-start-5 md:col-start-3 col-end-13 rounded-lg p-2 m-2">
+      <div class="flex flex-row justify-end items-end">
+        <div class="relative mr-3 text-sm bg-indigo-500 py-2 px-4 shadow rounded-xl text-white m-1 break-all">
+          <%= params[:body] %>
+        </div>
+      </div>
+    </div>
+  </template>
+</turbo-stream>
+
+<turbo-stream action="append" target="chat-messages">
+  <template>
+    <div class="col-start-1 col-end-11 rounded-lg p-2 m-2">
+      <div class="flex flex-row items-center">
+        <%= image_tag 'AI.png', class: 'flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0' %>
+        <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl break-all">
+          <%= @ai_response %>
+        </div>
+      </div>
+    </div>
+  </template>
+</turbo-stream>

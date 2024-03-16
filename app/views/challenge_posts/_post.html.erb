@@ -1,4 +1,4 @@
-<div class="rounded-lg p-6 bg-yellow-50">
+<div class="relative rounded-lg p-6 bg-yellow-50">
   <div class="flex items-center justify-between space-x-2 mb-4">
     <div class="flex items-center space-x-2">
       <%= link_to user_profile_path(challenge_post.user) do %>
@@ -7,7 +7,7 @@
       <p class="text-lg text-gray-700 font-normal mb-1"><%= challenge_post.user.username %></p>
     </div>
     <div class="flex justify-end lg:mr-20">
-      <% if current_user.own?(challenge_post) %>
+      <% if current_user&.own?(challenge_post) %>
         <div class="flex items-center">
           <%= image_tag 'challenge_post/do_it.png', class: 'h-14 w-14' %>
           <div class="ml-3">
@@ -24,15 +24,15 @@
       <% end %>
     </div>
   </div>
-  <div class="flex flex-col items-center">
+  <div class="flex flex-col items-center mb-5">
     <div class="text-2xl break-all"><%= challenge_post.title %></div>
     <div class="flex justify-center flex-wrap my-2">
       <%= render 'posts/category', { post: challenge_post, categories: challenge_post.categories } %>
     </div>
     <p class="text-black leading-loose font-normal text-base text-md break-all"><%= challenge_post.content %></p>
   </div>
-  <div class="flex justify-end">
-    <% if current_user.own?(challenge_post) %>
+  <div class="absolute bottom-0 right-0 mb-2 mr-2">
+    <% if current_user&.own?(challenge_post) %>
       <%= render 'crud', { challenge_post: challenge_post } %>
     <% end %>
   </div>
