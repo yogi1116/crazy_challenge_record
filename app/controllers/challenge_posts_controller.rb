@@ -1,7 +1,7 @@
 class ChallengePostsController < ApplicationController
   include PostModerationConcern
 
-  skip_before_action :require_login, only: %i[index]
+  skip_before_action :require_login, only: %i[index reset_search]
   before_action :restore_search_conditions, only: [:index]
   before_action :find_challenge_post, only: %i[edit update destroy]
 
