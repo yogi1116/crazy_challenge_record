@@ -11,7 +11,7 @@ class OpenAiChatService
       parameters: {
         model: "gpt-3.5-turbo",
         messages: @messages,
-        temperature: 0.7
+        temperature: 0.8
       }
     )
     response.dig("choices", 0, "message", "content").strip
