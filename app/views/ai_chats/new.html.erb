@@ -4,11 +4,11 @@
       <div class="relative">
         <%= image_tag 'AI.png', class: 'w-20 h-20 rounded-full border-4 border-white' %>
       </div>
-      <div class="flex flex-col leading-tight">
-        <div class="text-2xl mt-1 flex items-center">
-          <span class="text-white mr-3">チャレンジロボ</span>
+      <div class="flex flex-col items-center leading-tight">
+        <div class="text-2xl flex items-center">
+          <span class="text-white">Challenge ROBO</span>
         </div>
-        <span class="text-lg text-gray-600">Junior Developer</span>
+        <span class="text-ml mt-1 text-gray-400">あなたに最適な挑戦をお届け</span>
       </div>
     </div>
   </div>
@@ -16,32 +16,80 @@
   <div class="flex flex-col px-5 md:px-20 w-full">
     <div data-controller="scroll infinite-scroll" data-action="scroll->infinite-scroll#scroll" class="flex flex-col rounded-2xl bg-gray-200 p-4 overflow-y-auto" style="max-height: 80vh; min-height: 80vh;">
       <div id="chat-messages" class="grid grid-cols-12 gap-y-2">
-        <div class="col-start-1 col-end-11 rounded-lg p-2 m-2">
-          <div class="flex flex-row items-center">
-            <%= image_tag 'AI.png', class: 'flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0' %>
-            <div class="relative ml-3 text-sm bg-white py-2 px-4 shadow rounded-xl break-all">
-              わたしはAIロボです。
+        <% if @chat_bodies.present? %>
+          <% @chat_bodies.each do |body| %>
+            <div class="col-start-5 md:col-start-3 col-end-13 rounded-lg p-2 m-2">
+              <div class="flex flex-row justify-end items-end">
+                <div class="relative mr-3 text-ml bg-indigo-500 py-2 px-4 shadow rounded-xl text-white m-1 break-all">
+                  <%= body['user'] %>
+                </div>
+              </div>
+            </div>
+            <div class="col-start-1 col-end-11 rounded-lg p-2 m-2">
+              <div class="flex flex-row items-center mb-5">
+                <%= image_tag 'AI.png', class: 'flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0' %>
+                <div class="relative ml-3 text-ml bg-white py-2 px-4 shadow rounded-xl break-all">
+                  <%= body['ai'] %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div data-controller="chat-hidden" class="col-start-1 col-end-11 rounded-lg p-2 m-2">
+            <div data-chat-hidden-target="info">
+              <div class="flex flex-row items-center mb-5">
+                <%= image_tag 'AI.png', class: 'flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0' %>
+                <div class="relative ml-3 text-ml bg-white py-2 px-4 shadow rounded-xl break-all">
+                  質問は<span class="text-red-600">1日2回</span>までです。1回に質問できる文字数は最大<span class="text-blue-700">200文字</span>までです。
+                </div>
+              </div>
+              <div class="flex flex-row items-center mb-5">
+                <%= image_tag 'AI.png', class: 'flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0' %>
+                <div class="relative ml-3 text-ml bg-white py-2 px-4 shadow rounded-xl break-all">
+                  以下は質問例です。参考にしてみてください！
+                </div>
+              </div>
+              <div class="flex flex-row items-center mb-5">
+                <%= image_tag 'AI.png', class: 'flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0' %>
+                <div class="relative ml-3 text-ml bg-white py-2 px-4 shadow rounded-xl break-all">
+                  <span class="text-blue-600 font-bold">ざっくりとした挑戦内容の提案</span>を望む場合
+                  <ul>
+                    <li>⚪︎自分を成長させるために、面白くてユニークな挑戦を探しています。どんなアイデアがありますか？</li>
+                    <li>⚪︎クレイジーな挑戦をしたいのですが、提案してください</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="flex flex-row items-center mb-5">
+                <%= image_tag 'AI.png', class: 'flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0' %>
+                <div class="relative ml-3 text-ml bg-white py-2 px-4 shadow rounded-xl break-all">
+                  <span class="text-red-600 font-bold">詳しい挑戦内容の提案</span>を望む場合
+                  <ul>
+                    <li>⚪︎大食いチャレンジに挑戦したいと思っていますが、ただの大食いではなく、創造性が光るようなアイデアがほしいです。どのような挑戦がありますか？</li>
+                    <li>⚪︎友達との絆を深めるためにできる、ユニークなチャレンジを探しています。何か印象に残る提案はありますか？</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
 
     <div class="bg-yellow-700 mt-7 mb-7 rounded-lg py-3">
-        <div class="items-center rounded-xl px-4">
+      <div class="items-center rounded-xl px-4">
         <%= form_with url: ai_chats_path, method: :post, id: "chat-form", data: { turbo_frame: "_top", controller: "submit-button reset-form", action: "turbo:submit->submit-button#submitEnd" } do |f| %>
-        <div class="flex items-center p-2">
-          <%= f.text_area :body, id: "chat-message", class: 'border rounded-xl focus:outline-none focus:border-yellow-400 pl-4 h-10 p-2 w-full', data: { "submit-button-target": "textArea", action: "input->submit-button#toggle keyup->submit-button#toggle" } %>
-          <button type="submit" class="flex items-center justify-center bg-lime-400 rounded-xl text-black px-4 py-2 flex-shrink-0 ml-3" data-submit-button-target="submit">
-            <span class="ml-2">
-              <svg class="w-5 h-5 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-              </svg>
-            </span>
-          </button>
-        </div>
-      <% end %>
-        </div>
+          <div class="flex items-center p-2">
+            <%= f.text_area :body, id: "chat-message", class: 'border rounded-xl focus:outline-none focus:border-yellow-400 pl-4 h-10 p-2 w-full', data: { "submit-button-target": "textArea", action: "input->submit-button#toggle keyup->submit-button#toggle" } %>
+            <button type="submit" class="flex items-center justify-center bg-lime-400 rounded-xl text-black px-4 py-2 flex-shrink-0 ml-3" data-submit-button-target="submit">
+              <span class="ml-2">
+                <svg class="w-5 h-5 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                </svg>
+              </span>
+            </button>
+          </div>
+        <% end %>
       </div>
+    </div>
   </div>
 </div>
