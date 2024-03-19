@@ -36,5 +36,11 @@ RSpec.describe "AiChat", type: :system do
       find('.bg-lime-400').click
       expect(page).to have_content('本日のチャット回数の上限に達しました。')
     end
+
+    it '入力文字数が201文字以上だとチャットできない' do
+      fill_in 'body', with: 'a' * 201
+      find('.bg-lime-400').click
+      expect(page).to have_content('200文字以内で入力してください。')
+    end
   end
 end
