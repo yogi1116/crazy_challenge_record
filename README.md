@@ -80,7 +80,7 @@ GIVE UPした挑戦は達成できてないため、ランキング化はしま�
 * Natural Language API（投稿に不適切な内容のフィルタリング）
 * テスト（Rspec）
 
-###　 本リリースまでの追加機能
+### 本リリース追加機能
 * パスワードリセット機能
 * カテゴリー検索
 * チャット機能
@@ -88,13 +88,14 @@ GIVE UPした挑戦は達成できてないため、ランキング化はしま�
 * AIとのチャット機能（クレイジーな挑戦内容の提案に活用）
 
 ### 使用技術
-サーバーサイド：Ruby on Rails
-フロントエンド：Ruby on Rails / JavaScript
-CSSフレームワーク：TailwindCSS
-Web API：Natural Language API / Open AI API / LINE Developers
-データベース：PostgreSQL
-インフラ：heroku
-ファイルサーバー：AWS S3
+サーバーサイド：Ruby on Rails  
+フロントエンド：Ruby on Rails / JavaScript  
+CSSフレームワーク：TailwindCSS  
+Web API：Natural Language API / Open AI API / LINE Developers  
+データベース：PostgreSQL  
+キャッシュ / セッション管理：redis  
+インフラ：heroku  
+ファイルサーバー：AWS S3  
 
 ### 画面遷移図
 https://www.figma.com/file/bYm3gAgfyFwbDCRwKpCDT3/crazy_challenge_record?type=design&node-id=0%3A1&mode=design&t=Y6dHQ2dFwSjpMyqN-1
