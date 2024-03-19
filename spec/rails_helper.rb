@@ -67,4 +67,18 @@ RSpec.configure do |config|
   config.include LoginSupport
   config.include PasswordResetHelpers
   config.include ChatRouteHelpers
+
+  config.before(:suite) do
+    # テスト開始前にRedisサーバーを立ち上げる
+    redis_test_port = 6380 # テスト用のポート番号
+    redis_pid = Process.spawn("redis-server --port #{redis_test_port}")
+    Process.detach(redis_pid)
+    # Redisへの接続情報をテスト用に設定する
+    $redis = Redis.new(host: 'localhost', port: redis_test_port)
+  end
+
+  config.after(:suite) do
+    # テスト終了後にRedisサーバーを終了させる
+    system("redis-cli -p 6379 shutdown")
+  end
 end
