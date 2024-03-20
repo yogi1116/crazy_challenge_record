@@ -22,7 +22,7 @@
     <% end %>
     <div class="flex-grow">
       <%= render 'shared/flash_messages' %>
-      <%= render 'shared/ai_chat_button' if logged_in? && !(['messages', 'ai_chats'].include?(controller_name) && ['show', 'new'].include?(action_name)) %>
+      <%= render 'shared/ai_chat_button' if logged_in? && !(['messages', 'ai_chats', 'profiles', 'top_pages'].include?(controller_name) && ['show', 'new', 'edit', 'privacy_policy', 'terms_of_service'].include?(action_name)) %>
       <%= yield %>
       <%= yield(:js) %>
     </div>
