@@ -1,101 +1,58 @@
-# [サービス名]
-CRAZY MAN
+# [サービス名：CRAZY MAN]
 [![Image from Gyazo](https://i.gyazo.com/6c8fd350656c44d89adb2c5e66206b8c.png)](https://gyazo.com/6c8fd350656c44d89adb2c5e66206b8c)
 
 ## サービス概要
-一般人が真似できないようなクレイジーな挑戦に挑んだ人々の、その挑戦談について投稿共有できるサービスです。
+クレイジーな挑戦に挑んだ人々の、その挑戦記について投稿共有できるサービスです。  
+様々な挑戦に挑む人々を応援し、投稿を見た人々に挑戦する勇気を与えられたらいいなと思っています！  
 
-## 想定されるユーザー層
-クレイジーな挑戦に挑み、その挑戦談を共有したい人  
-他人の挑戦談に興味がある人  
-変わったことに挑戦してみたい人  
-挑戦する勇気をもらいたい人  
+## サービスのURL
+<https://fierce-plateau-48229-09e6d0eb36ec.herokuapp.com/posts>  
 
 ## サービスコンセプト
-クレイジーな挑戦をした人がいても、その経験を語ったり知る機会は多くありません。  
-自分から話すと「自慢話？」「変わった人」などと相手にマイナスな印象を抱かる恐れもあるため、  
-だれ彼構わず発信することは難しいものです。  
-しかし、そういったクレイジーな物語には、私たちの知らない展開が待っていたり、  
-意外な気づきを貰える貴重な経験談だと私は思います。  
-そんなクレイジーなお話を、クレイジーな挑戦に興味のある人や、  
-人の挑戦を応援したい人に向け発信できるサービスです。  
-
 私は大学時代、好奇心から人がやらないような挑戦をした経験があります。  
-自分で挑戦しときながら、とても辛いものばかりでした。  
-しかしそれ以上に、達成した時の喜びは言葉で表せないものでした。今でもその当時の記憶は強く残っています。  
-それがきっかけで、  
-「あの挑戦談を誰かに話したい」  
-「クレイジーな挑戦に挑んだ人々の挑戦談をたくさん知りたい」  
-と思うようになり、このサービスを考えました。  
+その際、日常では味わえない経験や予想だにしない展開が起こったりなど、とても記憶に残ることばかりでした。  
+そういった経験から、変わった挑戦をするとその人にしか分からない貴重な経験談を秘めているのではないかと思いました。  
+それがきっかけで、様々な挑戦をした人々のその体験談を知りたいと思うようになり、「CRAZY MAN」を作成しました。  
+このアプリでは、挑戦する人々を応援し、アプリを通して少しでも挑戦する勇気につながるそんなアプリでありたいと思っています。  
 
-投稿内容は、以下のとおりです。  
-* まずCOMPLETE・GIVE UP（ドロップダウン式で「COMPLETE」を選択）
-* 挑戦名
-* 内容
-* カテゴリー（複数選択可）
-* 記録（目的達成のタイムなど）
-* 印象に残った出来事
-* 得られた教訓
+## 機能一覧
+| ログイン機能| プロフィール機能 |
+----|----
+| <a href="https://gyazo.com/93a5422532e356db54d7876be339975f"><img src="https://i.gyazo.com/93a5422532e356db54d7876be339975f.jpg" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/1f07b53778ea5cacfcaeaa40a168aeb7"><img src="https://i.gyazo.com/1f07b53778ea5cacfcaeaa40a168aeb7.png" alt="Image from Gyazo" width="400"/></a> |
+|ログイン情報の入力|プロフィール情報の入力|
 
-ユーザーはその投稿に「いいね」ならぬ「CRAZY」することができます。  
-「クレイジー」の目的は、人によってクレイジーの度合いの認識が違うため、  
-より多くの「CRAZY」を獲得できた上位10個のエピソードを「真のクレイジー」として  
-ランキングで発表します。  
-同時に自分の挑戦のクレイジーさを他のユーザーを通して認識してもらうことにもつながります。
+| 投稿機能 | おすすめ挑戦投稿機能 |
+----|----
+| <a href="https://gyazo.com/7b66b182bc30d205821d3d19893cf48d"><img src="https://i.gyazo.com/7b66b182bc30d205821d3d19893cf48d.gif" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/5754638d238542895a1b2fc012ca74b0"><img src="https://i.gyazo.com/5754638d238542895a1b2fc012ca74b0.gif" alt="Image from Gyazo" width="400"/></a> |
+|COMPLETEまたはGIVE UPから選択し投稿する。危険な内容はAPIで投稿拒否される|おすすめの挑戦内容を記載し投稿する。危険な内容はAPIで投稿拒否される。|
 
-また、クレイジーな挑戦には断念がつきものだと思うので、「夢半ば断念した挑戦」も投稿できるようにします。  
-投稿内容は以下のとおりです。
-* まずCOMPLETE・GIVE UP（ドロップダウン式で「GIVE UP」を選択）
-* 断念した挑戦名
-* 内容
-* カテゴリー（複数選択可）
-* 感想
-* 得られた教訓
-* 再挑戦する、しない（ドロップダウン式）
+| いいね機能 | ランキング機能 |
+----|----
+| <a href="https://gyazo.com/6fe10f754391cc67d8aed35e517c1168"><img src="https://i.gyazo.com/6fe10f754391cc67d8aed35e517c1168.gif" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/f6865693d8cc9b93cd4570afcce8fc2e"><img src="https://i.gyazo.com/f6865693d8cc9b93cd4570afcce8fc2e.png" alt="Image from Gyazo" width="400"/></a> |
+|COMPLETE・GIVE UP・おすすめチャレンジそれぞれに合ったいいねボタンを作成。|COMPLETEチャレンジに限り、いいね数を基にランキング化。めざせCRAZY MAN！|
 
-⑥で再挑戦するを選択した際  
-ユーザーが、その挑戦を応援したいと感じたら、その投稿を「FIGHT」し応援の意思を表示することができます。  
-⑥にて再挑戦しないを選択した際は、挑戦者への労いを込め「NICE FIGHT」することができます。  
-GIVE UPした挑戦は達成できてないため、ランキング化はしません。  
+| コメント機能 | 検索機能 |
+----|----
+| <a href="https://gyazo.com/b952ac5be7abcb815bfcce625ce76f31"><img src="https://i.gyazo.com/b952ac5be7abcb815bfcce625ce76f31.gif" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/c9b9bb5fec8922c527fb1470c9dbf1b6"><img src="https://i.gyazo.com/c9b9bb5fec8922c527fb1470c9dbf1b6.gif" alt="Image from Gyazo" width="400"/></a> |
+|全ての投稿に対しコメントができる。|挑戦結果・カテゴリーの片方ずつまたは両方から検索可能。|
 
-本サービスの差別化
-* 挑戦だけに特化
-* 「いいね」ならぬ「CRAZY」「FIGHT」「NICE FIGHT」などオリジナルのリアクションの導入
-* クレイジーな挑戦を決定するためのランキングの導入
-* チャット機能で、その挑戦に興味を持った人やクレイジー同士でつながる機会の導入
-* 挑戦することに興味を抱き、何か挑戦したいが「何に挑戦しよう？」と考えるユーザーにAIが挑戦内容を提案する　　
-* またユーザーが考えたおすすめな挑戦内容を投稿することも可能
+| チャット機能 | AIから挑戦提案機能 |
+----|----
+| <a href="https://gyazo.com/6cb832b53afa453088b2ffbdd5270753"><img src="https://i.gyazo.com/6cb832b53afa453088b2ffbdd5270753.png" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/c074110db5c58402d089ef4eed5804d9"><img src="https://i.gyazo.com/c074110db5c58402d089ef4eed5804d9.gif" alt="Image from Gyazo" width="400"/></a> |
+|ユーザー同士でチャットができる。|AIに挑戦内容を提案してもらうことができる。|
 
-## 実装を予定している機能
-### MVP
-* 会員登録
-* ログイン
-* 投稿一覧
-* ランキング
-* 投稿詳細
-* プロフィール機能
-* いいね機能
-* コメント
-* 投稿
-* Natural Language API（投稿に不適切な内容のフィルタリング）
-* テスト（Rspec）
-
-### 本リリース追加機能
-* パスワードリセット機能
-* カテゴリー検索
-* チャット機能
-* おすすめ挑戦の投稿機能
-* AIとのチャット機能（クレイジーな挑戦内容の提案に活用）
 
 ### 使用技術
-サーバーサイド：Ruby on Rails  
-フロントエンド：Ruby on Rails / JavaScript  
-CSSフレームワーク：TailwindCSS  
-Web API：Natural Language API / Open AI API / LINE Developers  
-データベース：PostgreSQL  
-キャッシュ / セッション管理：redis  
-インフラ：heroku  
-ファイルサーバー：AWS S3  
+| Category | Technology Stack |
+| --- | --- |
+| サーバーサイド | Ruby on Rails |
+| フロントエンド | Ruby on Rails, JavaScript |
+| CSSフレームワーク | TailwindCSS |
+| Web API | Natural Language API, Open AI API, LINE Developers |
+| データベース | PostgreSQL |
+| キャッシュ, セッション管理 | redis |
+| インフラ | heroku |
+| ファイルサーバー | AWS S3 |
 
 ### 画面遷移図
 https://www.figma.com/file/bYm3gAgfyFwbDCRwKpCDT3/crazy_challenge_record?type=design&node-id=0%3A1&mode=design&t=Y6dHQ2dFwSjpMyqN-1
