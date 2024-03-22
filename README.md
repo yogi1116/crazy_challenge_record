@@ -24,17 +24,17 @@
 | 投稿機能 | おすすめ挑戦投稿機能 |
 ----|----
 | <a href="https://gyazo.com/16e0da93b2ae48fe531101f2c68efb38"><img src="https://i.gyazo.com/16e0da93b2ae48fe531101f2c68efb38.jpg" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/1ec2830e1c197b885b47668e35bc6ea2"><img src="https://i.gyazo.com/1ec2830e1c197b885b47668e35bc6ea2.jpg" alt="Image from Gyazo" width="400"/></a> |
-|COMPLETEまたはGIVE UPから選択し投稿する。危険な内容はAPIで投稿拒否される|おすすめの挑戦内容を記載し投稿する。危険な内容はAPIで投稿拒否される。|
+|COMPLETEまたはGIVE UPから選択し投稿する。|おすすめの挑戦内容を記載し投稿する。|
 
 | いいね機能 | ランキング機能 |
 ----|----
 | <a href="https://gyazo.com/e7c8d9ef81b5ca9ab6cbf2dc7d55e268"><img src="https://i.gyazo.com/e7c8d9ef81b5ca9ab6cbf2dc7d55e268.png" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/fd8344fcd34b666447b6c61289085298"><img src="https://i.gyazo.com/fd8344fcd34b666447b6c61289085298.png" alt="Image from Gyazo" width="400"/></a> |
-|COMPLETE・GIVE UP・おすすめチャレンジそれぞれに合ったいいねボタンを作成。|COMPLETEチャレンジに限り、いいね数を基にランキング化。めざせCRAZY MAN！|
+|4種類のいいねボタンがあります。|COMPLETEチャレンジに限りランキング化。|
 
 | コメント機能 | 検索機能 |
 ----|----
 | <a href="https://gyazo.com/96a11b7febf10cf31196c6840a354709"><img src="https://i.gyazo.com/96a11b7febf10cf31196c6840a354709.jpg" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/41c6bfd488196607d2ca4eea4bfceeb5"><img src="https://i.gyazo.com/41c6bfd488196607d2ca4eea4bfceeb5.jpg" alt="Image from Gyazo" width="400"/></a> |
-|全ての投稿に対しコメントができる。|挑戦結果・カテゴリーの片方ずつまたは両方から検索可能。|
+|全ての投稿に対しコメントができる。|挑戦結果・カテゴリーから検索可能。|
 
 | チャット機能 | AIから挑戦提案機能 |
 ----|----
