@@ -6,7 +6,7 @@
 様々な挑戦に挑む人々を応援し、投稿を見た人々に挑戦する勇気を与えられたらいいなと思っています！  
 
 ## サービスのURL
-<https://fierce-plateau-48229-09e6d0eb36ec.herokuapp.com/posts>  
+<https://fierce-plateau-48229-09e6d0eb36ec.herokuapp.com/>  
 
 ## サービスコンセプト
 私は大学時代、好奇心から人がやらないような挑戦をした経験があります。  
