@@ -44,12 +44,12 @@ class PostsController < ApplicationController
   def edit; end
 
   def update
+    @post.images.purge # 既存の画像削除（新規画像と合算しないようにするため）
     @post.assign_attributes(post_params) # 仮代入のためupdateメソッドは使わない
     return if post_invalid
     return if content_moderated(@post)
 
-    @post.reload
-    @post.images.purge
+    @post.images.purge # オリジナル画像を削除（リサイズ画像のみ表示させるため）
     images = params[:post][:images].present? ? params[:post][:images].reject(&:blank?) : []
     attach_resized_images(images)
 
