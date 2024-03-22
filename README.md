@@ -18,27 +18,27 @@
 ## 機能一覧
 | ログイン機能| プロフィール機能 |
 ----|----
-| [![Image from Gyazo](https://i.gyazo.com/bb3ba6299f4d4f2f7d5bb6f06212a71b.jpg)](https://gyazo.com/bb3ba6299f4d4f2f7d5bb6f06212a71b) | [![Image from Gyazo](https://i.gyazo.com/db64e638a9efde01abc16ef3b768386c.png)](https://gyazo.com/db64e638a9efde01abc16ef3b768386c) |
+| <a href="https://gyazo.com/e7fc26f81873de37eba835c27e4dd135"><img src="https://i.gyazo.com/e7fc26f81873de37eba835c27e4dd135.jpg" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/32a9fd348cb63153a78001bd83a45513"><img src="https://i.gyazo.com/32a9fd348cb63153a78001bd83a45513.png" alt="Image from Gyazo" width="400"/></a> |
 |ログイン情報の入力|プロフィール情報の入力|
 
 | 投稿機能 | おすすめ挑戦投稿機能 |
 ----|----
-| [![Image from Gyazo](https://i.gyazo.com/339324042cb65ff58317bc509e68c4c3.gif)](https://gyazo.com/339324042cb65ff58317bc509e68c4c3) | [![Image from Gyazo](https://i.gyazo.com/b4efcfc0494d7764f14c3a80151fc94a.gif)](https://gyazo.com/b4efcfc0494d7764f14c3a80151fc94a) |
+| <a href="https://gyazo.com/16e0da93b2ae48fe531101f2c68efb38"><img src="https://i.gyazo.com/16e0da93b2ae48fe531101f2c68efb38.jpg" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/1ec2830e1c197b885b47668e35bc6ea2"><img src="https://i.gyazo.com/1ec2830e1c197b885b47668e35bc6ea2.jpg" alt="Image from Gyazo" width="400"/></a> |
 |COMPLETEまたはGIVE UPから選択し投稿する。危険な内容はAPIで投稿拒否される|おすすめの挑戦内容を記載し投稿する。危険な内容はAPIで投稿拒否される。|
 
 | いいね機能 | ランキング機能 |
 ----|----
-| [![Image from Gyazo](https://i.gyazo.com/6fe10f754391cc67d8aed35e517c1168.gif)](https://gyazo.com/6fe10f754391cc67d8aed35e517c1168) | [![Image from Gyazo](https://i.gyazo.com/f6865693d8cc9b93cd4570afcce8fc2e.png)](https://gyazo.com/f6865693d8cc9b93cd4570afcce8fc2e) |
+| <a href="https://gyazo.com/e7c8d9ef81b5ca9ab6cbf2dc7d55e268"><img src="https://i.gyazo.com/e7c8d9ef81b5ca9ab6cbf2dc7d55e268.png" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/fd8344fcd34b666447b6c61289085298"><img src="https://i.gyazo.com/fd8344fcd34b666447b6c61289085298.png" alt="Image from Gyazo" width="400"/></a> |
 |COMPLETE・GIVE UP・おすすめチャレンジそれぞれに合ったいいねボタンを作成。|COMPLETEチャレンジに限り、いいね数を基にランキング化。めざせCRAZY MAN！|
 
 | コメント機能 | 検索機能 |
 ----|----
-| [![Image from Gyazo](https://i.gyazo.com/b952ac5be7abcb815bfcce625ce76f31.gif)](https://gyazo.com/b952ac5be7abcb815bfcce625ce76f31) | [![Image from Gyazo](https://i.gyazo.com/c9b9bb5fec8922c527fb1470c9dbf1b6.gif)](https://gyazo.com/c9b9bb5fec8922c527fb1470c9dbf1b6) |
+| <a href="https://gyazo.com/96a11b7febf10cf31196c6840a354709"><img src="https://i.gyazo.com/96a11b7febf10cf31196c6840a354709.jpg" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/41c6bfd488196607d2ca4eea4bfceeb5"><img src="https://i.gyazo.com/41c6bfd488196607d2ca4eea4bfceeb5.jpg" alt="Image from Gyazo" width="400"/></a> |
 |全ての投稿に対しコメントができる。|挑戦結果・カテゴリーの片方ずつまたは両方から検索可能。|
 
 | チャット機能 | AIから挑戦提案機能 |
 ----|----
-| [![Image from Gyazo](https://i.gyazo.com/6cb832b53afa453088b2ffbdd5270753.png)](https://gyazo.com/6cb832b53afa453088b2ffbdd5270753) | [![Image from Gyazo](https://i.gyazo.com/c074110db5c58402d089ef4eed5804d9.gif)](https://gyazo.com/c074110db5c58402d089ef4eed5804d9) |
+| <a href="https://gyazo.com/b2f37f710f6d1cf15f3a02c8d0091bb2"><img src="https://i.gyazo.com/b2f37f710f6d1cf15f3a02c8d0091bb2.png" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/560fec0959d3f97260309674440579b0"><img src="https://i.gyazo.com/560fec0959d3f97260309674440579b0.png" alt="Image from Gyazo" width="400"/></a> |
 |ユーザー同士でチャットができる。|AIに挑戦内容を提案してもらうことができる。|
 
 
