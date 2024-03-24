@@ -58,4 +58,4 @@
 https://www.figma.com/file/bYm3gAgfyFwbDCRwKpCDT3/crazy_challenge_record?type=design&node-id=0%3A1&mode=design&t=Y6dHQ2dFwSjpMyqN-1
 
 ### ER図
-[![Image from Gyazo](https://i.gyazo.com/c7e1ec199c6939334374c49dac61b263.png)](https://gyazo.com/c7e1ec199c6939334374c49dac61b263)
+[![Image from Gyazo](https://i.gyazo.com/57caf922799c89ba31ae81e3618e7f18.png)](https://gyazo.com/57caf922799c89ba31ae81e3618e7f18)
