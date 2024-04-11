@@ -23,7 +23,7 @@
 
 | 投稿機能 | おすすめ挑戦投稿機能 |
 ----|----
-| <a href="https://gyazo.com/6eaa53a19c4c1b66c908ed023bf9c0b6"><img src="https://i.gyazo.com/6eaa53a19c4c1b66c908ed023bf9c0b6.gif" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/096b73e300ffde3a216d6787e5a51716"><img src="https://i.gyazo.com/096b73e300ffde3a216d6787e5a51716.gif" alt="Image from Gyazo" width="400"/></a> |
+| <a href="https://gyazo.com/16e0da93b2ae48fe531101f2c68efb38"><img src="https://i.gyazo.com/16e0da93b2ae48fe531101f2c68efb38.jpg" alt="Image from Gyazo" width="400"/></a> | <a href="https://gyazo.com/1ec2830e1c197b885b47668e35bc6ea2"><img src="https://i.gyazo.com/1ec2830e1c197b885b47668e35bc6ea2.jpg" alt="Image from Gyazo" width="400"/></a> |
 |COMPLETEまたはGIVE UPから選択し投稿する。|おすすめの挑戦内容を記載し投稿する。|
 
 | いいね機能 | ランキング機能 |
